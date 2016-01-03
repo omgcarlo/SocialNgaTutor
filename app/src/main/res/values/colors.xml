@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <color name="color_primary_red">#D32F2F</color>
+    <color name="color_primary_red_dark">#B71C1C</color>
+
+    <color name="color_primary_green"> #4caf50</color>
+    <color name="color_primary_green_dark">#388e3c</color>
+
+    <color name="color_primary_blue">#2196f3</color>
+    <color name="color_primary_blue_dark">#1976d2</color>
+
+    <color name="color_accent_pink">#ff4081</color>
+
+    <color name="color_shadow">#44000000</color>
+
+    <color name="bgGrey">#EEEEEE</color>
+
+    <color name="white">#ffffff</color>
+</resources>

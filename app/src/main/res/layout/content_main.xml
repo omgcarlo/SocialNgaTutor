@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:background="@color/bgGrey">
+        <ImageView
+            android:layout_marginTop="-20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/banner1"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logov1"
+            android:layout_marginTop="-220dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/app_title_in_banner"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:layout_gravity="center_vertical"
+            android:text="@string/app_name"/>
+        <EditText
+            android:id="@+id/username"
+            android:layout_marginTop="100dp"
+            android:layout_width="360dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center"
+            android:inputType="text"
+            android:hint="    Username"
+            android:drawableLeft="@drawable/ic_black_person"/>
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="360dp"
+            android:layout_marginTop="8dp"
+            android:layout_height="62dp"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:hint="  Password"
+            android:drawableLeft="@drawable/ic_black_password"/>
+
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_marginTop="30dp"
+            android:layout_width="323dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:elevation="2dp"
+            android:text="@string/Login"
+            android:onClick="mainButtons"
+            android:textColor="@color/white"
+            android:drawableTop="@drawable/ic_check_circle"
+            android:background="@drawable/button_login_w_shadow"/>
+
+        <Button
+            android:id="@+id/signupBtn"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="192dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="@string/Signup"
+            android:onClick="mainButtons"
+            android:textColor="@color/color_primary_blue_dark"
+            android:background="@color/bgGrey"/>
+
+    </LinearLayout>
+
+</FrameLayout>

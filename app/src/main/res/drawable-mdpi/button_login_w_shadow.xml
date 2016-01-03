@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="false">
+        <layer-list>
+            <!-- SHADOW -->
+            <item>
+                <shape>
+                    <solid android:color="#DaDaDa"/>
+                    <corners android:radius="3dp"/>
+
+
+                </shape>
+            </item>
+            <!-- BUTTON -->
+            <item android:bottom="5px">
+                <shape>
+                    <padding android:bottom="5dp"/>
+                    <gradient
+                        android:startColor="#E53935"
+                        android:endColor="#E53935"
+                        android:angle="270" />
+                    <corners
+                        android:radius="3dp"/>
+                    <padding
+                        android:left="10dp"
+                        android:top="10dp"
+                        android:right="10dp"
+                        android:bottom="10dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- SHADOW -->
+            <item>
+                <shape>
+                    <solid android:color="#242222"/>
+                    <corners android:radius="5dp"/>
+                </shape>
+            </item>
+            <!-- BUTTON -->
+            <item android:bottom="5px">
+                <shape>
+                    <padding android:bottom="5dp"/>
+                    <gradient
+                        android:startColor="#FFCF0000"
+                        android:endColor="#FF941919"
+                        android:angle="270" />
+                    <corners
+                        android:radius="1dp"/>
+                    <padding
+                        android:left="10dp"
+                        android:top="10dp"
+                        android:right="10dp"
+                        android:bottom="10dp"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
