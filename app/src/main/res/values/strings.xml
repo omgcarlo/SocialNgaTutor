@@ -8,6 +8,11 @@
     <string name="tab1">HOME</string>
     <string name="tab2">EXPLORE</string>
     <string name="tab3">EVENTS</string>
-    <string name="tab4">NOTIFICATIONS</string>
+    <string name="tab4">ACTIVITY</string>
     <string name="copyright">© INCC Group</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+
+    <string name="title_activity_login_process">LoginProcessActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">Your\nSHIT\nis\nLOADING</string>
 </resources>
