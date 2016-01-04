@@ -16,7 +16,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public static RecyclerItemViewHolder newInstance(View parent) {
-        TextView itemTextView = (TextView) parent.findViewById(R.id.itemTextView);
+        TextView itemTextView = (TextView) parent.findViewById(R.id.card_fullname);
         return new RecyclerItemViewHolder(parent, itemTextView);
     }
 
