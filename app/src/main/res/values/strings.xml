@@ -10,9 +10,10 @@
     <string name="tab3">EVENTS</string>
     <string name="tab4">ACTIVITY</string>
     <string name="copyright">© INCC Group</string>
-    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="title_activity_sign_up">Sign Up</string>
 
     <string name="title_activity_login_process">LoginProcessActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">Your\nSHIT\nis\nLOADING</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

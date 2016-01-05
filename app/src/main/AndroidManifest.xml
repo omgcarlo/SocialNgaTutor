@@ -32,7 +32,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.incc.softwareproject.socialngatutor.MainActivity" />
         </activity>
-        <activity android:name=".LoginProcessActivity"></activity>
+        <activity android:name=".LoginProcessActivity" />
+        <activity
+            android:name=".SignUpProcessActivity"
+            android:label="@string/title_activity_main2"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.incc.softwareproject.socialngatutor.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

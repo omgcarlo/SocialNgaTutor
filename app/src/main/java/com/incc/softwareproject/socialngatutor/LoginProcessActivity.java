@@ -21,24 +21,27 @@ public class LoginProcessActivity extends AppCompatActivity {
     ProgressBar loading1;
     HttpURLConnection urlConnection;
     String uri = "http://192.168.1.6/socialtutor/server/user.php";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_process);
         tv = (TextView) findViewById(R.id.res);
-        uri +="?action=login&username="+
+        uri += "?action=login&username=" +
                 getIntent().getExtras().getString("username") +
                 "&password=" + getIntent().getExtras().getString("password");
-       //Toast.makeText(this,uri,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,uri,Toast.LENGTH_SHORT).show();
         loading1 = (ProgressBar) findViewById(R.id.loading_login);
         loading1.setVisibility(View.VISIBLE);
         new ConnectProccess().execute(uri);
     }
-    private void balhin(){
-        Intent i = new Intent(this,AfterLoginActivity.class);
+
+    private void balhin() {
+        Intent i = new Intent(this, AfterLoginActivity.class);
         startActivity(i);
     }
-    private class ConnectProccess extends AsyncTask<String,Integer, String> {
+
+    private class ConnectProccess extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
             StringBuilder result = new StringBuilder();
@@ -65,21 +68,27 @@ public class LoginProcessActivity extends AppCompatActivity {
             return result.toString();
 
         }
+
         protected void onProgressUpdate(Integer... progress) {
-            switch (progress[0]){
-                case 0 : tv.setText("Connecting...");
+            switch (progress[0]) {
+                case 0:
+                    tv.setText("Connecting...");
                     break;
-                case 2 : tv.setText("Fetching Data...");
+                case 2:
+                    tv.setText("Fetching Data...");
                     break;
-                default:tv.setText("Finalizing");
+                default:
+                    tv.setText("Finalizing");
             }
         }
+
         @Override
         protected void onPostExecute(String result) {
-
-            tv.setText(result);
-            loading1.setVisibility(View.INVISIBLE);
-            balhin();
+            if (result != "") {
+                tv.setText(result);
+                loading1.setVisibility(View.INVISIBLE);
+                balhin();
+            }
         }
     }
 }
