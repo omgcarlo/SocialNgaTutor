@@ -1,19 +1,30 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+
+import static android.support.design.widget.Snackbar.*;
 
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private View mRootView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        mRootView = findViewById(R.id.root_view);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.su_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
@@ -38,10 +49,33 @@ public class SignUpActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_register) {
+            registerProcess();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void registerProcess(){
+        String username,password,rpassword,fullname;
+        username = ((EditText) findViewById(R.id.s_username)).getText().toString();
+        password = ((EditText) findViewById(R.id.s_password)).getText().toString();
+        rpassword = ((EditText) findViewById(R.id.s_rpassword)).getText().toString();
+        fullname = ((EditText) findViewById(R.id.s_fullname)).getText().toString();
+
+        if(password.equals("") || rpassword.equals("")){
+            Snackbar.make(mRootView, "Password field is empty", LENGTH_LONG).show();
+        }
+        else if(password.equals(rpassword) && !password.equals("") && !rpassword.equals("") ) {
+            Intent i = new Intent(this, SignUpProcessActivity.class);
+            i.putExtra("username", username);
+            i.putExtra("password", password);
+            i.putExtra("fullname",fullname);
+            startActivity(i);
+        }
+        else{
+            Snackbar.make(mRootView, "Password does not match", LENGTH_LONG).show();
+        }
     }
 
 }

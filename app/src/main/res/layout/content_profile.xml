@@ -8,8 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-
-    tools:context=".SignUpProcessActivity"
-    tools:showIn="@layout/activity_signup_process">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.incc.softwareproject.socialngatutor.ProfileActivity"
+    tools:showIn="@layout/activity_profile">
 
 </RelativeLayout>
