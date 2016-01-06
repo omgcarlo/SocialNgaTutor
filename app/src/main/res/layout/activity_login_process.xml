@@ -24,4 +24,16 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/retrybtn"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="retry"
+        android:drawableTop="@drawable/ic_retry"
+        android:background="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/res"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

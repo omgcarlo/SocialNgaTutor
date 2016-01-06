@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 
 import static android.support.design.widget.Snackbar.*;
@@ -33,6 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
         actionBar.setShowHideAnimationEnabled(true);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -56,24 +58,27 @@ public class SignUpActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void registerProcess(){
-        String username,password,rpassword,fullname;
+    public void registerProcess() {
+        String username, password, rpassword, fullname, birthdate;
         username = ((EditText) findViewById(R.id.s_username)).getText().toString();
         password = ((EditText) findViewById(R.id.s_password)).getText().toString();
         rpassword = ((EditText) findViewById(R.id.s_rpassword)).getText().toString();
         fullname = ((EditText) findViewById(R.id.s_fullname)).getText().toString();
 
-        if(password.equals("") || rpassword.equals("")){
+        /*********** GET DATE PICKER BAI ************/
+        DatePicker dp = (DatePicker) findViewById(R.id.brithdatePicker);
+        birthdate = dp.getYear() + "-" + dp.getMonth() + "-" + dp.getDayOfMonth();
+        if (password.equals("") || rpassword.equals("")) {
             Snackbar.make(mRootView, "Password field is empty", LENGTH_LONG).show();
-        }
-        else if(password.equals(rpassword) && !password.equals("") && !rpassword.equals("") ) {
+        } else if (password.equals(rpassword) && !password.equals("") && !rpassword.equals("")) {
             Intent i = new Intent(this, SignUpProcessActivity.class);
             i.putExtra("username", username);
             i.putExtra("password", password);
-            i.putExtra("fullname",fullname);
+            i.putExtra("fullname", fullname);
+            i.putExtra("birthdate",birthdate);
+            //add program
             startActivity(i);
-        }
-        else{
+        } else {
             Snackbar.make(mRootView, "Password does not match", LENGTH_LONG).show();
         }
     }

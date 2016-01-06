@@ -1,5 +1,6 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -39,6 +40,12 @@ public class AfterLoginActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_profile){
+            Intent i = new Intent(this,ProfileActivity.class);
+            startActivity(i);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
     private void initToolbar() {

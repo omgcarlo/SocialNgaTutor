@@ -61,13 +61,15 @@ public class MainActivity extends AppCompatActivity {
             //i = new Intent(this,AfterLoginActivity.class);
             i = new Intent(this,LoginProcessActivity.class);
             i.putExtra("username",username);
-            i.putExtra("password",password);
-            startActivity(i);
+            i.putExtra("password", password);
+
         }
         else{
             i = new Intent(this,SignUpActivity.class);
-            startActivity(i);
+
         }
+        startActivity(i);
+        finish();
     }
 
 }

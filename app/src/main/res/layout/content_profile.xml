@@ -23,8 +23,9 @@
                 android:layout_marginTop="-40dp"
                 android:src="@drawable/banner1"/>
             <ImageButton
-                android:layout_width="173dp"
-                android:layout_height="173dp"
+                android:layout_width="100dp"
+                android:scaleType="fitXY"
+                android:layout_height="100dp"
                 android:src="@drawable/ppdefault"
                 android:layout_marginTop="-240dp"
                 android:layout_gravity="center"
@@ -43,6 +44,14 @@
                 android:layout_height="wrap_content"
                 android:text="\@username"
                 android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/profile_program"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:textSize="15sp"
+                android:text="Bachelor of Science in Information Technology"/>
         </LinearLayout>
     </ScrollView>
 

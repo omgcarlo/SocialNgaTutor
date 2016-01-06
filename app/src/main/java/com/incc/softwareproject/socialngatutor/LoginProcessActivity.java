@@ -5,9 +5,14 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -20,7 +25,7 @@ public class LoginProcessActivity extends AppCompatActivity {
     TextView tv;
     ProgressBar loading1;
     HttpURLConnection urlConnection;
-    String uri = "http://192.168.1.6/socialtutor/server/user.php";
+    String uri = "http://192.168.1.18/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +41,23 @@ public class LoginProcessActivity extends AppCompatActivity {
         new ConnectProccess().execute(uri);
     }
 
-    private void balhin() {
-        Intent i = new Intent(this, AfterLoginActivity.class);
-        startActivity(i);
+    private void balhin(String res) {
+        try {
+
+            String schoolId = "";
+            JSONObject reader = new JSONObject(res);
+            JSONObject data = reader.getJSONObject("User");
+            schoolId = data.getString("SchoolId");
+
+            //tv.setText(fullname);
+            //Toast.makeText(this, fullname, Toast.LENGTH_LONG).show();
+
+            Intent i = new Intent(this, AfterLoginActivity.class);
+            i.putExtra("SchoolId", schoolId);
+            startActivity(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private class ConnectProccess extends AsyncTask<String, Integer, String> {
@@ -85,10 +104,20 @@ public class LoginProcessActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if (result != "") {
-                tv.setText(result);
                 loading1.setVisibility(View.INVISIBLE);
-                balhin();
+                balhin(result);
+                finish();
+            } else {
+                Button retry = (Button) findViewById(R.id.retrybtn);
+                retry.setVisibility(View.VISIBLE);
+                retry.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                    }
+
+                });
             }
+
+
         }
     }
 }
