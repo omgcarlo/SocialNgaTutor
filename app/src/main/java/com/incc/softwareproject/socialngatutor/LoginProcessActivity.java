@@ -25,7 +25,7 @@ public class LoginProcessActivity extends AppCompatActivity {
     TextView tv;
     ProgressBar loading1;
     HttpURLConnection urlConnection;
-    String uri = "http://192.168.1.18/socialtutor/server/user.php";
+    String uri = "http://192.168.1.6/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +44,40 @@ public class LoginProcessActivity extends AppCompatActivity {
     private void balhin(String res) {
         try {
 
+            //Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
+
             String schoolId = "";
             JSONObject reader = new JSONObject(res);
             JSONObject data = reader.getJSONObject("User");
             schoolId = data.getString("SchoolId");
 
             //tv.setText(fullname);
-            //Toast.makeText(this, fullname, Toast.LENGTH_LONG).show();
-
-            Intent i = new Intent(this, AfterLoginActivity.class);
-            i.putExtra("SchoolId", schoolId);
-            startActivity(i);
+            Toast.makeText(this, schoolId, Toast.LENGTH_LONG).show();
+            if (schoolId.equals(null)) {
+                //Toast.makeText(this,"SAYOP", Toast.LENGTH_LONG).show();
+                animateRetry();
+                tv.setText("Wrong Username or Password");
+            }
+            else {
+                Intent i = new Intent(this, AfterLoginActivity.class);
+                i.putExtra("SchoolId", schoolId);
+                startActivity(i);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void animateRetry() {
+        loading1.setVisibility(View.INVISIBLE);
+        Button retry = (Button) findViewById(R.id.retrybtn);
+        retry.setVisibility(View.VISIBLE);
+    }
+
+    public void retryBtn(View v) {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private class ConnectProccess extends AsyncTask<String, Integer, String> {
@@ -103,21 +123,15 @@ public class LoginProcessActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (result != "") {
+            if (!result.equals("")) {
                 loading1.setVisibility(View.INVISIBLE);
                 balhin(result);
                 finish();
             } else {
-                Button retry = (Button) findViewById(R.id.retrybtn);
-                retry.setVisibility(View.VISIBLE);
-                retry.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View v) {
-                    }
-
-                });
+                //animate
+                animateRetry();
+                tv.setText("Cannot Connect to Server or Database");
             }
-
-
         }
     }
 }

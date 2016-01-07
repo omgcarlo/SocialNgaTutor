@@ -62,7 +62,7 @@ public class SignUpProcessActivity extends AppCompatActivity {
             try {
 
                 // Defined URL  where to send data
-                URL url = new URL("http://androidexample.com/media/webservice/httppost.php");
+                URL url = new URL("http://192.168.1.6/socialtutor/server/user.php");
 
                 // Send POST data request
 

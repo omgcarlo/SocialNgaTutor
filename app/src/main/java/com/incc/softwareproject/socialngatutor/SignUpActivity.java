@@ -60,14 +60,16 @@ public class SignUpActivity extends AppCompatActivity {
 
     public void registerProcess() {
         String username, password, rpassword, fullname, birthdate;
+        /***** GET DATA *****/
         username = ((EditText) findViewById(R.id.s_username)).getText().toString();
         password = ((EditText) findViewById(R.id.s_password)).getText().toString();
         rpassword = ((EditText) findViewById(R.id.s_rpassword)).getText().toString();
         fullname = ((EditText) findViewById(R.id.s_fullname)).getText().toString();
 
-        /*********** GET DATE PICKER BAI ************/
+        /*********** GET DATE PICKER  ************/
         DatePicker dp = (DatePicker) findViewById(R.id.brithdatePicker);
         birthdate = dp.getYear() + "-" + dp.getMonth() + "-" + dp.getDayOfMonth();
+
         if (password.equals("") || rpassword.equals("")) {
             Snackbar.make(mRootView, "Password field is empty", LENGTH_LONG).show();
         } else if (password.equals(rpassword) && !password.equals("") && !rpassword.equals("")) {

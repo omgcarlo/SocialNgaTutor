@@ -35,5 +35,6 @@
         android:background="@color/white"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/res"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="retryBtn"/>
 </RelativeLayout>
