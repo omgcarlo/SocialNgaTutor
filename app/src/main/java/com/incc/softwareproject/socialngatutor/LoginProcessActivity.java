@@ -25,7 +25,7 @@ public class LoginProcessActivity extends AppCompatActivity {
     TextView tv;
     ProgressBar loading1;
     HttpURLConnection urlConnection;
-    String uri = "http://192.168.1.6/socialtutor/server/user.php";
+    String uri = "http://192.168.43.213/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
             //tv.setText(fullname);
             Toast.makeText(this, schoolId, Toast.LENGTH_LONG).show();
-            if (schoolId.equals(null)) {
+            if (schoolId == null) {
                 //Toast.makeText(this,"SAYOP", Toast.LENGTH_LONG).show();
                 animateRetry();
                 tv.setText("Wrong Username or Password");
@@ -87,7 +87,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
             try {
                 publishProgress(1);
-                URL url = new URL(params[0]);
+                URL url = new URL("http://192.168.43.213/socialtutor/server/user.php?action=login&username=carlo&password=jacalan");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 

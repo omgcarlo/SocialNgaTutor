@@ -12,4 +12,19 @@
     tools:context=".SignUpProcessActivity"
     tools:showIn="@layout/activity_signup_process">
 
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading..."
+        android:id="@+id/textView"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
