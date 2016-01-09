@@ -1,6 +1,7 @@
 package com.incc.softwareproject.socialngatutor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -21,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AfterLoginActivity extends AppCompatActivity {
-
-
+    private String schoolId;
+    private SharedPreferences spreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppThemeRed);
@@ -31,7 +32,10 @@ public class AfterLoginActivity extends AppCompatActivity {
 
         initToolbar();
         initViewPagerAndTabs();
+        spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
+        schoolId = spreferences.getString("SchoolId","wala");
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -42,7 +46,13 @@ public class AfterLoginActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_profile){
+
             Intent i = new Intent(this,ProfileActivity.class);
+            /* if(i.hasExtra("SchoolId")){
+                i.putExtra("SchoolId",schoolId);
+                i.putExtra("Username",getIntent().getExtras().getString("Username"));
+                i.putExtra("FullName",getIntent().getExtras().getString("FullName"));
+            } */
             startActivity(i);
             return true;
         }

@@ -103,5 +103,6 @@
     <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
     <orderEntry type="library" exported="" name="fresco-0.7.0" level="project" />
     <orderEntry type="library" exported="" name="fbcore-0.7.0" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
   </component>
 </module>

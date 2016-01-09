@@ -3,6 +3,8 @@ package com.incc.softwareproject.socialngatutor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,6 +15,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 
 public class SignUpProcessActivity extends AppCompatActivity {
+    TextView loadingtxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +65,7 @@ public class SignUpProcessActivity extends AppCompatActivity {
             try {
 
                 // Defined URL  where to send data
-                URL url = new URL("http://192.168.1.6/socialtutor/server/user.php");
+                URL url = new URL("http://192.168.43.43/socialtutor/server/user.php");
 
                 // Send POST data request
 
@@ -99,6 +102,10 @@ public class SignUpProcessActivity extends AppCompatActivity {
             // Return result
             return result;
 
+        }
+        @Override
+        protected void onPostExecute(String result) {
+            loadingtxt.setText(result);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.incc.softwareproject.socialngatutor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,10 +23,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoginProcessActivity extends AppCompatActivity {
+    SharedPreferences preferenceData;
     TextView tv;
     ProgressBar loading1;
     HttpURLConnection urlConnection;
-    String uri = "http://192.168.43.213/socialtutor/server/user.php";
+    String uri = "http://192.168.43.43/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class LoginProcessActivity extends AppCompatActivity {
         //Toast.makeText(this,uri,Toast.LENGTH_SHORT).show();
         loading1 = (ProgressBar) findViewById(R.id.loading_login);
         loading1.setVisibility(View.VISIBLE);
+        preferenceData = getSharedPreferences("ShareData",MODE_PRIVATE);
         new ConnectProccess().execute(uri);
     }
 
@@ -49,18 +52,32 @@ public class LoginProcessActivity extends AppCompatActivity {
             String schoolId = "";
             JSONObject reader = new JSONObject(res);
             JSONObject data = reader.getJSONObject("User");
-            schoolId = data.getString("SchoolId");
-
             //tv.setText(fullname);
-            Toast.makeText(this, schoolId, Toast.LENGTH_LONG).show();
-            if (schoolId == null) {
+
+            //Toast.makeText(this, schoolId, Toast.LENGTH_LONG).show();
+            if (!data.getBoolean("Success")) {
                 //Toast.makeText(this,"SAYOP", Toast.LENGTH_LONG).show();
                 animateRetry();
                 tv.setText("Wrong Username or Password");
             }
             else {
+
+                schoolId = data.getString("SchoolId");
+                String full_name = data.getString("Name");
+                String username =getIntent().getExtras().getString("username");
+
                 Intent i = new Intent(this, AfterLoginActivity.class);
-                i.putExtra("SchoolId", schoolId);
+                /* i.putExtra("SchoolId", schoolId);
+                i.putExtra("FullName",full_name);
+                i.putExtra("Username", username);*/
+
+                //store data
+                SharedPreferences.Editor editor = preferenceData.edit();
+                editor.putString("SchoolId",schoolId);
+                editor.putString("FullName",full_name);
+                editor.putString("Username",username);
+                editor.apply();
+                //transfer
                 startActivity(i);
             }
         } catch (Exception e) {
@@ -70,8 +87,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
     private void animateRetry() {
         loading1.setVisibility(View.INVISIBLE);
-        Button retry = (Button) findViewById(R.id.retrybtn);
-        retry.setVisibility(View.VISIBLE);
+        (findViewById(R.id.retrybtn)).setVisibility(View.VISIBLE);
     }
 
     public void retryBtn(View v) {
@@ -87,7 +103,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
             try {
                 publishProgress(1);
-                URL url = new URL("http://192.168.43.213/socialtutor/server/user.php?action=login&username=carlo&password=jacalan");
+                URL url = new URL(params[0]);
                 urlConnection = (HttpURLConnection) url.openConnection();
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
@@ -127,7 +143,8 @@ public class LoginProcessActivity extends AppCompatActivity {
                 loading1.setVisibility(View.INVISIBLE);
                 balhin(result);
                 finish();
-            } else {
+            }
+            else {
                 //animate
                 animateRetry();
                 tv.setText("Cannot Connect to Server or Database");
