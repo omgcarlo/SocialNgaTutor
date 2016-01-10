@@ -13,12 +13,10 @@ import com.incc.softwareproject.socialngatutor.R;
  * Created by carlo on 21/12/2015.
  */
 public class fragTab2 extends Fragment {
-   // public final static String ITEMS_COUNT_KEY = "PartThreeFragment$ItemsCount";
 
     public static fragTab2 createInstance() {
         fragTab2 frag_tab2 = new fragTab2();
         Bundle bundle = new Bundle();
-       // bundle.putInt(ITEMS_COUNT_KEY, 4);
         frag_tab2.setArguments(bundle);
         return frag_tab2;
     }

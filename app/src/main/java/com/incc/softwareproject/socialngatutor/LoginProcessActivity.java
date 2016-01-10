@@ -19,6 +19,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -26,28 +27,32 @@ public class LoginProcessActivity extends AppCompatActivity {
     SharedPreferences preferenceData;
     TextView tv;
     ProgressBar loading1;
-    HttpURLConnection urlConnection;
-    String uri = "http://192.168.43.43/socialtutor/server/user.php";
+    //HttpURLConnection urlConnection;
+    //String uri = "http://192.168.43.43/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_process);
         tv = (TextView) findViewById(R.id.res);
-        uri += "?action=login&username=" +
-                getIntent().getExtras().getString("username") +
-                "&password=" + getIntent().getExtras().getString("password");
+
         //Toast.makeText(this,uri,Toast.LENGTH_SHORT).show();
+
+        // Animate Loading
         loading1 = (ProgressBar) findViewById(R.id.loading_login);
         loading1.setVisibility(View.VISIBLE);
-        preferenceData = getSharedPreferences("ShareData",MODE_PRIVATE);
-        new ConnectProccess().execute(uri);
+
+        preferenceData = getSharedPreferences("ShareData", MODE_PRIVATE);
+
+        new ConnectProccess().execute(getIntent().getExtras().getString("username"), getIntent().getExtras().getString("password"));
     }
 
     private void balhin(String res) {
         try {
-
-            //Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
+            /**
+             * Read and Convert JSON response
+             */
+            Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
 
             String schoolId = "";
             JSONObject reader = new JSONObject(res);
@@ -59,12 +64,12 @@ public class LoginProcessActivity extends AppCompatActivity {
                 //Toast.makeText(this,"SAYOP", Toast.LENGTH_LONG).show();
                 animateRetry();
                 tv.setText("Wrong Username or Password");
-            }
-            else {
+            } else {
 
+                tv.setText("Last na jud ni...");
                 schoolId = data.getString("SchoolId");
                 String full_name = data.getString("Name");
-                String username =getIntent().getExtras().getString("username");
+                String username = getIntent().getExtras().getString("username");
 
                 Intent i = new Intent(this, AfterLoginActivity.class);
                 /* i.putExtra("SchoolId", schoolId);
@@ -73,9 +78,9 @@ public class LoginProcessActivity extends AppCompatActivity {
 
                 //store data
                 SharedPreferences.Editor editor = preferenceData.edit();
-                editor.putString("SchoolId",schoolId);
-                editor.putString("FullName",full_name);
-                editor.putString("Username",username);
+                editor.putString("SchoolId", schoolId);
+                editor.putString("FullName", full_name);
+                editor.putString("Username", username);
                 editor.apply();
                 //transfer
                 startActivity(i);
@@ -91,7 +96,7 @@ public class LoginProcessActivity extends AppCompatActivity {
     }
 
     public void retryBtn(View v) {
-        Intent i = new Intent(this,MainActivity.class);
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
@@ -99,28 +104,10 @@ public class LoginProcessActivity extends AppCompatActivity {
     private class ConnectProccess extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
-            StringBuilder result = new StringBuilder();
-
-            try {
-                publishProgress(1);
-                URL url = new URL(params[0]);
-                urlConnection = (HttpURLConnection) url.openConnection();
-                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                urlConnection.disconnect();
-            }
-
-            return result.toString();
+            setProgress(0);
+            Server svConn = new Server();
+            setProgress(1);
+            return svConn.login(params[0], params[1]);
 
         }
 
@@ -129,7 +116,7 @@ public class LoginProcessActivity extends AppCompatActivity {
                 case 0:
                     tv.setText("Connecting...");
                     break;
-                case 2:
+                case 1:
                     tv.setText("Fetching Data...");
                     break;
                 default:
@@ -141,10 +128,10 @@ public class LoginProcessActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if (!result.equals("")) {
                 loading1.setVisibility(View.INVISIBLE);
+
                 balhin(result);
                 finish();
-            }
-            else {
+            } else {
                 //animate
                 animateRetry();
                 tv.setText("Cannot Connect to Server or Database");

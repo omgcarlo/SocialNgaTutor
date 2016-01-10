@@ -3,6 +3,7 @@ package com.incc.softwareproject.socialngatutor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,90 +22,35 @@ public class SignUpProcessActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_process);
-
+        loadingtxt = (TextView) findViewById(R.id.s_loading_txt);
+        new SigupProcess().execute();
     }
 
     private class SigupProcess extends AsyncTask<String, Integer, String> {
-        String fullname;
-        String username;
-        String password;
-        String email;
-        String birthdate;
+        String schoolId,fullname,username,password,email,birthdate,programId;
 
         @Override
         protected String doInBackground(String... params) {
+            /**
+             * why init data here?
+             * para mafeel sa user ang loading
+             * ug choy man ang loading hahaha
+             */
+            schoolId = getIntent().getExtras().getString("schoolId");
             fullname = getIntent().getExtras().getString("fullname");
             username = getIntent().getExtras().getString("username");
             password = getIntent().getExtras().getString("password");
             email = getIntent().getExtras().getString("email");
             birthdate = getIntent().getExtras().getString("birthdate");
-
-
-            // Create data variable for sent values to server
-
-            String data = null;
-            try {
-                data = URLEncoder.encode("fullname", "UTF-8")
-                        + "=" + URLEncoder.encode(fullname, "UTF-8");
-                data += "&" + URLEncoder.encode("email", "UTF-8") + "="
-                        + URLEncoder.encode(email, "UTF-8");
-
-                data += "&" + URLEncoder.encode("username", "UTF-8")
-                        + "=" + URLEncoder.encode(username, "UTF-8");
-
-                data += "&" + URLEncoder.encode("password", "UTF-8")
-                        + "=" + URLEncoder.encode(password, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            String result = "";
-            BufferedReader reader = null;
-
-            // Send data
-            try {
-
-                // Defined URL  where to send data
-                URL url = new URL("http://192.168.43.43/socialtutor/server/user.php");
-
-                // Send POST data request
-
-                URLConnection conn = url.openConnection();
-                conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                wr.write(data);
-                wr.flush();
-
-                // Get the server response
-
-                reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                // Read Server Response
-                while ((line = reader.readLine()) != null) {
-                    // Append server response in string
-                    sb.append(line + "\n");
-                }
-
-
-                result = sb.toString();
-            } catch (Exception ex) {
-
-            } finally {
-                try {
-
-                    reader.close();
-                } catch (Exception ex) {
-                }
-            }
-
+            programId = "1";
+            Server svConn = new Server();
             // Return result
-            return result;
+            return svConn.signup(schoolId,fullname,password,birthdate,email,programId,fullname);
 
         }
         @Override
         protected void onPostExecute(String result) {
+            Log.d("sql",result);
             loadingtxt.setText(result);
         }
     }

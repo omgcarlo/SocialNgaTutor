@@ -59,25 +59,28 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void registerProcess() {
-        String username, password, rpassword, fullname, birthdate;
+        String schoolId,username, password, rpassword, fullname, birthdate,email;
         /***** GET DATA *****/
+        schoolId = ((EditText) findViewById(R.id.s_schoolId)).getText().toString();
         username = ((EditText) findViewById(R.id.s_username)).getText().toString();
         password = ((EditText) findViewById(R.id.s_password)).getText().toString();
         rpassword = ((EditText) findViewById(R.id.s_rpassword)).getText().toString();
         fullname = ((EditText) findViewById(R.id.s_fullname)).getText().toString();
-
+        email = ((EditText) findViewById(R.id.s_email)).getText().toString();
         /*********** GET DATE PICKER  ************/
         DatePicker dp = (DatePicker) findViewById(R.id.brithdatePicker);
-        birthdate = dp.getYear() + "-" + dp.getMonth() + "-" + dp.getDayOfMonth();
+        birthdate = dp.getYear() + "-" + (dp.getMonth()+1) + "-" + dp.getDayOfMonth();
 
         if (password.equals("") || rpassword.equals("")) {
             Snackbar.make(mRootView, "Password field is empty", LENGTH_LONG).show();
         } else if (password.equals(rpassword) && !password.equals("") && !rpassword.equals("")) {
             Intent i = new Intent(this, SignUpProcessActivity.class);
+            i.putExtra("schoolId", schoolId);
             i.putExtra("username", username);
             i.putExtra("password", password);
             i.putExtra("fullname", fullname);
             i.putExtra("birthdate",birthdate);
+            i.putExtra("email",email);
             //add program
             startActivity(i);
         } else {

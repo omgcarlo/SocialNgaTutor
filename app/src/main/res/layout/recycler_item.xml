@@ -6,12 +6,14 @@
     android:layout_height="200dp"
     android:layout_gravity="center"
     android:layout_margin="8dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardCornerRadius="4dp"
+    >
     <RelativeLayout
         android:layout_marginTop="3dp"
         android:layout_marginLeft="3dp"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="@color/white">
         <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/card_ppicture"
             android:layout_width="60dp"
@@ -40,14 +42,7 @@
             android:text="Meynard Inso"
             android:textSize="21sp"/>
 
-        <ImageButton
-            android:src="@drawable/ic_arrow_drop_down"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:text="Share"
-            android:background="@color/white"/>
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="fill_parent"
@@ -94,7 +89,7 @@
           android:layout_width="0dp"
           android:layout_weight="1"
           android:layout_height="fill_parent"
-          android:background="@drawable/postbuttonbg"
+          android:background="@color/bgGrey"
           android:src="@drawable/ic_thumb_up"/>
         <ImageButton
             android:src="@drawable/ic_comment"
@@ -102,7 +97,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:background="@drawable/postbuttonbg"
+            android:background="@color/bgGrey"
             android:text="Comment"/>
         <ImageButton
             android:src="@drawable/ic_share"
@@ -110,7 +105,7 @@
             android:layout_height="fill_parent"
             android:layout_weight="1"
             android:layout_gravity="center"
-            android:background="@drawable/postbuttonbg"
+            android:background="@color/bgGrey"
             android:text="Share"/>
     </LinearLayout>
 
