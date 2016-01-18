@@ -17,9 +17,9 @@
 
 
     <string name="title_activity_login_process">LoginProcessActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">Your\nSHIT\nis\nLOADING</string>
+
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="postsample">Ive been awake for a while now. You make me feel like a child now. Cause everytime I see your bubbly face. You made me tingles on a silly place</string>
+    <string name="title_activity_post">PostActivity</string>
 </resources>

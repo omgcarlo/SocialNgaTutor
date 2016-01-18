@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
@@ -107,5 +108,9 @@ public class AfterLoginActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return fragmentTitleList.get(position);
         }
+    }
+    public void fabClicked(View v){
+        Intent i = new Intent(this,PostActivity.class);
+        startActivity(i);
     }
 }

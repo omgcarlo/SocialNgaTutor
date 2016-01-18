@@ -50,5 +50,7 @@
         android:layout_margin="@dimen/fab_margin"
        android:src="@drawable/ic_add"
         app:borderWidth="0dp"
-        app:layout_behavior="com.incc.softwareproject.socialngatutor.ScrollingFABBehavior" />
+        app:layout_behavior="com.incc.softwareproject.socialngatutor.ScrollingFABBehavior"
+        android:onClick="fabClicked"
+        />
 </android.support.design.widget.CoordinatorLayout>

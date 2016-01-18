@@ -6,29 +6,19 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.incc.softwareproject.socialngatutor.connection.Server;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.json.JSONObject;
 
 public class LoginProcessActivity extends AppCompatActivity {
     SharedPreferences preferenceData;
     TextView tv;
     ProgressBar loading1;
-    //HttpURLConnection urlConnection;
-    //String uri = "http://192.168.43.43/socialtutor/server/user.php";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
