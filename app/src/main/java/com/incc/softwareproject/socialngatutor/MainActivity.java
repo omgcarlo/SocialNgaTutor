@@ -1,6 +1,7 @@
 package com.incc.softwareproject.socialngatutor;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -15,10 +16,29 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class MainActivity extends AppCompatActivity {
+    static SharedPreferences spreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getIntent() != null) {
+            if (getIntent().getBooleanExtra("Logout", false)){
+                getSharedPreferences("ShareData", MODE_PRIVATE)
+                        .edit()
+                        .clear()
+                        .commit();
+            }
+        }
+        try {
+            spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
+            if (spreferences.getString("SchoolId", null) != null) {
+                Intent i = new Intent(this, AfterLoginActivity.class);
+                startActivity(i);
+                finish();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         setContentView(R.layout.activity_main);
         Fresco.initialize(this);
         changeFontSaTitle();
@@ -68,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 i = new Intent(this, LoginProcessActivity.class);
                 i.putExtra("username", username);
                 i.putExtra("password", password);
-                finish();
                 startActivity(i);
+                finish();
             } else {
                 Snackbar.make(v, "Wrong input po", Snackbar.LENGTH_LONG).show();
 

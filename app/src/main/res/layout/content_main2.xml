@@ -27,4 +27,13 @@
         android:text="Loading..."
         android:layout_below="@+id/progressBar"
         android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/toLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="400dp"
+        android:text="@string/Login"
+        android:onClick="toLoginBtn"/>
 </RelativeLayout>

@@ -1,0 +1,1877 @@
+Index: app/src/main/res/layout/activity_login_process.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_login_process.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_login_process.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/activity_sign_up.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_sign_up.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_sign_up.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/test/java/com/incc/softwareproject/socialngatutor/ExampleUnitTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/test/java/com/incc/softwareproject/socialngatutor/ExampleUnitTest.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/test/java/com/incc/softwareproject/socialngatutor/ExampleUnitTest.java	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/drawable/postbuttonbg.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/postbuttonbg.xml	(revision )
++++ app/src/main/res/drawable/postbuttonbg.xml	(revision )
+@@ -0,0 +1,63 @@
++<?xml version="1.0" encoding="utf-8"?>
++<selector xmlns:android="http://schemas.android.com/apk/res/android">
++    <item android:state_pressed="false">
++        <layer-list>
++            <!-- SHADOW -->
++            <item>
++                <shape>
++                    <solid android:color="#DaDaDa"/>
++                    <corners android:radius="3dp"/>
++
++
++                </shape>
++            </item>
++            <!-- BUTTON -->
++            <item android:bottom="5px">
++                <shape>
++                    <padding android:bottom="5dp"/>
++                    <gradient
++                        android:startColor="#FFFFFF"
++                        android:endColor="#FFFFFF"
++                        android:angle="270" />
++                    <corners
++                        android:radius="3dp"/>
++                    <padding
++                        android:left="10dp"
++                        android:top="10dp"
++                        android:right="10dp"
++                        android:bottom="10dp"/>
++                </shape>
++            </item>
++        </layer-list>
++    </item>
++
++    <item android:state_pressed="true">
++        <layer-list>
++            <!-- SHADOW -->
++            <item>
++                <shape>
++                    <solid android:color="#242222"/>
++                    <corners android:radius="5dp"/>
++                </shape>
++            </item>
++            <!-- BUTTON -->
++            <item android:bottom="5px">
++                <shape>
++                    <padding android:bottom="5dp"/>
++                    <gradient
++                        android:startColor="#009999"
++                        android:endColor="#009999"
++                        android:angle="270" />
++                    <corners
++                        android:radius="1dp"/>
++                    <padding
++                        android:left="10dp"
++                        android:top="10dp"
++                        android:right="10dp"
++                        android:bottom="10dp"/>
++                </shape>
++            </item>
++        </layer-list>
++
++    </item>
++</selector>
+\ No newline at end of file
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values/styles.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/menu/menu_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_main.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/menu/menu_main.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/content_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_main.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/content_main.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/values-w820dp/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-w820dp/dimens.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values-w820dp/dimens.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/AndroidManifest.xml	(revision )
+@@ -5,15 +5,14 @@
+     <!-- Internet permission -->
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
++    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"  />
+-
++    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="18" />
+     <application
+         android:allowBackup="true"
+         android:icon="@mipmap/ic_launcher"
+         android:label="@string/app_name"
+         android:supportsRtl="true"
+-        android:theme="@style/AppTheme"
+-        android:name="android.support.multidex.MultiDexApplication">
++        android:theme="@style/AppTheme">
+         <activity
+             android:name=".MainActivity"
+             android:label="@string/app_name"
+@@ -54,8 +53,6 @@
+         </activity>
+         <activity
+             android:name=".PostActivity"
+-            android:label="@string/title_activity_post"
+-            android:parentActivityName=".AfterLoginActivity"
+             android:theme="@style/AppTheme">
+             <meta-data
+                 android:name="android.support.PARENT_ACTIVITY"
+Index: app/src/main/res/drawable/circle_outline.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/circle_outline.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/drawable/circle_outline.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/recycler_item.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/recycler_item.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/recycler_item.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/content_main2.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_main2.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/content_main2.xml	(revision )
+@@ -27,4 +27,13 @@
+         android:text="Loading..."
+         android:layout_below="@+id/progressBar"
+         android:layout_centerHorizontal="true" />
++    <Button
++        android:id="@+id/toLoginBtn"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:gravity="center"
++        android:layout_centerHorizontal="true"
++        android:layout_marginTop="400dp"
++        android:text="@string/Login"
++        android:onClick="toLoginBtn"/>
+ </RelativeLayout>
+Index: app/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/.gitignore	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/.gitignore	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpProcessActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpProcessActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpProcessActivity.java	(revision )
+@@ -1,24 +1,42 @@
+ package com.incc.softwareproject.socialngatutor;
+ 
++import android.content.Intent;
+ import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.support.v7.app.AppCompatActivity;
++import android.util.JsonReader;
+ import android.util.Log;
++import android.view.View;
++import android.widget.Button;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+-import com.incc.softwareproject.socialngatutor.connection.Server;
++import org.json.JSONException;
++import org.json.JSONObject;
+ 
++import java.io.BufferedReader;
++import java.io.InputStreamReader;
++import java.io.OutputStreamWriter;
++import java.io.UnsupportedEncodingException;
++import java.net.URL;
++import java.net.URLConnection;
++import java.net.URLEncoder;
++
+ public class SignUpProcessActivity extends AppCompatActivity {
+     TextView loadingtxt;
+-
++    Button toLoginBtn;
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_signup_process);
+         loadingtxt = (TextView) findViewById(R.id.s_loading_txt);
++        toLoginBtn = (Button) findViewById(R.id.toLoginBtn);
++        toLoginBtn.setVisibility(View.INVISIBLE);
+         new SigupProcess().execute();
+     }
+-
++    public void toLoginBtn(View v){
++        startActivity(new Intent(this,MainActivity.class));
++    }
+     private class SigupProcess extends AsyncTask<String, Integer, String> {
+         String schoolId,fullname,username,password,email,birthdate,programId;
+ 
+@@ -38,13 +56,27 @@
+             programId = "1";
+             Server svConn = new Server();
+             // Return result
+-            return svConn.signup(schoolId,fullname,password,birthdate,email,programId,fullname);
++            return svConn.signup(schoolId,username,password,birthdate,email,programId,fullname);
+ 
+         }
+         @Override
+         protected void onPostExecute(String result) {
+-            Log.d("sql",result);
+-            loadingtxt.setText(result);
++            //Log.d("sql",result);
++            try {
++                JSONObject reader = new JSONObject(result);
++                JSONObject data = reader.getJSONObject("User");
++                if(data.getBoolean("Success")){
++                    loadingtxt.setText("YEY!");
++
++                }
++                else{
++                    loadingtxt.setText("YOY!");
++
++                }
++            } catch (JSONException e) {
++                e.printStackTrace();
++            }
++            toLoginBtn.setVisibility(View.VISIBLE);
+         }
+     }
+ }
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/build.gradle	(revision )
+@@ -10,7 +10,6 @@
+         targetSdkVersion 23
+         versionCode 1
+         versionName "1.0"
+-        multiDexEnabled true
+     }
+     buildTypes {
+         release {
+@@ -28,7 +27,7 @@
+     compile 'com.android.support:design:23.1.1'
+     compile 'com.android.support:recyclerview-v7:23.1.1'
+     compile 'com.android.support:cardview-v7:23.1.1'
++    compile 'com.android.support:multidex:1.0.1'
+     compile 'com.android.support:support-v4:23.1.1'
+     compile 'com.facebook.fresco:fresco:0.7.0+'
+-    compile 'io.realm:realm-android:0.87.2'
+ }
+Index: app/src/main/res/menu/menu_signup.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_signup.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/menu/menu_signup.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/colors.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values/colors.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/content_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_profile.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/content_profile.xml	(revision )
+@@ -5,11 +5,21 @@
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-
+-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+-    tools:context="com.incc.softwareproject.socialngatutor.ProfileActivity"
+     tools:showIn="@layout/activity_profile">
+-
++    <android.support.v7.widget.Toolbar
++        android:id="@+id/toolbar"
++        android:layout_width="match_parent"
++        android:layout_height="?attr/actionBarSize"
++        android:background="?attr/colorPrimary"
++        app:layout_scrollFlags="scroll|enterAlways" >
++        <TextView
++            android:id="@+id/toolbar_title"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:text="Profile"
++            android:textColor="@color/white"
++            android:textSize="29sp"/>
++    </android.support.v7.widget.Toolbar>
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+@@ -66,7 +76,8 @@
+                 android:text=" FOLLOW"
+                 android:drawableLeft="@drawable/ic_check_circle"
+                 android:background="@drawable/circle"
+-                android:textColor="#FFFFFF" />
++                android:textColor="#FFFFFF"
++                android:visibility="invisible"/>
+ 
+         <LinearLayout
+             android:layout_width="fill_parent"
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/ProfileActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/ProfileActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/ProfileActivity.java	(revision )
+@@ -20,10 +20,11 @@
+         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+         setSupportActionBar(toolbar);
+ 
+-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
++       /* android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+         assert actionBar != null;
+         actionBar.setDisplayHomeAsUpEnabled(true);
+         actionBar.setTitle("Profile");
++        */
+         spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
+         initData();
+     }
+Index: app/src/main/res/values-v21/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values-v21/styles.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values-v21/styles.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/Server.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/Server.java	(revision )
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/Server.java	(revision )
+@@ -0,0 +1,156 @@
++package com.incc.softwareproject.socialngatutor;
++
++import android.util.Log;
++
++import java.io.BufferedReader;
++import java.io.IOException;
++import java.io.InputStreamReader;
++import java.io.OutputStreamWriter;
++import java.io.UnsupportedEncodingException;
++import java.net.MalformedURLException;
++import java.net.URL;
++import java.net.URLConnection;
++import java.net.URLEncoder;
++
++/**
++ * Created by carlo on 1/8/16.
++ */
++public class Server {
++    private final static String BASE_URL = "http://192.168.1.5/SocialTutor/server/";
++    private final static String USER_URL = "user.php";
++    private final static String PROGRAM_URL = "program.php";
++    private final static String POST_URL = "post.php";
++
++    public String login(String username, String password) {
++        BufferedReader reader = null;
++        String uri = BASE_URL + USER_URL;
++        String res_txt = "";
++        try {
++            String data = URLEncoder.encode("action", "UTF-8")
++                    + "=" + URLEncoder.encode("login", "UTF-8");
++
++            data += "&" + URLEncoder.encode("username", "UTF-8")
++                    + "=" + URLEncoder.encode(username, "UTF-8");
++
++            data += "&" + URLEncoder.encode("password", "UTF-8")
++                    + "=" + URLEncoder.encode(password, "UTF-8");
++
++            // Defined URL  where to send data
++            URL url = new URL(uri);
++
++            // Send POST data request
++
++            URLConnection conn = url.openConnection();
++            conn.setDoOutput(true);
++            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
++            wr.write(data);
++            wr.flush();
++
++            // Get the server response
++
++            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
++            StringBuilder sb = new StringBuilder();
++            String line = null;
++
++            // Read Server Response
++            while ((line = reader.readLine()) != null) {
++                // Append server response in string
++                sb.append(line + "\n");
++            }
++
++            res_txt = sb.toString();
++            // res_txt = data;
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++        // return response on activity
++        return res_txt;
++    }
++
++    public String signup(String... params) {
++        String fields[] = {"schoolId", "username", "password", "birthdate", "email", "programId", "full_name"};
++        BufferedReader reader = null;
++        String uri = BASE_URL + USER_URL;
++        String res_txt = "";
++        try {
++            String data = URLEncoder.encode("action", "UTF-8")
++                    + "=" + URLEncoder.encode("signup", "UTF-8");   //action
++
++            for (int i = 0; i < fields.length; i++) {
++                data += "&" + URLEncoder.encode(fields[i], "UTF-8")
++                        + "=" + URLEncoder.encode(params[i], "UTF-8");
++                Log.d("data:",params.length + "");
++            }
++            // Defined URL  where to send data
++            URL url = new URL(uri);
++
++            // Send POST data request
++
++            URLConnection conn = url.openConnection();
++            conn.setDoOutput(true);
++            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
++            wr.write(data);
++            wr.flush();
++
++            // Get the server response
++
++            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
++            StringBuilder sb = new StringBuilder();
++            String line = null;
++
++            // Read Server Response
++            while ((line = reader.readLine()) != null) {
++                // Append server response in string
++                sb.append(line + "\n");
++            }
++
++            res_txt = sb.toString();
++            //res_txt = data;
++            Log.d("result:",res_txt);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++        // return response on activity
++        return res_txt;
++    }
++    public String getFeeds(String ownerId){
++        BufferedReader reader = null;
++        String uri = BASE_URL + POST_URL + "?action=feed";
++        String res_txt = "";
++        try {
++            String data = URLEncoder.encode("ownerId", "UTF-8")
++                    + "=" + URLEncoder.encode(ownerId, "UTF-8");   //action
++            // Defined URL  where to send data
++            URL url = new URL(uri);
++
++            // Send POST data request
++
++            URLConnection conn = url.openConnection();
++            conn.setDoOutput(true);
++            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
++            wr.write(data);
++            wr.flush();
++
++            // Get the server response
++
++            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
++            StringBuilder sb = new StringBuilder();
++            String line = null;
++
++            // Read Server Response
++            while ((line = reader.readLine()) != null) {
++                // Append server response in string
++                sb.append(line + "\n");
++            }
++
++            res_txt = sb.toString();
++            //res_txt = data;
++            Log.d("result:",ownerId);
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
++        // return response on activity
++        return res_txt;
++
++    }
++}
+Index: app/src/main/res/values/attrs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/attrs.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values/attrs.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/SignUpActivity.java	(revision )
+@@ -1,36 +1,23 @@
+ package com.incc.softwareproject.socialngatutor;
+ 
+ import android.content.Intent;
+-import android.graphics.Bitmap;
+-import android.graphics.BitmapFactory;
+ import android.net.Uri;
+ import android.os.Bundle;
+ import android.support.design.widget.Snackbar;
+ import android.support.v7.app.ActionBar;
+ import android.support.v7.app.AppCompatActivity;
+ import android.support.v7.widget.Toolbar;
+-import android.util.Log;
+ import android.view.Menu;
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.DatePicker;
+ import android.widget.EditText;
+-import android.widget.ImageView;
+-import android.widget.Toast;
+ 
+-import com.facebook.common.file.FileUtils;
+-import com.incc.softwareproject.socialngatutor.file.FileChooser;
+-
+-import java.io.FileNotFoundException;
+-import java.io.InputStream;
+-import java.util.ArrayList;
+-
+ import static android.support.design.widget.Snackbar.*;
+ 
+ 
+ public class SignUpActivity extends AppCompatActivity {
+-    private final int SELECT_PHOTO = 1;
+-    private ImageView imageView;
++
+     private View mRootView;
+ 
+     @Override
+@@ -46,7 +33,6 @@
+         assert actionBar != null;
+         actionBar.setDisplayHomeAsUpEnabled(true);
+         actionBar.setShowHideAnimationEnabled(true);
+-        imageView = (ImageView)findViewById(R.id.pp_btn);
+ 
+     }
+ 
+@@ -72,7 +58,11 @@
+ 
+         return super.onOptionsItemSelected(item);
+     }
+-
++    public void selectPicBtn(View v){
++        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
++                "content://media/internal/images/media"));
++        startActivity(intent);
++    }
+     public void registerProcess() {
+         String schoolId,username, password, rpassword, fullname, birthdate,email;
+         /***** GET DATA *****/
+@@ -98,57 +88,10 @@
+             i.putExtra("email",email);
+             //add program
+             startActivity(i);
++            finish();
+         } else {
+             Snackbar.make(mRootView, "Password does not match", LENGTH_LONG).show();
+         }
+     }
+-    private static final int FILE_SELECT_CODE = 0;
+-
+-    private void showFileChooser() {
+-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+-        intent.setType("*/*");
+-        intent.addCategory(Intent.CATEGORY_OPENABLE);
+-
+-        try {
+-            startActivityForResult(
+-                    Intent.createChooser(intent, "Select a File to Upload"),
+-                    FILE_SELECT_CODE);
+-        } catch (android.content.ActivityNotFoundException ex) {
+-            // Potentially direct the user to the Market with a Dialog
+-            Toast.makeText(this, "Please install a File Manager.",
+-                    Toast.LENGTH_SHORT).show();
+-        }
+-    }
+-    public void uploadPPBtn(View v){
+-       // FileChooser fc = new FileChooser(this);
+-        // fc.showDialog();
+-        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+-        photoPickerIntent.setType("image/*");
+-        startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+-    }
+-    @Override
+-    protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+-        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+-
+-        switch(requestCode) {
+-            case SELECT_PHOTO:
+-                if(resultCode == RESULT_OK){
+-                    try {
+-                        final Uri imageUri = imageReturnedIntent.getData();
+-                        final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+-                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+-                        imageView.setImageBitmap(selectedImage);
+-
+-                        Toast.makeText(this,imageUri.toString(),Toast.LENGTH_LONG).show();
+-                    } catch (FileNotFoundException e) {
+-                        e.printStackTrace();
+-                    }
+-
+-                }
+-        }
+-    }
+-
+-
+-
+ 
+ }
+Index: app/src/main/res/layout/tab_4.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/tab_4.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/tab_4.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/androidTest/java/com/incc/softwareproject/socialngatutor/ApplicationTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/incc/softwareproject/socialngatutor/ApplicationTest.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/androidTest/java/com/incc/softwareproject/socialngatutor/ApplicationTest.java	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/activity_after_login.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_after_login.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_after_login.xml	(revision )
+@@ -51,6 +51,5 @@
+        android:src="@drawable/ic_add"
+         app:borderWidth="0dp"
+         app:layout_behavior="com.incc.softwareproject.socialngatutor.ScrollingFABBehavior"
+-        android:onClick="fabClicked"
+-        />
++        android:onClick="addPostBtn"/>
+ </android.support.design.widget.CoordinatorLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/LoginProcessActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/LoginProcessActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/LoginProcessActivity.java	(revision )
+@@ -6,20 +6,30 @@
+ import android.support.v7.app.AppCompatActivity;
+ import android.os.Bundle;
+ import android.view.View;
++import android.widget.Button;
+ import android.widget.ProgressBar;
+ import android.widget.TextView;
+ import android.widget.Toast;
+ 
+-import com.incc.softwareproject.socialngatutor.connection.Server;
+-
++import org.json.JSONArray;
++import org.json.JSONException;
+ import org.json.JSONObject;
+ 
++import java.io.BufferedInputStream;
++import java.io.BufferedReader;
++import java.io.InputStream;
++import java.io.InputStreamReader;
++import java.io.UnsupportedEncodingException;
++import java.net.HttpURLConnection;
++import java.net.URL;
++
+ public class LoginProcessActivity extends AppCompatActivity {
+     SharedPreferences preferenceData;
+     TextView tv;
+     ProgressBar loading1;
++    //HttpURLConnection urlConnection;
++    //String uri = "http://192.168.43.43/socialtutor/server/user.php";
+ 
+-
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+@@ -33,7 +43,6 @@
+         loading1.setVisibility(View.VISIBLE);
+ 
+         preferenceData = getSharedPreferences("ShareData", MODE_PRIVATE);
+-
+         new ConnectProccess().execute(getIntent().getExtras().getString("username"), getIntent().getExtras().getString("password"));
+     }
+ 
+@@ -42,7 +51,7 @@
+             /**
+              * Read and Convert JSON response
+              */
+-            Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
++           //Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
+ 
+             String schoolId = "";
+             JSONObject reader = new JSONObject(res);
+@@ -58,6 +67,7 @@
+ 
+                 tv.setText("Last na jud ni...");
+                 schoolId = data.getString("SchoolId");
++                //Toast.makeText(this,schoolId, Toast.LENGTH_LONG).show();
+                 String full_name = data.getString("Name");
+                 String username = getIntent().getExtras().getString("username");
+ 
+@@ -72,6 +82,7 @@
+                 editor.putString("FullName", full_name);
+                 editor.putString("Username", username);
+                 editor.apply();
++
+                 //transfer
+                 startActivity(i);
+             }
+@@ -116,6 +127,7 @@
+ 
+         @Override
+         protected void onPostExecute(String result) {
++
+             if (!result.equals("")) {
+                 loading1.setVisibility(View.INVISIBLE);
+ 
+Index: app/src/main/res/layout/content_post.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_post.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/content_post.xml	(revision )
+@@ -1,16 +1,78 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
+-    xmlns:tools="http://schemas.android.com/tools"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:orientation="vertical"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context="com.incc.softwareproject.socialngatutor.PostActivity"
+-    tools:showIn="@layout/activity_post">
++    android:layout_height="match_parent">
+ 
+-    <Linearlayout
+-        android:layout_width = "match_parent"
+-        android:layout_height = "match_parent"
+-        android:orientation="vertical">
++    <LinearLayout
++        android:layout_width="fill_parent"
++        android:layout_height="55dp"
++        android:orientation="horizontal">
+ 
+-    </Linearlayout>
+-</RelativeLayout>
++        <ImageButton
++            android:layout_width="0dp"
++            android:layout_height="fill_parent"
++            android:layout_weight="1"
++            android:layout_gravity="left"
++            android:background="@color/white"
++            android:src="@drawable/ic_close"
++            android:onClick="postCloseBtn"/>
++        <TextView
++            android:layout_width="0dp"
++            android:layout_height="fill_parent"
++            android:layout_weight="3"/>
++        <Button
++            android:layout_width="0dp"
++            android:layout_height="fill_parent"
++            android:layout_weight="1"
++            android:text="Post"
++            android:textSize="20sp"
++            android:textColor="#3399FF"
++            android:background="@color/white"
++            android:layout_gravity="right"
++            android:onClick="postBtn"/>
++    </LinearLayout>
++
++
++    <EditText
++        android:layout_width="fill_parent"
++        android:layout_height="435dp"
++        android:hint="What's on your mind?"
++        android:gravity="top"
++        android:textSize="23sp"
++        android:background="@drawable/postfield">
++    </EditText>
++    <ProgressBar
++        style="?android:attr/progressBarStyleLarge"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:id="@+id/p_progressBar"
++        android:layout_gravity="center"
++        android:visibility="gone"
++        />
++    <LinearLayout
++        android:layout_width="fill_parent"
++        android:layout_height="45dp"
++        android:orientation="horizontal">
++
++        <ImageButton
++            android:id="@+id/p_files"
++            android:layout_width="0dp"
++            android:layout_weight="1"
++            android:layout_height="fill_parent"
++            android:background="@drawable/postbuttonbg"
++            android:src="@drawable/ic_attach_file"/>
++        <ImageButton
++            android:id="@+id/p_tag"
++            android:src="@drawable/ic_tag"
++            android:layout_width="0dp"
++            android:layout_height="fill_parent"
++            android:layout_weight="1"
++            android:layout_gravity="center"
++            android:background="@drawable/postbuttonbg"/>
++
++    </LinearLayout>
++
++
++
++</LinearLayout>
+Index: app/src/main/res/layout/tab_2.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/tab_2.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/tab_2.xml	(revision )
+@@ -1,17 +1,126 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    android:orientation="vertical" android:layout_width="match_parent"
+-    android:layout_height="match_parent">
++<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:fresco="http://schemas.android.com/apk/res-auto"
++    xmlns:card_view="http://schemas.android.com/apk/res-auto"
++    android:layout_marginTop="3dp"
++    android:layout_marginLeft="3dp"
++    android:layout_width="fill_parent"
++    android:layout_height="fill_parent">
++
++    <ImageView
++        android:layout_width="fill_parent"
++        android:layout_height="120dp"
++        />
++
++    <android.support.v7.widget.CardView
++        android:id="@+id/cardview"
++        android:layout_width="fill_parent"
++        android:layout_height="50dp"
++        android:layout_gravity="top"
++        android:layout_marginLeft="35dp"
++        android:layout_marginRight="35dp"
++        android:layout_marginTop="35dp"
++        card_view:cardCornerRadius="25dp">
++
++
++        <LinearLayout
++            android:layout_width="fill_parent"
++            android:layout_height="50dp"
++            android:layout_marginLeft="20dp"
++            android:layout_marginRight="20dp">
+-    <EditText
+-        android:layout_width="fill_parent"
++            <EditText
++                android:layout_width="fill_parent"
+-        android:layout_height="wrap_content"
+-        android:hint="wew"/>
++                android:layout_height="50dp"
++                android:text="Search"
++
++                />
++
++        </LinearLayout>
++    </android.support.v7.widget.CardView>
++
++    <android.support.v7.widget.CardView
++        android:layout_width="370dp"
++        android:layout_height="70dp"
++        android:layout_gravity="center"
++        android:layout_marginLeft="20dp"
++        android:layout_marginRight="20dp"
++        android:layout_marginTop="140dp"
++        card_view:cardCornerRadius="4dp">
++        <LinearLayout
++            android:layout_width="fill_parent"
++            android:layout_height="70dp"
++            android:layout_marginLeft="20dp"
++            android:layout_marginRight="20dp"
++            android:orientation="horizontal"
++            android:layout_gravity="center">
++
+-    <TextView
+-        android:layout_width="fill_parent"
++            <TextView
++                android:layout_width="fill_parent"
+-        android:layout_height="wrap_content"
+-        android:text="HELLO WORLD"
++                android:layout_height="70dp"
++                android:gravity="center"
+ 
+-        android:textSize="200dp"/>
++                android:text="PEOPLE"
+ 
++                android:textSize="20sp"
++                />
++        </LinearLayout>
++    </android.support.v7.widget.CardView>
+ 
++    <android.support.v7.widget.CardView
++        android:layout_width="370dp"
++        android:layout_height="70dp"
++        android:layout_gravity="center"
++        android:layout_marginLeft="20dp"
++        android:layout_marginRight="20dp"
++        android:layout_marginTop="230dp"
++        card_view:cardCornerRadius="4dp">
++        <LinearLayout
++            android:layout_width="fill_parent"
++            android:layout_height="70dp"
++            android:layout_marginLeft="20dp"
++            android:layout_marginRight="20dp"
++            android:orientation="horizontal"
++            android:layout_gravity="center">
++
++            <TextView
++                android:layout_width="fill_parent"
++                android:layout_height="70dp"
++                android:gravity="center"
++
++                android:text="TOPICS"
++
++                android:textSize="20sp"
++               />
+-</LinearLayout>
++        </LinearLayout>
++
++    </android.support.v7.widget.CardView>
++
++    <android.support.v7.widget.CardView
++        android:layout_width="370dp"
++        android:layout_height="70dp"
++        android:layout_gravity="center"
++        android:layout_marginLeft="20dp"
++        android:layout_marginRight="20dp"
++        android:layout_marginTop="320dp"
++        card_view:cardCornerRadius="4dp">
++        <LinearLayout
++            android:layout_width="fill_parent"
++            android:layout_height="70dp"
++            android:layout_marginLeft="20dp"
++            android:layout_marginRight="20dp"
++            android:orientation="horizontal"
++            android:layout_gravity="center">
++
++            <TextView
++                android:layout_width="fill_parent"
++                android:layout_height="70dp"
++                android:gravity="center"
++                android:text="HELP"
++                android:textSize="20sp"
++               />
++        </LinearLayout>
++
++    </android.support.v7.widget.CardView>
++
++</RelativeLayout>
++
+Index: app/app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/app.iml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/app.iml	(revision )
+@@ -93,14 +93,13 @@
+     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+     <orderEntry type="library" exported="" name="realm-android-0.87.2" level="project" />
+-    <orderEntry type="library" exported="" name="1_realm-android-0.87.2" level="project" />
+     <orderEntry type="library" exported="" name="library-2.4.0" level="project" />
+     <orderEntry type="library" exported="" name="cardview-v7-23.1.1" level="project" />
+     <orderEntry type="library" exported="" name="design-23.1.1" level="project" />
+     <orderEntry type="library" exported="" name="fbcore-0.7.0" level="project" />
+     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.1" level="project" />
+-    <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
+     <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
+     <orderEntry type="library" exported="" name="imagepipeline-0.7.0" level="project" />
+     <orderEntry type="library" exported="" name="fresco-0.7.0" level="project" />
+     <orderEntry type="library" exported="" name="bolts-android-1.1.4" level="project" />
+\ No newline at end of file
+Index: app/proguard-rules.pro
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/proguard-rules.pro	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/proguard-rules.pro	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values/strings.xml	(revision )
+@@ -17,9 +17,9 @@
+ 
+ 
+     <string name="title_activity_login_process">LoginProcessActivity</string>
+-
++    <string name="dummy_button">Dummy Button</string>
++    <string name="dummy_content">Your\nSHIT\nis\nLOADING</string>
+     <string name="title_activity_main2">Main2Activity</string>
+     <string name="title_activity_profile">ProfileActivity</string>
+     <string name="postsample">Ive been awake for a while now. You make me feel like a child now. Cause everytime I see your bubbly face. You made me tingles on a silly place</string>
+-    <string name="title_activity_post">PostActivity</string>
+ </resources>
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab3.java	(revision )
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab3.java	(revision )
+@@ -0,0 +1,33 @@
++package com.incc.softwareproject.socialngatutor.fragments;
++
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.incc.softwareproject.socialngatutor.R;
++
++/**
++ * Created by carlo on 21/12/2015.
++ */
++public class fragTab3 extends Fragment {
++
++    public static fragTab3 createInstance() {
++        fragTab3 frag_tab3 = new fragTab3();
++        Bundle bundle = new Bundle();
++        frag_tab3.setArguments(bundle);
++        return frag_tab3;
++    }
++
++    @Nullable
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.tab_3, container, false);
++    }
++
++
++}
+Index: app/src/main/res/layout/tab_1.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/tab_1.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/tab_1.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/ScrollingFABBehavior.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/ScrollingFABBehavior.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/ScrollingFABBehavior.java	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/drawable-mdpi/button_signup_w_shadow.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable-mdpi/button_signup_w_shadow.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/drawable-mdpi/button_signup_w_shadow.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab1.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab1.java	(revision )
+@@ -1,29 +1,45 @@
+ package com.incc.softwareproject.socialngatutor.fragments;
+ 
++import android.content.Context;
++import android.content.SharedPreferences;
++import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.support.annotation.Nullable;
++import android.support.design.widget.Snackbar;
+ import android.support.v4.app.Fragment;
+ import android.support.v7.widget.LinearLayoutManager;
+ import android.support.v7.widget.RecyclerView;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.Toast;
+ 
++import com.incc.softwareproject.socialngatutor.AfterLoginActivity;
+ import com.incc.softwareproject.socialngatutor.R;
++import com.incc.softwareproject.socialngatutor.Server;
+ import com.incc.softwareproject.socialngatutor.adapters.RecyclerAdapter;
++
++import org.json.JSONArray;
++import org.json.JSONObject;
++
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++
++
+ /**
+  * Created by carlo on 21/12/2015.
+  */
+ public class fragTab1 extends Fragment {
+-    public final static String ITEMS_COUNT_KEY = "PartThreeFragment$ItemsCount";
+-
+-    public static fragTab1 createInstance(int itemsCount) {
++    String SCHOOL_ID;
++    List<String> username = new ArrayList<>();
++    List<String> fullname = new ArrayList<>();
++    List<String> post = new ArrayList<>();
++    SharedPreferences sData;
++    public static fragTab1 newInstance() {
+         fragTab1 frag_tab1 = new fragTab1();
+         Bundle bundle = new Bundle();
+-        bundle.putInt(ITEMS_COUNT_KEY, itemsCount);
+         frag_tab1.setArguments(bundle);
+         return frag_tab1;
+     }
+@@ -33,25 +49,56 @@
+     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
+                 R.layout.tab_1, container, false);
++        new initPost().execute();
++        sData = this.getActivity().getSharedPreferences("ShareData", Context.MODE_PRIVATE);
++        SCHOOL_ID = sData.getString("SchoolId", "wala");
++        //Toast.makeText(getActivity(),SCHOOL_ID, Toast.LENGTH_SHORT).show();
+         setupRecyclerView(recyclerView);
+         return recyclerView;
+     }
+ 
++
+     private void setupRecyclerView(RecyclerView recyclerView) {
++        //Log.d("asd","saadasdasdasdasd");
++        //new initPost().execute();
+         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(createItemList());
++        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post);
+         recyclerView.setAdapter(recyclerAdapter);
+     }
+ 
+-    private List<String> createItemList() {
+-        List<String> itemList = new ArrayList<>();
+-        Bundle bundle = getArguments();
+-        if(bundle!=null) {
+-            int itemsCount = bundle.getInt(ITEMS_COUNT_KEY);
+-            for (int i = 0; i < itemsCount; i++) {
+-                itemList.add("Item " + i);
++    protected void convertJSON(String result){
++
++        try {
++            JSONObject reader = new JSONObject(result);
++            JSONArray data = reader.getJSONArray("Post");
++            for (int i = 0; i < data.length(); i++) {
++                JSONObject jsonobject = data.getJSONObject(i);
++                Log.d("des",jsonobject.getString("description"));
++                username.add(jsonobject.getString("username"));
++                post.add(jsonobject.getString("description"));
++                fullname.add(jsonobject.getString("full_name"));
+             }
++        }catch (Exception e){
++            e.printStackTrace();
+         }
+-        return itemList;
++    }
++    private class initPost extends AsyncTask<String, Void, String> {
++        @Override
++        protected String doInBackground(String... params) {
++            //Log.d("id",SCHOOL_ID);
++            Server svConn = new Server();
++            return svConn.getFeeds(SCHOOL_ID);
++        }
++
++        @Override
++        protected void onPostExecute(String result) {
++            if(!result.equals("")){
++                //Log.d("ress",result);
++                convertJSON(result);
++            }
++            else{
++                Log.d("res","error");
++            }
++        }
+     }
+ }
+Index: app/src/main/res/layout/tab_3.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/tab_3.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/tab_3.xml	(revision )
+@@ -3,4 +3,9 @@
+     android:orientation="vertical" android:layout_width="match_parent"
+     android:layout_height="match_parent">
+ 
++    <CalendarView
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:id="@+id/calendarView"
++        android:layout_gravity="center_horizontal" />
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/RecyclerAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/RecyclerAdapter.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/RecyclerAdapter.java	(revision )
+@@ -13,10 +13,15 @@
+ 
+ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+ 
+-    private List<String> mItemList;
++    private List<String> fullname;
++    private List<String> username;
++    private List<String> post;
+ 
+-    public RecyclerAdapter(List<String> itemList) {
+-        mItemList = itemList;
++    public RecyclerAdapter(List<String> itemList,List<String> itemList2,List<String> itemList3){
++
++        fullname = itemList;
++        username = itemList2;
++        post = itemList3;
+     }
+ 
+     @Override
+@@ -29,13 +34,17 @@
+     @Override
+     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+         RecyclerItemViewHolder holder = (RecyclerItemViewHolder) viewHolder;
+-        String itemText = mItemList.get(position);
+-        holder.setItemText(itemText);
++        String s_fullname = fullname.get(position);
++        String s_username = username.get(position);
++        String s_post = post.get(position);
++        holder.setFullname(s_fullname);
++        holder.setUserName(s_username);
++        holder.setPostDetails(s_post );
+     }
+ 
+     @Override
+     public int getItemCount() {
+-        return mItemList == null ? 0 : mItemList.size();
++        return fullname == null ? 0 : fullname.size();
+     }
+ 
+ }
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/MainActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/MainActivity.java	(revision )
+@@ -20,9 +20,10 @@
+     protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         setContentView(R.layout.activity_main);
++
+         Fresco.initialize(this);
+-        changeFontSaTitle();
+ 
++        changeFontSaTitle();
+     }
+ 
+     private void changeFontSaTitle() {
+Index: app/src/main/res/layout/activity_signup_process.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_signup_process.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_signup_process.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/activity_profile.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_profile.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/activity_profile.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab2.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab2.java	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/viewholder/RecyclerItemViewHolder.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/viewholder/RecyclerItemViewHolder.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/adapters/viewholder/RecyclerItemViewHolder.java	(revision )
+@@ -8,20 +8,31 @@
+ 
+ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder {
+ 
+-    private final TextView mItemTextView;
++    private final TextView tv_fullname;
++    private final TextView tv_username;
++    private final TextView tv_post; //  or description
+ 
+-    public RecyclerItemViewHolder(final View parent, TextView itemTextView) {
++    public RecyclerItemViewHolder(final View parent, TextView tv_username, TextView tv_post, TextView fullname) {
+         super(parent);
+-        mItemTextView = itemTextView;
++        this.tv_username = tv_username;
++        this.tv_post = tv_post;
++        this.tv_fullname = fullname;
+     }
+ 
+     public static RecyclerItemViewHolder newInstance(View parent) {
+-        TextView itemTextView = (TextView) parent.findViewById(R.id.card_fullname);
+-        return new RecyclerItemViewHolder(parent, itemTextView);
++        TextView fullname = (TextView) parent.findViewById(R.id.card_fullname);
++        TextView username = (TextView) parent.findViewById(R.id.card_username);
++        TextView post = (TextView) parent.findViewById(R.id.card_post_details);
++        return new RecyclerItemViewHolder(parent,username,post,fullname);
+     }
+ 
+-    public void setItemText(CharSequence text) {
+-        mItemTextView.setText(text);
++    public void setFullname(CharSequence text) {
++        tv_fullname.setText(text);
+     }
+-
++    public void setUserName(CharSequence text) {
++        tv_username.setText("@" + text);
++    }
++    public void setPostDetails(CharSequence text) {
++        tv_post.setText(text);
++    }
+ }
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/values/dimens.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/drawable/postfield.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/postfield.xml	(revision )
++++ app/src/main/res/drawable/postfield.xml	(revision )
+@@ -0,0 +1,63 @@
++<?xml version="1.0" encoding="utf-8"?>
++<selector xmlns:android="http://schemas.android.com/apk/res/android">
++    <item android:state_pressed="false">
++        <layer-list>
++            <!-- SHADOW -->
++            <item>
++                <shape>
++                    <solid android:color="#DaDaDa"/>
++                    <corners android:radius="25dp"/>
++
++
++                </shape>
++            </item>
++            <!-- BUTTON -->
++            <item android:bottom="5px">
++                <shape>
++                    <padding android:bottom="10dp"/>
++                    <gradient
++                        android:startColor="#FFFFFF"
++                        android:endColor="#FFFFFF"
++                        android:angle="270" />
++                    <corners
++                        android:radius="15dp"/>
++                    <padding
++                        android:left="10dp"
++                        android:top="10dp"
++                        android:right="10dp"
++                        android:bottom="10dp"/>
++                </shape>
++            </item>
++        </layer-list>
++    </item>
++
++    <item android:state_pressed="true">
++        <layer-list>
++            <!-- SHADOW -->
++            <item>
++                <shape>
++                    <solid android:color="#242222"/>
++                    <corners android:radius="15dp"/>
++                </shape>
++            </item>
++            <!-- BUTTON -->
++            <item android:bottom="5px">
++                <shape>
++                    <padding android:bottom="5dp"/>
++                    <gradient
++                        android:startColor="#009999"
++                        android:endColor="#009999"
++                        android:angle="270" />
++                    <corners
++                        android:radius="5dp"/>
++                    <padding
++                        android:left="10dp"
++                        android:top="10dp"
++                        android:right="10dp"
++                        android:bottom="10dp"/>
++                </shape>
++            </item>
++        </layer-list>
++
++    </item>
++</selector>
+\ No newline at end of file
+Index: app/src/main/res/layout/content_sign_up.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/content_sign_up.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/content_sign_up.xml	(revision )
+@@ -22,9 +22,8 @@
+                 android:layout_height="200dp"
+                 android:layout_gravity="center"
+                 android:src="@drawable/ppdefault"
+-                android:scaleType="centerCrop"
+                 android:contentDescription="Press to Upload Picture"
+-                android:onClick="uploadPPBtn"/>
++                android:onClick="selectPicBtn"/>
+             <EditText
+                 android:id="@+id/s_schoolId"
+                 android:layout_width="fill_parent"
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/AfterLoginActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/AfterLoginActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/AfterLoginActivity.java	(revision )
+@@ -3,6 +3,7 @@
+ import android.content.Intent;
+ import android.content.SharedPreferences;
+ import android.graphics.Typeface;
++import android.os.AsyncTask;
+ import android.os.Bundle;
+ import android.support.design.widget.TabLayout;
+ import android.support.v4.app.Fragment;
+@@ -15,9 +16,12 @@
+ import android.view.MenuItem;
+ import android.view.View;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
+ import com.incc.softwareproject.socialngatutor.fragments.fragTab2;
++import com.incc.softwareproject.socialngatutor.fragments.fragTab3;
++import com.incc.softwareproject.socialngatutor.fragments.fragTab4;
+ 
+ import java.util.ArrayList;
+ import java.util.List;
+@@ -33,8 +37,9 @@
+ 
+         initToolbar();
+         initViewPagerAndTabs();
+-        spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
++        spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
+-        schoolId = spreferences.getString("SchoolId","wala");
++        schoolId = spreferences.getString("SchoolId", "wala");
++        //Toast.makeText(AfterLoginActivity.this,spreferences.getString("SchoolId", "wala"), Toast.LENGTH_SHORT).show();
+     }
+ 
+     public boolean onCreateOptionsMenu(Menu menu) {
+@@ -55,7 +60,6 @@
+                 i.putExtra("FullName",getIntent().getExtras().getString("FullName"));
+             } */
+             startActivity(i);
+-            return true;
+         }
+         return super.onOptionsItemSelected(item);
+     }
+@@ -71,16 +75,20 @@
+     private void initViewPagerAndTabs() {
+         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+         PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager());
+-        pagerAdapter.addFragment(fragTab1.createInstance(20),getString(R.string.tab1));
++        pagerAdapter.addFragment(fragTab1.newInstance(),getString(R.string.tab1));
+         pagerAdapter.addFragment(fragTab2.createInstance(),getString(R.string.tab2));
+-        pagerAdapter.addFragment(fragTab1.createInstance(4), getString(R.string.tab3));
+-        pagerAdapter.addFragment(fragTab1.createInstance(4), getString(R.string.tab4));
++        pagerAdapter.addFragment(fragTab3.createInstance(), getString(R.string.tab3));
++        pagerAdapter.addFragment(fragTab4.createInstance(), getString(R.string.tab4));
+         viewPager.setAdapter(pagerAdapter);
+ 
+         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+         tabLayout.setupWithViewPager(viewPager);
+     }
++    public void addPostBtn(View v){
++        Intent i = new Intent(this,PostActivity.class);
++        startActivity(i);
+ 
++    }
+     static class PagerAdapter extends FragmentPagerAdapter {
+ 
+         private final List<Fragment> fragmentList = new ArrayList<>();
+@@ -109,8 +117,5 @@
+             return fragmentTitleList.get(position);
+         }
+     }
+-    public void fabClicked(View v){
+-        Intent i = new Intent(this,PostActivity.class);
+-        startActivity(i);
+-    }
++
+ }
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/FileChooser.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/FileChooser.java	(revision )
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/FileChooser.java	(revision )
+@@ -0,0 +1,135 @@
++package com.incc.softwareproject.socialngatutor;
++
++import android.app.Activity;
++import android.app.Dialog;
++import android.os.Environment;
++import android.view.View;
++import android.view.ViewGroup;
++import android.view.WindowManager.LayoutParams;
++import android.widget.AdapterView;
++import android.widget.ArrayAdapter;
++import android.widget.ListView;
++import android.widget.TextView;
++import java.io.File;
++import java.io.FileFilter;
++import java.util.Arrays;
++
++public class FileChooser {
++    private static final String PARENT_DIR = "..";
++
++    private final Activity activity;
++    private ListView list;
++    private Dialog dialog;
++    private File currentPath;
++
++    // filter on file extension
++    private String extension = null;
++    public void setExtension(String extension) {
++        this.extension = (extension == null) ? null :
++                extension.toLowerCase();
++    }
++
++    // file selection event handling
++    public interface FileSelectedListener {
++        void fileSelected(File file);
++    }
++    public FileChooser setFileListener(FileSelectedListener fileListener) {
++        this.fileListener = fileListener;
++        return this;
++    }
++    private FileSelectedListener fileListener;
++
++    public FileChooser(Activity activity) {
++        this.activity = activity;
++        dialog = new Dialog(activity);
++        list = new ListView(activity);
++        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
++            @Override public void onItemClick(AdapterView<?> parent, View view, int which, long id) {
++                String fileChosen = (String) list.getItemAtPosition(which);
++                File chosenFile = getChosenFile(fileChosen);
++                if (chosenFile.isDirectory()) {
++                    refresh(chosenFile);
++                } else {
++                    if (fileListener != null) {
++                        fileListener.fileSelected(chosenFile);
++                    }
++                    dialog.dismiss();
++                }
++            }
++        });
++        dialog.setContentView(list);
++        dialog.getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
++        refresh(Environment.getExternalStorageDirectory());
++    }
++
++    public void showDialog() {
++        dialog.show();
++    }
++
++
++    /**
++     * Sort, filter and display the files for the given path.
++     */
++    private void refresh(File path) {
++        this.currentPath = path;
++        if (path.exists()) {
++            File[] dirs = path.listFiles(new FileFilter() {
++                @Override public boolean accept(File file) {
++                    return (file.isDirectory() && file.canRead());
++                }
++            });
++            File[] files = path.listFiles(new FileFilter() {
++                @Override public boolean accept(File file) {
++                    if (!file.isDirectory()) {
++                        if (!file.canRead()) {
++                            return false;
++                        } else if (extension == null) {
++                            return true;
++                        } else {
++                            return file.getName().toLowerCase().endsWith(extension);
++                        }
++                    } else {
++                        return false;
++                    }
++                }
++            });
++
++            // convert to an array
++            int i = 0;
++            String[] fileList;
++            if (path.getParentFile() == null) {
++                fileList = new String[dirs.length + files.length];
++            } else {
++                fileList = new String[dirs.length + files.length + 1];
++                fileList[i++] = PARENT_DIR;
++            }
++            Arrays.sort(dirs);
++            Arrays.sort(files);
++            for (File dir : dirs) { fileList[i++] = dir.getName(); }
++            for (File file : files ) { fileList[i++] = file.getName(); }
++
++            // refresh the user interface
++            dialog.setTitle(currentPath.getPath());
++            list.setAdapter(new ArrayAdapter(activity,
++                    android.R.layout.simple_list_item_1, fileList) {
++                @Override public View getView(int pos, View view, ViewGroup parent) {
++                    view = super.getView(pos, view, parent);
++                    ((TextView) view).setSingleLine(true);
++                    return view;
++                }
++            });
++        }
++    }
++
++
++    /**
++     * Convert a relative filename into an actual File object.
++     */
++    private File getChosenFile(String fileChosen) {
++        if (fileChosen.equals(PARENT_DIR)) {
++            return currentPath.getParentFile();
++        } else {
++            return new File(currentPath, fileChosen);
++        }
++    }
++}
+\ No newline at end of file
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/Utils.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/Utils.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/Utils.java	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/res/layout/recycler_header.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/recycler_header.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/layout/recycler_header.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/PostActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/PostActivity.java	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/PostActivity.java	(revision )
+@@ -20,5 +20,11 @@
+         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+         toolbar.setTitle("");
+     }
++    public void postCloseBtn(View v){
++        finish();
++    }
++    public void postBtn(View v){
++        //post process
++    }
+ 
+ }
+Index: app/src/main/res/drawable-mdpi/button_login_w_shadow.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable-mdpi/button_login_w_shadow.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/drawable-mdpi/button_login_w_shadow.xml	(revision )
+@@ -1,0 +1,0 @@
+Index: app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab4.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab4.java	(revision )
++++ app/src/main/java/com/incc/softwareproject/socialngatutor/fragments/fragTab4.java	(revision )
+@@ -0,0 +1,33 @@
++package com.incc.softwareproject.socialngatutor.fragments;
++
++import android.os.Bundle;
++import android.support.annotation.Nullable;
++import android.support.v4.app.Fragment;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++
++import com.incc.softwareproject.socialngatutor.R;
++
++/**
++ * Created by carlo on 21/12/2015.
++ */
++public class fragTab4 extends Fragment {
++
++    public static fragTab4 createInstance() {
++        fragTab4 frag_tab4 = new fragTab4();
++        Bundle bundle = new Bundle();
++        frag_tab4.setArguments(bundle);
++        return frag_tab4;
++    }
++
++    @Nullable
++    @Override
++    public View onCreateView(LayoutInflater inflater, ViewGroup container,
++                             Bundle savedInstanceState) {
++        // Inflate the layout for this fragment
++        return inflater.inflate(R.layout.tab_4, container, false);
++    }
++
++
++}
+Index: app/src/main/res/drawable/circle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable/circle.xml	(revision 2a612f994c71af064a5f70d9beb85cb1b824e99d)
++++ app/src/main/res/drawable/circle.xml	(revision )
+@@ -1,0 +1,0 @@

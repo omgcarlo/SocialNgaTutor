@@ -1,24 +1,34 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.incc.softwareproject.socialngatutor.connection.Server;
+import com.incc.softwareproject.socialngatutor.Server.Server;
+import com.incc.softwareproject.socialngatutor.Server.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SignUpProcessActivity extends AppCompatActivity {
     TextView loadingtxt;
-
+    Button toLoginBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_process);
         loadingtxt = (TextView) findViewById(R.id.s_loading_txt);
+        toLoginBtn = (Button) findViewById(R.id.toLoginBtn);
+        toLoginBtn.setVisibility(View.INVISIBLE);
         new SigupProcess().execute();
     }
-
+    public void toLoginBtn(View v){
+        startActivity(new Intent(this,MainActivity.class));
+    }
     private class SigupProcess extends AsyncTask<String, Integer, String> {
         String schoolId,fullname,username,password,email,birthdate,programId;
 
@@ -36,15 +46,29 @@ public class SignUpProcessActivity extends AppCompatActivity {
             email = getIntent().getExtras().getString("email");
             birthdate = getIntent().getExtras().getString("birthdate");
             programId = "1";
-            Server svConn = new Server();
+            User svConn = new User();
             // Return result
-            return svConn.signup(schoolId,fullname,password,birthdate,email,programId,fullname);
+            return svConn.signup(schoolId,username,password,birthdate,email,programId,fullname);
 
         }
         @Override
         protected void onPostExecute(String result) {
-            Log.d("sql",result);
-            loadingtxt.setText(result);
+            //Log.d("sql",result);
+            try {
+                JSONObject reader = new JSONObject(result);
+                JSONObject data = reader.getJSONObject("User");
+                if(data.getBoolean("Success")){
+                    loadingtxt.setText("YEY!");
+
+                }
+                else{
+                    loadingtxt.setText("YOY!");
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            toLoginBtn.setVisibility(View.VISIBLE);
         }
     }
 }

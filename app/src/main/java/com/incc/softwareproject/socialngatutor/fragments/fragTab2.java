@@ -30,4 +30,7 @@ public class fragTab2 extends Fragment {
     }
 
 
+
+
+
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_gravity="center"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="4dp"
+    >
+    <RelativeLayout
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white">
+        <TextView
+            android:id="@+id/e_card_monthyear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp"
+            android:text="Febrero • 2016"/>
+        <TextView
+            android:id="@+id/e_card_eventId"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:layout_marginLeft="2dp"
+            android:textSize="12sp"
+            android:text="Febrero • 2016"/>
+        <TextView
+            android:id="@+id/e_card_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:gravity="center"
+            android:text="31"
+            android:textSize="65sp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="-12dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="-75dp">
+
+            <TextView
+                android:id="@+id/e_card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:paddingTop="18dp"
+                style="@style/Base.TextAppearance.AppCompat.Body2"
+                android:text="Event Title"
+                android:textSize="21sp"/>
+
+            <TextView
+                android:id="@+id/e_card_details"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="#9a9a9a"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp"
+                android:text="NO CLASSES"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>

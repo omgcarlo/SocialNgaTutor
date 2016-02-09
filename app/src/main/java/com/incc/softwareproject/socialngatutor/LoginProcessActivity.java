@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.incc.softwareproject.socialngatutor.connection.Server;
+import com.incc.softwareproject.socialngatutor.Server.Server;
+import com.incc.softwareproject.socialngatutor.Server.User;
 
 import org.json.JSONObject;
 
@@ -18,7 +18,8 @@ public class LoginProcessActivity extends AppCompatActivity {
     SharedPreferences preferenceData;
     TextView tv;
     ProgressBar loading1;
-
+    //HttpURLConnection urlConnection;
+    //String uri = "http://192.168.43.43/socialtutor/server/user.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,6 @@ public class LoginProcessActivity extends AppCompatActivity {
         loading1.setVisibility(View.VISIBLE);
 
         preferenceData = getSharedPreferences("ShareData", MODE_PRIVATE);
-
         new ConnectProccess().execute(getIntent().getExtras().getString("username"), getIntent().getExtras().getString("password"));
     }
 
@@ -42,7 +42,7 @@ public class LoginProcessActivity extends AppCompatActivity {
             /**
              * Read and Convert JSON response
              */
-            Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
+           //Toast.makeText(this, res, Toast.LENGTH_LONG).show();      //para detect sa error
 
             String schoolId = "";
             JSONObject reader = new JSONObject(res);
@@ -58,6 +58,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
                 tv.setText("Last na jud ni...");
                 schoolId = data.getString("SchoolId");
+                //Toast.makeText(this,schoolId, Toast.LENGTH_LONG).show();
                 String full_name = data.getString("Name");
                 String username = getIntent().getExtras().getString("username");
 
@@ -72,6 +73,7 @@ public class LoginProcessActivity extends AppCompatActivity {
                 editor.putString("FullName", full_name);
                 editor.putString("Username", username);
                 editor.apply();
+
                 //transfer
                 startActivity(i);
             }
@@ -95,7 +97,7 @@ public class LoginProcessActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             setProgress(0);
-            Server svConn = new Server();
+            User svConn = new User();
             setProgress(1);
             return svConn.login(params[0], params[1]);
 
@@ -116,9 +118,10 @@ public class LoginProcessActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            if (!result.equals("")) {
-                loading1.setVisibility(View.INVISIBLE);
 
+            if (!result.equals("") || result != null) {
+                loading1.setVisibility(View.INVISIBLE);
+                //Log.d("Resulta", result);
                 balhin(result);
                 finish();
             } else {
