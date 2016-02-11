@@ -17,7 +17,7 @@ import java.net.URLEncoder;
  * Created by carlo on 1/8/16.
  */
 public class Server {
-    private final static String BASE_URL = "http://192.168.1.5/STFinal/server/";
+    private final static String BASE_URL = "http://192.168.1.5/STFinal/STServer/";
     private final static String USER_URL = "user.php";
     private final static String PROGRAM_URL = "program.php";
     private final static String POST_URL = "post.php";
@@ -25,6 +25,12 @@ public class Server {
     private final static String COMMENT_URL = "comment.php";
     private final static String EVENT_URL = "events.php";
     private final static String ACTIVITY_URL = "activity.php";
+
+    public static String getNotificationUrl() {
+        return NOTIFICATION_URL;
+    }
+
+    private final static String NOTIFICATION_URL = "notification.php";
     public static String getActivityUrl() {
         return ACTIVITY_URL;
     }

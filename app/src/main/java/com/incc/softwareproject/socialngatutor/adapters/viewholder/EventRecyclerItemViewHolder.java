@@ -70,6 +70,6 @@ public class EventRecyclerItemViewHolder extends RecyclerView.ViewHolder impleme
         String split[] = eventDate.split("-");
         this.eventDate.setText(split[2]);
         int month = Integer.parseInt(split[1]);
-        this.monthyear.setText(MONTH[month]+"•"+split[0]);
+        this.monthyear.setText(MONTH[month-1] +"•" + split[0]);
     }
 }

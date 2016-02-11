@@ -62,7 +62,7 @@ public class CalendarActivity extends AppCompatActivity implements DatePickerDia
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         recyclerView = (RecyclerView) findViewById(R.id.calendar_e_recyclerView);
-
+        recyclerView.setNestedScrollingEnabled(false);
         month_txt = (TextView) findViewById(R.id.calendar_month);
         Calendar c = Calendar.getInstance();
         month_txt.setText(MONTH[c.get(Calendar.MONTH)]);   //  TEMP DISPLAY BEFORE MO CHANGE SA ONCHANGELISTENER
@@ -164,6 +164,10 @@ public class CalendarActivity extends AppCompatActivity implements DatePickerDia
         cal.set(year, month, 1);
         month_txt.setText(cal.getDisplayName(Calendar.MONTH,
                 Calendar.LONG, Locale.ENGLISH) + " " + year);
+        String clickedDate = year + "-" + (month + 1) + "-" + 01;
+        clearData();
+        new displayUpcomingEvents().execute(clickedDate);
+
     }
 
     public void onCloseCalendar(View view) {
@@ -200,6 +204,21 @@ public class CalendarActivity extends AppCompatActivity implements DatePickerDia
            //Log.e("Params:", params[0]);
             Events ev = new Events();
             return ev.getEvents(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            convertJSON(s);
+            //Log.e("Result:", s);
+        }
+    }
+    private class displayUpcomingEvents extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            //Log.e("Params:", params[0]);
+            Events ev = new Events();
+            return ev.getUpcommentEvents(params[0]);
         }
 
         @Override

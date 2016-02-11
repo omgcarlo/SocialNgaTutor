@@ -1,5 +1,8 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +31,7 @@ import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab2;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab3;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab4;
+import com.incc.softwareproject.socialngatutor.services.NotificationService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 
 import java.util.ArrayList;
@@ -38,6 +42,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     private String schoolId;
     private SharedPreferences spreferences;
     private BroadcastReceiver broadcastReceiver;
+
 
 
     @Override
@@ -53,6 +58,10 @@ public class AfterLoginActivity extends AppCompatActivity {
         //Toast.makeText(AfterLoginActivity.this,spreferences.getString("SchoolId", "wala"), Toast.LENGTH_SHORT).show();
 
         broadcastReceiver = new MyBroadcastReceiver();
+        //showNotification();
+        Intent i = new Intent(this, NotificationService.class);
+        i.putExtra("UserId",schoolId);
+        startService(i);
     }
 
     @Override
@@ -96,6 +105,7 @@ public class AfterLoginActivity extends AppCompatActivity {
                             Intent i = new Intent(AfterLoginActivity.this,MainActivity.class);
                             i.putExtra("Logout",true);
                             startActivity(i);
+                            AfterLoginActivity.this.finish();
                         }
                     })
                     .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
