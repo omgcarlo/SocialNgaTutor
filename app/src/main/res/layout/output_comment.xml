@@ -52,14 +52,15 @@
                     style="@style/Base.TextAppearance.AppCompat.Body2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="6"
+                    android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:padding="8dp"
-                    android:text="Meynard Inso"
+                    android:text="@string/loading_txt"
                     android:textColor="#0066CC"
                     android:textSize="18sp" />
 
                 <ImageButton
+                    android:id="@+id/c_options"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -97,7 +98,7 @@
                 android:layout_marginLeft="58dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="35dp"
-                android:text="@string/commentsample" />
+                android:text="@string/loading_txt" />
         </RelativeLayout>
 
 
@@ -128,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_share"
-                android:text="5 hours ago"
+                android:text="@string/loading_txt"
                 android:layout_marginBottom="5dp"
                 android:textColor="@color/lightgrey"
                 android:gravity="right"

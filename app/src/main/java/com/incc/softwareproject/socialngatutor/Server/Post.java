@@ -42,7 +42,7 @@ public class Post extends Server {
         res_txt = "";
         try {
             String data = URLEncoder.encode("ownerId", "UTF-8")
-                    + "=" + URLEncoder.encode(ownerId, "UTF-8");   //action
+                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
             res_txt =  postFunction(uri, data);
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class Post extends Server {
         String uri = getBaseUrl() + getPostUrl() + "?action=getFeed";
         try{
             String data = URLEncoder.encode("ownerId", "UTF-8")
-                    + "=" + URLEncoder.encode(ownerId, "UTF-8");   //action
+                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
             res_txt =  getFunction(uri, data);
         }catch (Exception e){
             e.printStackTrace();
@@ -66,7 +66,21 @@ public class Post extends Server {
         String uri = getBaseUrl() + getPostUrl() + "?action=getPost";
         try{
             String data = URLEncoder.encode("postId", "UTF-8")
-                    + "=" + URLEncoder.encode(postId, "UTF-8");   //action
+                    + "=" + URLEncoder.encode(postId, "UTF-8");
+            res_txt =  postFunction(uri, data);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
+    }
+    public String upvote(String userId,String postId){
+        String uri = getBaseUrl() + getPostUrl() + "?action=upvote";
+        try{
+            String data = URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(userId, "UTF-8");
+
+            data += "&" + URLEncoder.encode("postId", "UTF-8")
+                    + "=" + URLEncoder.encode(postId, "UTF-8");
             res_txt =  postFunction(uri, data);
         }catch (Exception e){
             e.printStackTrace();

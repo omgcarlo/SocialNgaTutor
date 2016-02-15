@@ -7,7 +7,7 @@ import java.net.URLEncoder;
  */
 public class Notification extends Server {
     public String getNotif(String ownerId){
-        String uri = getBaseUrl() + getCommentUrl() +"?action=get";
+        String uri = getBaseUrl() + getNotificationUrl() + "?action=get";
         String res_txt = "";
         try {
             String data = URLEncoder.encode("ownerId", "UTF-8")

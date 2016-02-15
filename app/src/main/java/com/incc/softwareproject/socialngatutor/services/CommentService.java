@@ -32,10 +32,10 @@ public class CommentService extends IntentService {
         String postId = i.getStringExtra("postId");
         try {
             res_txt = sv.postComment(comment, userId, postId);
-            Log.e(TAG,res_txt);
+            //Log.e(TAG,res_txt);
             JSONObject reader = new JSONObject(res_txt);
             JSONObject data = reader.getJSONObject("Comment");
-            if (!res_txt.equals("") && !data.getBoolean("Success")) {
+            if (data.getBoolean("Success")) {
                 Intent i2 = new Intent(ACTION);
                 i2.putExtra("Success", true);
                 sendBroadcast(i2);

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.incc.softwareproject.socialngatutor.Server.Search;
@@ -34,6 +35,8 @@ public class SearchActivity extends AppCompatActivity {
     List<String> datetime = new ArrayList<>();
     List<String> post = new ArrayList<>();
     List<String> postId = new ArrayList<>();
+    List<String> pp_url = new ArrayList<>();
+    List<Boolean> owned = new ArrayList<>();
 
     RecyclerView recyclerViewPeople;
     RecyclerView recyclerViewTopics;
@@ -115,11 +118,13 @@ public class SearchActivity extends AppCompatActivity {
         userId.clear();
         post.clear();
         datetime.clear();
+        pp_url.clear();
+        owned.clear();
     }
     private void initViewPeople(String result) {
         clear();
         try {
-           // Log.d(TAG, result);
+            Log.d(TAG, result);
             JSONObject reader = new JSONObject(result);
             JSONArray data = reader.getJSONArray("User");
             for (int i = 0; i < data.length(); i++) {
@@ -128,6 +133,7 @@ public class SearchActivity extends AppCompatActivity {
                 fullname.add(jsonobject.getString("full_name"));
                 userId.add(jsonobject.getString("schoolId"));
                 isFollowed.add(jsonobject.getBoolean("isFollowed"));
+                pp_url.add(jsonobject.getString("pic_url"));
             }
             setupRecyclerView_search(recyclerViewPeople);
         }catch (Exception e){
@@ -148,6 +154,8 @@ public class SearchActivity extends AppCompatActivity {
                 postId.add(jsonobject.getString("postId"));
                 userId.add(jsonobject.getString("schoolId"));
                 datetime.add(jsonobject.getString("datetime"));
+                pp_url.add(jsonobject.getString("pic_url"));
+                owned.add(jsonobject.getBoolean("isOwned"));
             }
             setupRecyclerView_topics(recyclerViewTopics);
         }catch (Exception e){
@@ -156,12 +164,12 @@ public class SearchActivity extends AppCompatActivity {
     }
     private void setupRecyclerView_search(RecyclerView srecycler) {
         srecycler.setLayoutManager(new LinearLayoutManager(this));
-        SearchRecyclerAdapter sRecyclerAdapter = new SearchRecyclerAdapter(fullname,username,userId,isFollowed);
+        SearchRecyclerAdapter sRecyclerAdapter = new SearchRecyclerAdapter(fullname,username,userId,isFollowed,pp_url);
         srecycler.setAdapter(sRecyclerAdapter);
     }
     private void setupRecyclerView_topics(RecyclerView precycler) {
         precycler.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned);
         precycler.setAdapter(recyclerAdapter);
     }
 

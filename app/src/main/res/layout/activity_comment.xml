@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.incc.softwareproject.socialngatutor.CommentActivity">
     <ImageButton
-        android:id="@+id/c_userPP"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"

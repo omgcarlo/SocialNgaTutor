@@ -52,11 +52,11 @@ public class AfterLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_after_login);
 
         initToolbar();
-        initViewPagerAndTabs();
+
         spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "wala");
         //Toast.makeText(AfterLoginActivity.this,spreferences.getString("SchoolId", "wala"), Toast.LENGTH_SHORT).show();
-
+        initViewPagerAndTabs();
         broadcastReceiver = new MyBroadcastReceiver();
         //showNotification();
         Intent i = new Intent(this, NotificationService.class);
@@ -89,10 +89,6 @@ public class AfterLoginActivity extends AppCompatActivity {
         if (id == R.id.action_profile) {
             Intent i = new Intent(this, ProfileActivity.class);
             if (!spreferences.getString("SchoolId", "Wala").equals("Wala")) {
-                i.putExtra("UserId", spreferences.getString("SchoolId", "Wala"));
-                i.putExtra("Username", spreferences.getString("Username", "Wala"));
-                i.putExtra("FullName", spreferences.getString("FullName", "Wala"));
-                //Toast.makeText(AfterLoginActivity.this, spreferences.getString("Username","Wala"), Toast.LENGTH_SHORT).show();
                 startActivity(i);
             }
         } else if (id == R.id.action_logout) {

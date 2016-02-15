@@ -2,14 +2,13 @@ package com.incc.softwareproject.socialngatutor.adapters.viewholder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.incc.softwareproject.socialngatutor.PostViewActivity;
 import com.incc.softwareproject.socialngatutor.R;
 
 public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -33,6 +32,7 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
         this.tv_datetime = datetime;
         this.userPP = userPP;
         context =  parent.getContext();
+        tv_description.setOnClickListener(this);
     }
 
     public static ActivityRecyclerItemViewHolder newInstance(View parent) {
@@ -46,7 +46,11 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
 
     @Override
     public void onClick(View v) {
-
+        if((tv_description.getText().toString()).equals("commented on your post")){
+            Intent i = new Intent(context,PostViewActivity.class);
+            i.putExtra("PostId",postId);
+            context.startActivity(i);
+        }
     }
 
 
@@ -76,5 +80,10 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
 
     public void setDatetime(String datetime) {
         tv_datetime.setText(datetime);
+    }
+
+    public void setUserPP(String pp_url){
+        Uri uri = Uri.parse(pp_url);
+        userPP.setImageURI(uri);
     }
 }

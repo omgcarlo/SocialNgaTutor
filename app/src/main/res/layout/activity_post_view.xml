@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <com.facebook.drawee.view.SimpleDraweeView
-                        android:id="@+id/card_ppicture"
+                        android:id="@+id/post_view_ppicture"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_marginLeft="8dp"

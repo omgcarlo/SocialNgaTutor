@@ -73,11 +73,18 @@
         <activity
             android:name=".PostViewActivity"
             android:label="@string/title_activity_post_view"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
+        </activity>
 
         <service android:name=".services.PostService" />
         <service android:name=".services.FollowService" />
         <service android:name=".services.CommentService"/>
+        <service android:name=".services.NotificationService"/>
+        <service android:name=".services.UpvoteService"/>
+
         <activity android:name=".CommentActivity"></activity>
         <activity android:name=".CalendarActivity"></activity>
     </application>

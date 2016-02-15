@@ -36,6 +36,7 @@ public class fragTab4 extends Fragment {
     List<String> description = new ArrayList<>();
     List<String> postId = new ArrayList<>();
     List<String> datetime = new ArrayList<>();
+    List<String> pic_url = new ArrayList<>();
 
     private RecyclerView recyclerView;
 
@@ -70,11 +71,12 @@ public class fragTab4 extends Fragment {
         datetime.clear();
         activity.clear();
         description.clear();
+        pic_url.clear();
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ActivityRecyclerAdapter recyclerAdapter = new ActivityRecyclerAdapter(activity,from_fullname, from_username, postId, from_userId,description, datetime);
+        ActivityRecyclerAdapter recyclerAdapter = new ActivityRecyclerAdapter(activity,from_fullname, from_username, postId, from_userId,description, datetime,pic_url);
         recyclerView.setAdapter(recyclerAdapter);
     }
 
@@ -101,6 +103,7 @@ public class fragTab4 extends Fragment {
 
                 description.add(jsonobject.getString("description"));
                 datetime.add(jsonobject.getString("datetime"));
+                pic_url.add(jsonobject.getString("pic_url"));
             }
             setupRecyclerView(recyclerView);
         } catch (Exception e) {

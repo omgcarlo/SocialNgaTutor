@@ -25,16 +25,21 @@ public class Server {
     private final static String COMMENT_URL = "comment.php";
     private final static String EVENT_URL = "events.php";
     private final static String ACTIVITY_URL = "activity.php";
+    private final static String NOTIFICATION_URL = "notification.php";
+    private final static String UPLOADPIC_URL = "uploadpicture.php";
+
+    public static String getUploadpicUrl() {
+        return UPLOADPIC_URL;
+    }
 
     public static String getNotificationUrl() {
         return NOTIFICATION_URL;
     }
 
-    private final static String NOTIFICATION_URL = "notification.php";
+
     public static String getActivityUrl() {
         return ACTIVITY_URL;
     }
-
 
 
     public static String getBaseUrl() {

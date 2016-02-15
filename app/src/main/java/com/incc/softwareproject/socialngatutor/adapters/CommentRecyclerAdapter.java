@@ -19,10 +19,10 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private List<Boolean> isApproved;
     private List<String> comment;
     private List<String> userType;
-
+    private List<String> pic_url;
     public CommentRecyclerAdapter(List<String> itemList, List<String> itemList2,
                                   List<String> itemList3, List<Boolean> item4,
-                                  List<String> item5, List<String> item6){
+                                  List<String> item5, List<String> item6,List<String> pic_url){
 
         fullname = itemList;
         username = itemList2;
@@ -30,6 +30,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         isApproved = item4;
         comment = item5;
         userType = item6;
+        this.pic_url = pic_url;
     }
 
     @Override
@@ -49,6 +50,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         boolean s_isApproved = isApproved.get(position);
         String s_comment = comment.get(position);
         String s_usertype = userType.get(position);
+        String s_pic_url = pic_url.get(position);
 
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
@@ -56,6 +58,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.setIsApproved(s_isApproved);
         holder.setComment(s_comment);
         holder.setUserType(s_usertype);
+        holder.setPicUrl(s_pic_url);
     }
 
     @Override

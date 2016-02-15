@@ -21,11 +21,11 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
     private List<String> from_userId;
     private List<String> description;
     private List<String> datetime;
-
+    private List<String> pic_url;
     public ActivityRecyclerAdapter(List<String> activity, List<String> from_fullname,
                                    List<String> from_username, List<String> postId,
                                    List<String> from_userId, List<String> description,
-                                   List<String> datetime) {
+                                   List<String> datetime,List<String> pic_url) {
         this.activity = activity;
         this.from_fullname = from_fullname;
         this.from_userId = from_userId;
@@ -33,6 +33,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         this.postId = postId;
         this.description = description;
         this.datetime = datetime;
+        this.pic_url = pic_url;
 
     }
 
@@ -55,6 +56,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         String s_postId = postId.get(position);
         String s_description = description.get(position);
         String s_datetime = datetime.get(position);
+        String s_pic_url = pic_url.get(position);
 
         holder.setActivity(s_activity);
         holder.setFFullname(s_from_fullname);
@@ -63,6 +65,7 @@ public class ActivityRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
         holder.setPostId(s_postId);
         holder.setDescription(s_description);
         holder.setDatetime(s_datetime);
+        holder.setUserPP(s_pic_url);
 
     }
 

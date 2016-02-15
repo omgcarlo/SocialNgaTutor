@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,8 +39,11 @@ public class CommentActivity extends AppCompatActivity {
     private List<Boolean> isApproved = new ArrayList<>();
 
     private List<String> comment= new ArrayList<>();
+    private List<String> pic_url = new ArrayList<>();
 
     RecyclerView recyclerView;
+    private String s_fullname;
+    SharedPreferences spreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +51,9 @@ public class CommentActivity extends AppCompatActivity {
         postId = getIntent().getStringExtra("PostId");
         broadcastReceiver = new MyBroadcastReceiver();
         recyclerView = (RecyclerView) findViewById(R.id.c_recyclerView);
-        //Log.e("postId",postId);
+        //  GET USERNAME
+        spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
+        s_fullname = spreferences.getString("FullName", "Wala");
         new InitComment().execute(postId);
     }
     public void commentClose(View v){
@@ -56,26 +62,44 @@ public class CommentActivity extends AppCompatActivity {
     public void postComment(View v){
         //Toast.makeText(CommentActivity.this, "wewewewewew", Toast.LENGTH_SHORT).show();
         icomment = ((EditText) findViewById(R.id.c_icomment)).getText().toString();
+
+         findViewById(R.id.c_icomment).setEnabled(false);
         //PostService / PROCESS
         Intent intent = new Intent(this, CommentService.class);
         intent.putExtra("comment", icomment);
-        intent.putExtra("postId",postId);
+        intent.putExtra("postId", postId);
         startService(intent);
+
+    }
+    private void clrData(){
+        fullname.clear();
+        username.clear();
+        userId.clear();
+        isApproved.clear();
+        comment.clear();
+        userType.clear();
+        pic_url.clear();
     }
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType);
+        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType,pic_url);
         recyclerView.setAdapter(crecyclerAdapter);
     }
-
+    protected void animateComment(){
+        findViewById(R.id.c_icomment).setEnabled(true);
+        ((EditText) findViewById(R.id.c_icomment)).setText("");
+        this.fullname.add(s_fullname);
+        // COMMENT
+        this.comment.add(icomment);
+        setupRecyclerView(recyclerView);
+    }
     protected void convertJSON(String result){
-
+        clrData();
         try {
             JSONObject reader = new JSONObject(result);
             JSONArray data = reader.getJSONArray("Comment");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject jsonobject = data.getJSONObject(i);
-                Log.e("name",jsonobject.getString("Username"));
                 //  USER
                 username.add(jsonobject.getString("Username"));
                 fullname.add(jsonobject.getString("Name"));
@@ -84,6 +108,7 @@ public class CommentActivity extends AppCompatActivity {
                 // COMMENT
                 comment.add(jsonobject.getString("comment"));
                 isApproved.add(jsonobject.getBoolean("isApproved"));
+                pic_url.add(jsonobject.getString("pic_url"));
             }
             setupRecyclerView(recyclerView);
         }catch (Exception e){
@@ -123,6 +148,7 @@ public class CommentActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             if(intent.getBooleanExtra("Success",false)){
                 Toast.makeText(context, "Successfully Commented Something", Toast.LENGTH_SHORT).show();
+                animateComment();
                 finish();
             }
         }

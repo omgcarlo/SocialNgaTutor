@@ -38,6 +38,9 @@ public class fragTab1 extends Fragment {
     List<String> post = new ArrayList<>();
     List<String> postId = new ArrayList<>();
     List<String> datetime = new ArrayList<>();
+    List<String> pp_url = new ArrayList<>();
+    List<Boolean> owned = new ArrayList<>();
+
     SharedPreferences sData;
     RecyclerView recyclerView;
     public static fragTab1 newInstance() {
@@ -68,15 +71,16 @@ public class fragTab1 extends Fragment {
         userId.clear();
         post.clear();
         datetime.clear();
+        pp_url.clear();
+        owned.clear();
     }
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned);
         recyclerView.setAdapter(recyclerAdapter);
     }
 
     protected void convertJSON(String result){
-
         try {
             clear();
             JSONObject reader = new JSONObject(result);
@@ -90,6 +94,8 @@ public class fragTab1 extends Fragment {
                 postId.add(jsonobject.getString("postId"));
                 userId.add(jsonobject.getString("schoolId"));
                 datetime.add(jsonobject.getString("datetime"));
+                pp_url.add(jsonobject.getString("pic_url"));
+                owned.add(jsonobject.getBoolean("isOwned"));
             }
             setupRecyclerView(recyclerView);
         }catch (Exception e){

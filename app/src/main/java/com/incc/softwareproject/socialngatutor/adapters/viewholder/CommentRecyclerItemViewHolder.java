@@ -2,14 +2,20 @@ package com.incc.softwareproject.socialngatutor.adapters.viewholder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 import com.incc.softwareproject.socialngatutor.services.FollowService;
@@ -22,19 +28,21 @@ public class CommentRecyclerItemViewHolder extends RecyclerView.ViewHolder imple
     private final TextView tv_username;
 
     private  TextView tv_isFollowing;
-    private TextView nameSaUser; // Full name of the user
     private TextView tv_comment;
-    private TextView userId; // Id sa user
-    private ImageView userPP;   //  PROFILE PICTURE
-
-    //private String sessionId;// IMONG ID
+    private TextView userId;              // Id sa user
+    private SimpleDraweeView userPP;     //  PROFILE PICTURE
+    private ImageButton options;        //  option button
     private Context context;
 
     private boolean isApproved;
     private String userType;
 
+    private String schoolId;
+    SharedPreferences spreferences;
+
     public CommentRecyclerItemViewHolder(final View parent, TextView tv_username,
-                                         TextView fullname, TextView userId, TextView isFollowing, TextView comment,ImageButton userPP) {
+                                         TextView fullname, TextView userId, TextView isFollowing,
+                                         TextView comment,SimpleDraweeView userPP,ImageButton options) {
         super(parent);
         this.tv_username = tv_username;;
         this.tv_fullname = fullname;
@@ -42,11 +50,17 @@ public class CommentRecyclerItemViewHolder extends RecyclerView.ViewHolder imple
         this.tv_isFollowing = isFollowing;
         this.tv_comment = comment;
         this.userPP = userPP;
+        this.options = options;
         //  SETTING LISTENER TO FULLNAME AND USERNAME
-        //userPP.setOnClickListener(this);
-        //nameSaUser.setOnClickListener(this);
-       // parent.setOnClickListener(this);
+         userPP.setOnClickListener(this);
+         tv_fullname.setOnClickListener(this);
+         options.setOnClickListener(this);
+
+         parent.setOnClickListener(this);
+
         context =  parent.getContext();
+        spreferences = context.getSharedPreferences("ShareData", Context.MODE_PRIVATE);
+        schoolId = spreferences.getString("SchoolId", "Wala");
     }
 
     public static CommentRecyclerItemViewHolder newInstance(View parent) {
@@ -55,8 +69,10 @@ public class CommentRecyclerItemViewHolder extends RecyclerView.ViewHolder imple
         TextView userId = (TextView) parent.findViewById(R.id.c_userId);
         TextView isFollowing = (TextView) parent.findViewById(R.id.c_isFollowing);
         TextView comment = (TextView) parent.findViewById(R.id.c_comment);
-        ImageButton userPP = (ImageButton) parent.findViewById(R.id.c_userPP);
-        return new CommentRecyclerItemViewHolder(parent,username,fullname,userId,isFollowing,comment,userPP);
+        ImageButton options = (ImageButton) parent.findViewById(R.id.c_options);
+        SimpleDraweeView userPP = (SimpleDraweeView) parent.findViewById(R.id.c_ppicture);
+
+        return new CommentRecyclerItemViewHolder(parent,username,fullname,userId,isFollowing,comment,userPP,options);
     }
 
     public void setFullname(CharSequence text) {
@@ -89,19 +105,43 @@ public class CommentRecyclerItemViewHolder extends RecyclerView.ViewHolder imple
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.c_username || v.getId() == R.id.c_fullname || v.getId() == R.id.c_ppicture) {
-                // GOTO PROFILE WHEN NAME OR USERNAME IS CLICKED
+            // GOTO PROFILE WHEN NAME OR USERNAME IS CLICKED
             Intent i = new Intent(context, ProfileActivity.class);
-            i.putExtra("Username", tv_username.getText().toString());
-            i.putExtra("FullName", tv_fullname.getText().toString());
             i.putExtra("UserId", userId.getText().toString());
             //i.putExtra("isFollowed", tv_isFollowing.getText().toString());
             context.startActivity(i);
         }
-        else{
-            //APPROVED COMMENT HERE
+        else if(v.getId() == options.getId()){
+            //Creating the instance of PopupMenu
+            PopupMenu popup = new PopupMenu(context,options);
+            //Inflating the Popup using xml file
+            if(schoolId.equals(userId.getText().toString())) {
+                popup.getMenuInflater()
+                        .inflate(R.menu.comment_menu_options, popup.getMenu());
+            }   else{
+                popup.getMenuInflater()
+                        .inflate(R.menu.comment_menu_options2, popup.getMenu());
+            }
+
+            //registering popup with OnMenuItemClickListener
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                public boolean onMenuItemClick(MenuItem item) {
+                    Toast.makeText(
+                            context,
+                            "You Clicked : " + item.getTitle(),
+                            Toast.LENGTH_SHORT
+                    ).show();
+                    return true;
+                }
+            });
+
+            popup.show(); //showing popup menu
         }
     }
 
 
-
+    public void setPicUrl(String picUrl) {
+        Uri uri = Uri.parse(picUrl);
+        userPP.setImageURI(uri);
+    }
 }

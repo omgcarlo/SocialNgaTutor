@@ -96,6 +96,21 @@ public class User extends Server {
             e.printStackTrace();
         }
         return res_txt;
-
+    }
+    public String getProfileInfo(String imongId,String iyangId){
+        String uri = getBaseUrl() + getUserUrl()  + "?action=getUserCredentials";
+        res_txt = "";
+        try {
+            String data = URLEncoder.encode("imo", "UTF-8")
+                    + "=" + URLEncoder.encode(imongId, "UTF-8");
+            if(!iyangId.equals("") && iyangId != null) {
+                data += "&" + URLEncoder.encode("iya", "UTF-8")
+                        + "=" + URLEncoder.encode(iyangId, "UTF-8");
+            }
+            res_txt = postFunction(uri,data);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
     }
 }

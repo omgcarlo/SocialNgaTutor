@@ -7,174 +7,155 @@
     android:layout_height="match_parent"
     tools:showIn="@layout/activity_profile">
 
-    <ScrollView
+
+
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/profile_fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Meynard Inso"
+            android:textColor="@color/black"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/profile_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="\@meynardgwapo"
+            android:textSize="13sp"
+            android:textColor="@color/greygrey" />
+
+        <TextView
+            android:id="@+id/profile_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BIO | DESCRIPTION "
+            android:layout_marginTop="5dp"
+            android:textColor="@color/lightgrey" />
+
+
+        <Button
+            android:id="@+id/profile_btnFollow"
+            android:layout_width="130dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="FOLLOW"
+            android:visibility="gone"
+            android:background="@drawable/circle"
+            android:textColor="#00CCCC"
+            android:onClick="followBtns"/>
+        <Button
+            android:id="@+id/profile_btnFollowing"
+            android:layout_width="130dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="FOLLOWING"
+            android:visibility="gone"
+            android:drawableLeft="@drawable/ic_check_circle"
+            android:background="@drawable/circle2"
+            android:textColor="#FFFFFF"
+            android:onClick="followBtns"/>
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <ImageView
-                android:layout_width="fill_parent"
-                android:layout_height="170dp"
-                android:layout_gravity="top"
-                android:layout_marginTop="1dp"
-                android:contentDescription="banner"
-                android:background="@drawable/banner1" />
-
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_width="120dp"
-                android:layout_height="115dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="-75dp"
-                android:elevation="4dp"
-                android:scaleType="fitXY"
-                fresco:placeholderImage="@drawable/icon_user_default"
-                fresco:roundAsCircle="true" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="15dp">
 
             <TextView
-                android:id="@+id/profile_fullname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="Meynard Inso"
-                android:textColor="@color/black"
-                android:textSize="23sp" />
-
-            <TextView
-                android:id="@+id/profile_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="\@meynardgwapo"
-                android:textSize="13sp"
-                android:textColor="@color/greygrey" />
-
-            <TextView
-                android:id="@+id/profile_bio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="BIO | DESCRIPTION "
-                android:layout_marginTop="5dp"
-                android:textColor="@color/lightgrey" />
-
-
-            <Button
-                android:id="@+id/profile_btnFollow"
-                android:layout_width="130dp"
-                android:layout_height="46dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="FOLLOW"
-                android:visibility="gone"
-                android:background="@drawable/circle"
-                android:textColor="#00CCCC"
-                android:onClick="followBtns"/>
-            <Button
-                android:id="@+id/profile_btnFollowing"
-                android:layout_width="130dp"
-                android:layout_height="46dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="FOLLOWING"
-                android:visibility="gone"
-                android:drawableLeft="@drawable/ic_check_circle"
-                android:background="@drawable/circle2"
-                android:textColor="#FFFFFF"
-                android:onClick="followBtns"/>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:id="@+id/profile_followers"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="15dp">
+                android:text="1,202"
+                android:textColor="#07dcdc"
+                android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/profile_followers"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1,202"
-                    android:textColor="#07dcdc"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="215"
-                    android:textColor="#07dcdc"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/profile_followings"
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="1,120"
-                    android:textColor="#07dcdc"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+            <TextView
+                android:id="@+id/profile_posts"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginLeft="35dp"
-                android:layout_marginRight="35dp"
-                android:layout_marginTop="5dp">
+                android:text="215"
+                android:textColor="#07dcdc"
+                android:textSize="16sp" />
 
-                <TextView
+            <TextView
+                android:id="@+id/profile_followings"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1,120"
+                android:textColor="#07dcdc"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="followers"
-                    android:textColor="@color/lightgrey"
-                    android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="5dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:text="posts"
-                    android:textColor="@color/lightgrey"
-                    android:textSize="12sp" />
+            <TextView
 
-                <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="followers"
+                android:textColor="@color/lightgrey"
+                android:textSize="12sp" />
 
-                    android:layout_width="0dp"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="following"
-                    android:textColor="@color/lightgrey"
-                    android:textSize="12sp" />
-            </LinearLayout>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="posts"
+                android:textColor="@color/lightgrey"
+                android:textSize="12sp" />
 
+            <TextView
 
-
-
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="following"
+                android:textColor="@color/lightgrey"
+                android:textSize="12sp" />
         </LinearLayout>
 
 
-    </ScrollView>
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="BOGO"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
 
 </RelativeLayout>
 

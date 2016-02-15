@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
-                android:layout_marginTop="-5dp"
+                android:layout_marginTop="0dp"
                 android:layout_marginLeft="72dp"
                 android:layout_marginRight="-10dp">
 
@@ -48,6 +48,7 @@
                     android:textSize="20sp"/>
 
                 <ImageButton
+                    android:id="@+id/card_options"
                     android:src="@drawable/ic_arrow_drop_down"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -75,7 +76,7 @@
                 <TextView
                     android:id="@+id/card_datetime"
                     android:layout_width="0dp"
-                    android:layout_weight="5"
+                    android:layout_weight="6"
                     android:layout_height="match_parent"
                     android:gravity="left"
                     android:textColor="#9a9a9a"

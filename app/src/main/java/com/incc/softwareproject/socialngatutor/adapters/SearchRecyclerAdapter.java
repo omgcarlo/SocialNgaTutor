@@ -21,13 +21,15 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private List<String> username;
     private List<String> userId;
     private List<Boolean> isFollowed;
-
-    public SearchRecyclerAdapter(List<String> itemList, List<String> itemList2,List<String> itemList3,List<Boolean> item4){
+    private List<String> pic_url;
+    public SearchRecyclerAdapter(List<String> itemList, List<String> itemList2,
+                                 List<String> itemList3,List<Boolean> item4,List<String> pic_url){
 
         fullname = itemList;
         username = itemList2;
         userId = itemList3;
         isFollowed = item4;
+        this.pic_url = pic_url;
     }
 
     @Override
@@ -45,11 +47,13 @@ public class SearchRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         String s_username = username.get(position);
         String s_userId = userId.get(position);
         boolean s_isFollowed = isFollowed.get(position);
+        String s_pic_url = pic_url.get(position);
 
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
         holder.setUserId(s_userId);
         holder.setIsFollowed(s_isFollowed);
+        holder.setPicUrl(s_pic_url);
     }
 
     @Override

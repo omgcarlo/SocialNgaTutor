@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 import com.incc.softwareproject.socialngatutor.services.FollowService;
@@ -22,7 +24,7 @@ public class SearchRecyclerItemViewHolder extends RecyclerView.ViewHolder implem
     private final TextView tv_fullname;
     private final TextView tv_username;
     private  TextView tv_isFollowing;
-    private ImageView userPP;   //  PROFILE PICTURE
+    private SimpleDraweeView userPP;   //  PROFILE PICTURE
     private TextView nameSaUser; // Full name of the user
 
     private TextView userId; // Id sa user
@@ -34,30 +36,21 @@ public class SearchRecyclerItemViewHolder extends RecyclerView.ViewHolder implem
 
     private boolean isFollowed;
 
+
     public SearchRecyclerItemViewHolder(final View parent, TextView tv_username,
                                         TextView fullname, TextView userId,TextView isFollowing,
-                                        Button follow_btn,Button  following_btn) {
+                                        Button follow_btn,Button  following_btn,SimpleDraweeView userpp) {
         super(parent);
-        this.tv_username = tv_username;;
+        //INIT FIELDS
+        this.tv_username = tv_username;
         this.tv_fullname = fullname;
         this.userId = userId;
         this.tv_isFollowing = isFollowing;
         this.follow_btn = follow_btn;
         this.following_btn = following_btn;
-        //INIT FIELDS
-        userPP = (ImageView) parent.findViewById(R.id.sp_card_ppicture);
+
+        userPP = userpp;
         nameSaUser = (TextView) parent.findViewById(R.id.sp_card_fullname);
-
-        /*this.follow_btn = follow_btn;
-        this.following_btn = following_btn;
-        if(isFollowed){
-            follow_btn.setVisibility(View.GONE);
-            following_btn.setVisibility(View.VISIBLE);
-        }  else{
-            follow_btn.setVisibility(View.VISIBLE);
-            following_btn.setVisibility(View.GONE);
-        }*/
-
 
         //  SETTING LISTENER TO FULLNAME AND USERNAME
         userPP.setOnClickListener(this);
@@ -78,7 +71,8 @@ public class SearchRecyclerItemViewHolder extends RecyclerView.ViewHolder implem
         TextView isFollowing = (TextView) parent.findViewById(R.id.sp_followers);
         Button follow_btn = (Button) parent.findViewById(R.id.sp_followBtn);
         Button following_btn = (Button) parent.findViewById(R.id.sp_followingBtn);
-        return new SearchRecyclerItemViewHolder(parent,username,fullname,userId,isFollowing,follow_btn,following_btn);
+        SimpleDraweeView userPP = (SimpleDraweeView) parent.findViewById(R.id.sp_card_ppicture);
+        return new SearchRecyclerItemViewHolder(parent,username,fullname,userId,isFollowing,follow_btn,following_btn,userPP);
     }
 
     public void setFullname(CharSequence text) {
@@ -108,11 +102,7 @@ public class SearchRecyclerItemViewHolder extends RecyclerView.ViewHolder implem
         if(v.getId() == R.id.sp_card_username || v.getId() == R.id.sp_card_fullname || v.getId() == R.id.sp_card_ppicture) {
                 // GOTO PROFILE WHEN NAME OR USERNAME IS CLICKED
             Intent i = new Intent(context, ProfileActivity.class);
-            i.putExtra("Username", tv_username.getText().toString());
-            i.putExtra("FullName", tv_fullname.getText().toString());
-            i.putExtra("UserId",userId.getText().toString());
-            i.putExtra("isFollowed",tv_isFollowing.getText().toString());
-            Log.d("isFollowed",tv_isFollowing.getText().toString());
+            i.putExtra("UserId", userId.getText().toString());
             context.startActivity(i);
         }
         else{
@@ -140,5 +130,7 @@ public class SearchRecyclerItemViewHolder extends RecyclerView.ViewHolder implem
     }
 
 
-
+    public void setPicUrl(String picUrl) {
+       userPP.setImageURI(Uri.parse(picUrl));
+    }
 }

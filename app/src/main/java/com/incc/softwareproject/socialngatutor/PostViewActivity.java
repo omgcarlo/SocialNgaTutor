@@ -1,5 +1,6 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -35,7 +36,7 @@ public class PostViewActivity extends AppCompatActivity {
     private List<String> userType= new ArrayList<>();
     private List<String> userId= new ArrayList<>();
     private List<Boolean> isApproved = new ArrayList<>();
-
+    private List<String> pic_url = new ArrayList<>();
     private List<String> comment= new ArrayList<>();
 
     RecyclerView recyclerView;
@@ -45,12 +46,14 @@ public class PostViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_post_view);
         Toolbar toolbar = (Toolbar) findViewById(R.id.post_view_toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle("");
 
         tv_fullname = (TextView) findViewById(R.id.post_view_fullname);
         tv_username = (TextView) findViewById(R.id.post_view_username);
         tv_description = (TextView) findViewById(R.id.post_view_post_details);
         tv_datetiem = (TextView) findViewById(R.id.post_view_datetime);
-
+        userpp = (SimpleDraweeView) findViewById(R.id.post_view_ppicture);
         recyclerView = (RecyclerView) findViewById(R.id.post_view_recyclerView);
 
         findViewById(R.id.post_view_loading).setVisibility(View.VISIBLE);
@@ -67,10 +70,12 @@ public class PostViewActivity extends AppCompatActivity {
             JSONObject reader = new JSONObject(result);
             JSONObject data = reader.getJSONObject("Post");
             tv_fullname.setText(data.getString("full_name"));
+            getSupportActionBar().setTitle(data.getString("full_name"));
             tv_username.setText(data.getString("username"));
             tv_description.setText(data.getString("description"));
             tv_datetiem.setText(data.getString("datetime"));
-
+            Uri uri = Uri.parse(data.getString("pic_url"));
+            userpp.setImageURI(uri);
         } catch (Exception e) {
         }
         // FINISH THE LOADING
@@ -79,7 +84,7 @@ public class PostViewActivity extends AppCompatActivity {
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType);
+        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType,pic_url);
         recyclerView.setAdapter(crecyclerAdapter);
     }
 
@@ -96,9 +101,11 @@ public class PostViewActivity extends AppCompatActivity {
                 fullname.add(jsonobject.getString("Name"));
                 userId.add(jsonobject.getString("schoolId"));
                 userType.add(jsonobject.getString("UserType"));
+                pic_url.add(jsonobject.getString("pic_url"));
                 // COMMENT
                 comment.add(jsonobject.getString("comment"));
                 isApproved.add(jsonobject.getBoolean("isApproved"));
+
             }
             setupRecyclerView(recyclerView);
         }catch (Exception e){

@@ -1,8 +1,12 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import static android.support.design.widget.Snackbar.*;
 
@@ -19,7 +26,9 @@ import static android.support.design.widget.Snackbar.*;
 public class SignUpActivity extends AppCompatActivity {
 
     private View mRootView;
-
+    private static int RESULT_LOAD_IMAGE = 1;
+    private String picturePath;
+    ProgressDialog mPDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +68,33 @@ public class SignUpActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     public void selectPicBtn(View v){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(
-                "content://media/internal/images/media"));
-        startActivity(intent);
+        Intent i = new Intent(
+                Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(i, RESULT_LOAD_IMAGE);
+    }
+    //  LIVE PREVIEW SA IMAGE
+    //  UG preparation sa IMAGE URI
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            ImageView imageView = (ImageView) findViewById(R.id.pp_btn);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
+        }
+
     }
     public void registerProcess() {
         String schoolId,username, password, rpassword, fullname, birthdate,email;
@@ -86,6 +119,7 @@ public class SignUpActivity extends AppCompatActivity {
             i.putExtra("fullname", fullname);
             i.putExtra("birthdate",birthdate);
             i.putExtra("email",email);
+            i.putExtra("imagepath",picturePath);
             //add program
             startActivity(i);
             finish();

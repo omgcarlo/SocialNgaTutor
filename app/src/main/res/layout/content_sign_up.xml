@@ -25,7 +25,7 @@
                 fresco:roundAsCircle="true"
                 fresco:placeholderImage="@drawable/icon_user_default"
                 android:layout_marginTop="10dp"
-                android:contentDescription="Press to Upload Picture"/>
+                android:onClick="selectPicBtn"/>
             <EditText
 
                 android:layout_marginLeft="35dp"
