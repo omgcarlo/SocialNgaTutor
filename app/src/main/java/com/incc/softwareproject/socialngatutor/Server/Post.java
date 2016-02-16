@@ -1,5 +1,8 @@
 package com.incc.softwareproject.socialngatutor.Server;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.net.URLEncoder;
 
 /**
@@ -7,6 +10,7 @@ import java.net.URLEncoder;
  */
 public class Post extends Server {
     private String res_txt;
+
     //================== FEEDS/POST ===========================
     public String postFeed(String description, String type,String ownerId,String tags) {
         String uri = getBaseUrl() + getPostUrl();
@@ -51,17 +55,6 @@ public class Post extends Server {
         return res_txt;
 
     }
-    public String getOwnPosts(String ownerId){
-        String uri = getBaseUrl() + getPostUrl() + "?action=getFeed";
-        try{
-            String data = URLEncoder.encode("ownerId", "UTF-8")
-                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
-            res_txt =  getFunction(uri, data);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return res_txt;
-    }
     public String getPost(String postId){
         String uri = getBaseUrl() + getPostUrl() + "?action=getPost";
         try{
@@ -74,18 +67,20 @@ public class Post extends Server {
         return res_txt;
     }
     public String upvote(String userId,String postId){
+        //Log.e("POSTSERVER",userId + " " + postId);
         String uri = getBaseUrl() + getPostUrl() + "?action=upvote";
         try{
-            String data = URLEncoder.encode("ownerId", "UTF-8")
-                    + "=" + URLEncoder.encode(userId, "UTF-8");
-
-            data += "&" + URLEncoder.encode("postId", "UTF-8")
+            String data = URLEncoder.encode("postId", "UTF-8")
                     + "=" + URLEncoder.encode(postId, "UTF-8");
+
+            data += "&" + URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(userId, "UTF-8");
             res_txt =  postFunction(uri, data);
         }catch (Exception e){
             e.printStackTrace();
         }
         return res_txt;
     }
+
 
 }

@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.incc.softwareproject.socialngatutor.PostViewActivity;
+import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 
 public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -24,6 +26,9 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
     private String userId;
     private String postId;
     private String FUsername;
+
+    private String activityId;
+
     public ActivityRecyclerItemViewHolder(final View parent, TextView fullname,
                                           TextView description, TextView datetime, SimpleDraweeView userPP) {
         super(parent);
@@ -49,6 +54,14 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
         if((tv_description.getText().toString()).equals("commented on your post")){
             Intent i = new Intent(context,PostViewActivity.class);
             i.putExtra("PostId",postId);
+            context.startActivity(i);
+        }
+        else if((tv_description.getText().toString()).equals("mentioned you")){
+            Toast.makeText(context, "Redirecting...", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Intent i = new Intent(context,ProfileActivity.class);
+            i.putExtra("UserId",userId);
             context.startActivity(i);
         }
     }
@@ -85,5 +98,9 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
     public void setUserPP(String pp_url){
         Uri uri = Uri.parse(pp_url);
         userPP.setImageURI(uri);
+    }
+
+    public void setActivityId(String activityId) {
+        this.activityId = activityId;
     }
 }

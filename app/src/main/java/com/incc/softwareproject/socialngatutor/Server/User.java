@@ -113,4 +113,17 @@ public class User extends Server {
         }
         return res_txt;
     }
+    public String getFollowingPeople(String userId){
+
+        String uri = getBaseUrl() + getUserUrl()  + "?action=getFollowingPeople";
+        res_txt = "";
+        try {
+            String data = URLEncoder.encode("userId", "UTF-8")
+                    + "=" + URLEncoder.encode(userId, "UTF-8");
+            res_txt = postFunction(uri,data);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
+    }
 }

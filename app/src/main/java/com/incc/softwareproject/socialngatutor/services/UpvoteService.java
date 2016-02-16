@@ -27,9 +27,9 @@ public class UpvoteService extends IntentService {
         String res_txt;
         String userId =  i.getStringExtra("userId");
         String postId = i.getStringExtra("postId");
+        //Log.e(TAG,postId + " " +userId );
             try {
                 res_txt = sv.upvote(userId,postId);
-                Log.e(TAG,res_txt + "wew");
                 JSONObject reader = new JSONObject(res_txt);
                 JSONObject data = reader.getJSONObject("Post");
                 if (!res_txt.equals("") && !data.getBoolean("Success")) {

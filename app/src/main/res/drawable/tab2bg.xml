@@ -5,8 +5,8 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="#FFFFFF"/>
-                    <corners android:radius="1dp"/>
+                    <solid android:color="#F6F6F6"/>
+                    <corners android:radius="3dp"/>
 
 
                 </shape>
@@ -14,13 +14,15 @@
             <!-- BUTTON -->
             <item android:bottom="5px">
                 <shape>
-                    <padding android:bottom="5dp"/>
+                    <padding android:bottom="10dp"/>
                     <gradient
                         android:startColor="#FFFFFF"
+                        android:centerColor="#FFFFFF"
                         android:endColor="#FFFFFF"
                         android:angle="270" />
                     <corners
-                        android:radius="1dp"/>
+                        android:radius="3dp"/>
+                    <stroke android:width="1px" android:color="#F0F0F0" />
                     <padding
                         android:left="10dp"
                         android:top="10dp"
@@ -36,8 +38,8 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="#99f2f2"/>
-                    <corners android:radius="1dp"/>
+                    <solid android:color="#F8F8F8"/>
+                    <corners android:radius="3dp"/>
                 </shape>
             </item>
             <!-- BUTTON -->
@@ -45,11 +47,11 @@
                 <shape>
                     <padding android:bottom="5dp"/>
                     <gradient
-                        android:startColor="#99f2f2"
-                        android:endColor="#99f2f2"
+                        android:startColor="#F8F8F8"
+                        android:endColor="#F8F8F8"
                         android:angle="270" />
                     <corners
-                        android:radius="1dp"/>
+                        android:radius="3dp"/>
                     <padding
                         android:left="10dp"
                         android:top="10dp"

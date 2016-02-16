@@ -30,11 +30,11 @@
                 fresco:placeholderImage="@drawable/icon_user_default"
                 fresco:roundAsCircle="true" />
             <ImageButton
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="17dp"
+                android:layout_height="17dp"
                 android:src="@drawable/checkmark"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="270dp"
+                android:layout_marginLeft="255dp"
                 android:background="#FFFFFF"
                 android:scaleType="fitXY"/>
 

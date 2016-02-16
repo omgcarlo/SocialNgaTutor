@@ -104,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
             Uri uri = Uri.parse(data.getString("pic_url"));
             ((SimpleDraweeView) findViewById(R.id.profile_userPP)).setImageURI(uri);
 
-            if (data.isNull("isFollowed")) {
+            if (data.isNull("isFollowed") || schoolId == userId) {
                 follow_btn.setVisibility(View.GONE);
             } else {
                     if (data.getBoolean("isFollowed")) {

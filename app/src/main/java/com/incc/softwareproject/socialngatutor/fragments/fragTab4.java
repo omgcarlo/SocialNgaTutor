@@ -37,7 +37,7 @@ public class fragTab4 extends Fragment {
     List<String> postId = new ArrayList<>();
     List<String> datetime = new ArrayList<>();
     List<String> pic_url = new ArrayList<>();
-
+    List<String> activityId = new ArrayList<>();
     private RecyclerView recyclerView;
 
     private SharedPreferences sData;
@@ -72,11 +72,14 @@ public class fragTab4 extends Fragment {
         activity.clear();
         description.clear();
         pic_url.clear();
+        activityId.clear();
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        ActivityRecyclerAdapter recyclerAdapter = new ActivityRecyclerAdapter(activity,from_fullname, from_username, postId, from_userId,description, datetime,pic_url);
+        ActivityRecyclerAdapter recyclerAdapter = new ActivityRecyclerAdapter(activity,from_fullname,
+                                                            from_username, postId, from_userId,description,
+                                                            datetime,pic_url,activityId);
         recyclerView.setAdapter(recyclerAdapter);
     }
 
@@ -89,6 +92,7 @@ public class fragTab4 extends Fragment {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject jsonobject = data.getJSONObject(i);
                 activity.add(jsonobject.getString("Activity"));
+                activityId.add(jsonobject.getString("activityId"));
 
                 from_username.add(jsonobject.getString("from_username"));
                 from_fullname.add(jsonobject.getString("from_full_name"));
@@ -104,6 +108,7 @@ public class fragTab4 extends Fragment {
                 description.add(jsonobject.getString("description"));
                 datetime.add(jsonobject.getString("datetime"));
                 pic_url.add(jsonobject.getString("pic_url"));
+
             }
             setupRecyclerView(recyclerView);
         } catch (Exception e) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_marginTop="50dp"
     android:layout_width="match_parent"
@@ -14,14 +14,16 @@
         android:visibility="gone"
         />
 
-    <EditText
+    <MultiAutoCompleteTextView
         android:id="@+id/pt_desc"
-        android:layout_width="fill_parent"
-        android:layout_height="155dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
         android:hint="What's on your mind?"
         android:gravity="top"
         android:textSize="23sp">
-    </EditText>
+    </MultiAutoCompleteTextView>
     <EditText
         android:id="@+id/pt_tag"
         android:layout_width="fill_parent"
@@ -31,30 +33,63 @@
         android:visibility="gone"
         android:textSize="23sp">
     </EditText>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:gravity="bottom"
+        android:layout_marginTop="425dp"
+        android:orientation="horizontal"
+        android:background="@drawable/commentbg">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_description"
+        android:background="@color/white"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:text=" Waiver for Grad Party.docx"
+            android:textColor="@color/lightgrey"
+            android:textSize="12sp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_file_upload"
+        android:background="@drawable/postcharbg"
+        android:layout_marginLeft="110dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="45dp"
-        android:orientation="horizontal">
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:gravity="bottom">
         <ImageButton
             android:id="@+id/p_tag"
             android:src="@drawable/ic_tag"
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:background="@drawable/postbuttonbg"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/postcharbg"
             android:onClick="showTagInput"/>
         <ImageButton
             android:id="@+id/p_files"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="fill_parent"
-            android:background="@drawable/postbuttonbg"
+            android:layout_width="188dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@drawable/postcharbg"
             android:src="@drawable/ic_attach_file"/>
 
     </LinearLayout>
 
 
 
-</LinearLayout>
+</RelativeLayout>

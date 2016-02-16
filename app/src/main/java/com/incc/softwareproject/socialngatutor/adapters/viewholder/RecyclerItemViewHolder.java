@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -30,6 +31,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private final TextView tv_datetime;
     private final ImageButton comment;
     private final ImageButton upvote;
+    private final ImageButton upvote2;
     private SimpleDraweeView ppicture;
     private Context context;
     private String userId;
@@ -40,7 +42,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private SharedPreferences spreferences;
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
-                                  ImageButton comment, ImageButton upvote, TextView tv_datetime,
+                                  ImageButton comment, ImageButton upvote,ImageButton upvote2, TextView tv_datetime,
                                   SimpleDraweeView pp, ImageButton options) {
         super(parent);
         //  TV = TEXTVIEW
@@ -52,6 +54,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         // BUTTONS/IMAGEBUTTONS
         this.comment = comment;
         this.upvote = upvote;
+        this.upvote2 = upvote2;
 
         // PROFILE PICTURE
         this.ppicture = pp;
@@ -66,7 +69,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         //  SET LISTENER SA COMMENT UG UPVOTE
         this.comment.setOnClickListener(this);
         this.upvote.setOnClickListener(this);
-
+        this.upvote2.setOnClickListener(this);
         //  INIT AND SET LISTENER FOR OPTIONS
         this.options = options;
         
@@ -76,6 +79,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         spreferences = context.getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "Wala");
+
     }
 
     public static RecyclerItemViewHolder newInstance(View parent) {
@@ -86,12 +90,13 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
+        ImageButton upvote2 = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn2);
         //ImageButton share = (ImageButton) parent.findViewById(R.id.pt_shareBtn);
 
         ImageButton options = (ImageButton) parent.findViewById(R.id.card_options);
 
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
-        return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,datetime,profilePicture,options);
+        return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,datetime,profilePicture,options);
     }
 
     public void setFullname(CharSequence text) {
@@ -121,7 +126,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         if (v.getId() == tv_fullname.getId() || v.getId() == tv_username.getId()){
             // GOTO PROFILE WHEN NAME OR USERNAME IS CLICKED
             Intent i = new Intent(context, ProfileActivity.class);
-            i.putExtra("UserId",userId);
+            i.putExtra("UserId", userId);
             context.startActivity(i);
         }
         else if(v.getId() == comment.getId()){
@@ -135,11 +140,20 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         }*/
         else if(v.getId() == upvote.getId()){
-            upvote.setBackgroundColor(Color.parseColor("#BBDEFB"));
-            upvote.getDrawable().setAlpha(60);
+            upvote.setVisibility(View.INVISIBLE);
+            upvote2.setVisibility(View.VISIBLE);
 
             Intent intent = new Intent(context,UpvoteService.class);
-            intent.putExtra("ownerId",schoolId);
+            intent.putExtra("userId",schoolId);
+            intent.putExtra("postId", postId);
+            context.startService(intent);
+        }
+        else if(v.getId() == upvote2.getId()){
+            upvote2.setVisibility(View.INVISIBLE);
+            upvote.setVisibility(View.VISIBLE);
+
+            Intent intent = new Intent(context,UpvoteService.class);
+            intent.putExtra("userId",schoolId);
             intent.putExtra("postId", postId);
             context.startService(intent);
         }
