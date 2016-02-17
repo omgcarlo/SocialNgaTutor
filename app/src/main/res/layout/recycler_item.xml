@@ -30,7 +30,7 @@
                 fresco:placeholderImage="@drawable/icon_user_default"
                 fresco:roundAsCircle="true" />
             <LinearLayout
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:orientation="horizontal"
@@ -38,26 +38,30 @@
                 android:layout_marginLeft="72dp"
                 android:layout_marginRight="-10dp">
 
+
                 <TextView
                     android:id="@+id/card_fullname"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="4"
+                    android:layout_weight="6"
                     android:gravity="center_vertical"
                     android:padding="8dp"
                     style="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:text="Meynard Inso"
+                    android:text="@string/loading_txt"
                     android:textSize="20sp"/>
 
                 <ImageButton
                     android:id="@+id/card_options"
                     android:src="@drawable/ic_arrow_drop_down"
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:layout_gravity="center"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="12dp"
                     android:text="Share"
                     android:background="#F8F8F8"/>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -74,17 +78,17 @@
                     android:layout_height="match_parent"
                     android:textColor="#9a9a9a"
                     android:textSize="13sp"
-                    android:text="\@meynardgwapo"/>
+                    android:text="@string/loading_txt"/>
                 <TextView
                     android:id="@+id/card_datetime"
                     android:layout_width="0dp"
-                    android:layout_weight="6"
+                    android:layout_weight="5"
                     android:layout_height="match_parent"
                     android:gravity="left"
                     android:textColor="#9a9a9a"
                     android:layout_marginLeft="110dp"
                     android:textSize="11sp"
-                    android:text="11h"/>
+                    android:text="@string/loading_txt"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/card_post_details"
@@ -96,11 +100,79 @@
                 android:text="@string/commentsample"/>
         </RelativeLayout>
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="18dp"
+            >
+
+            <ImageButton
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_navigationsmall"
+                android:background="#F8F8F8"
+                android:tint="#1c84a7"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 23"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:textSize="10sp"
+                android:textColor="#1c84a7"/>
+            <ImageButton
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_commentsmall"
+                android:background="#F8F8F8"
+                android:tint="#1c84a7"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  14"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:textSize="10sp"
+                android:textColor="#1c84a7"/>
+            <ImageButton
+                android:layout_width="17dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginTop="-2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_sharesmall"
+                android:background="#F8F8F8"
+                android:tint="#1c84a7"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" 36"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/black"
+                android:textSize="10sp"
+                android:textColor="#1c84a7"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="T"
+                android:visibility="gone"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:background="@drawable/teacherbg" />
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:orientation="horizontal"
             android:layout_gravity="bottom"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="5dp"
             android:background="@color/bgGrey">
             <ImageButton
                 android:id="@+id/pt_upvoteBtn"

@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.incc.softwareproject.socialngatutor.EventViewActivity;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 
@@ -35,6 +36,12 @@ public class EventRecyclerItemViewHolder extends RecyclerView.ViewHolder impleme
         this.eventDate = eventDate;
         this.monthyear = monthyear;
 
+        //  SET ON CLICK LISTENER
+        this.title.setOnClickListener(this);
+        this.description.setOnClickListener(this);
+        this.eventDate.setOnClickListener(this);
+        this.monthyear.setOnClickListener(this);
+
         context =  parent.getContext();
     }
 
@@ -50,7 +57,15 @@ public class EventRecyclerItemViewHolder extends RecyclerView.ViewHolder impleme
 
     @Override
     public void onClick(View v) {
+        Intent i = new Intent(context, EventViewActivity.class);
+        i.putExtra("EventId",eventId.getText().toString());
 
+        i.putExtra("EventTitle",title.getText().toString());
+        i.putExtra("EventDescription",description.getText().toString());
+        i.putExtra("EventDate",eventDate.getText().toString());
+        i.putExtra("EventMonthYear",monthyear.getText().toString());
+
+        context.startActivity(i);
     }
 
 

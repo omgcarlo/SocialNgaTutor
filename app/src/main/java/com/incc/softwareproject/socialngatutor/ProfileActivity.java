@@ -50,12 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.profile_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle(getIntent().getStringExtra("full_name"));
 
-
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R  .id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("");
-        collapsingToolbarLayout.setTitleEnabled(false);
+
         dynamicToolbarColor();
         toolbarTextApperance();
 
@@ -96,6 +95,11 @@ public class ProfileActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.profile_followers)).setText(data.getInt("followers") + "");
             ((TextView) findViewById(R.id.profile_followings)).setText(data.getInt("followings") + "");
             ((TextView) findViewById(R.id.profile_posts)).setText(data.getInt("posts") + "");
+            if(data.getString("userType").equals("T")){
+                //  show indicator if teacher = T
+                findViewById(R.id.profile_indicator)
+                        .setVisibility(View.VISIBLE);
+            }
             if(data.getString("bio") == null || !data.getString("bio").equals("null") || data.isNull("bio"))
                 ((TextView) findViewById(R.id.profile_bio)).setText("");
             else
@@ -104,7 +108,7 @@ public class ProfileActivity extends AppCompatActivity {
             Uri uri = Uri.parse(data.getString("pic_url"));
             ((SimpleDraweeView) findViewById(R.id.profile_userPP)).setImageURI(uri);
 
-            if (data.isNull("isFollowed") || schoolId == userId) {
+            if (data.isNull("isFollowed") || schoolId == userId || data.get("isFollowed") == null) {
                 follow_btn.setVisibility(View.GONE);
             } else {
                     if (data.getBoolean("isFollowed")) {

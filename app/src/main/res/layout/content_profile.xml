@@ -19,16 +19,31 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:text="Meynard Inso"
+            android:text="@string/loading_txt"
             android:textColor="@color/black"
             android:textSize="23sp" />
+        <TextView
+            android:id="@+id/profile_indicator"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/teacherbg"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:drawableLeft="@drawable/ic_contacts"
+            android:text="TEACHER"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            />
+
 
         <TextView
             android:id="@+id/profile_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="\@meynardgwapo"
+            android:text="@string/loading_txt"
             android:textSize="13sp"
             android:textColor="@color/greygrey" />
 
@@ -37,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="BIO | DESCRIPTION "
+            android:text="@string/loading_txt"
             android:layout_marginTop="5dp"
             android:textColor="@color/lightgrey" />
 
@@ -47,7 +62,7 @@
             android:layout_width="130dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:text="FOLLOW"
             android:visibility="gone"
             android:background="@drawable/circle"
@@ -58,7 +73,7 @@
             android:layout_width="130dp"
             android:layout_height="46dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:text="FOLLOWING"
             android:visibility="gone"
             android:drawableLeft="@drawable/ic_check_circle"
@@ -82,9 +97,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="1,202"
+                android:text="@string/loading_txt"
                 android:textColor="#07dcdc"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/profile_posts"
@@ -92,9 +107,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="215"
+                android:text="@string/loading_txt"
                 android:textColor="#07dcdc"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/profile_followings"
@@ -102,9 +117,9 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="1,120"
+                android:text="@string/loading_txt"
                 android:textColor="#07dcdc"
-                android:textSize="16sp" />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout

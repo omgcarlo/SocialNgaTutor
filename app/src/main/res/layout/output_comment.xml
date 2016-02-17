@@ -29,6 +29,18 @@
                 android:layout_marginTop="5dp"
                 fresco:placeholderImage="@drawable/icon_user_default"
                 fresco:roundAsCircle="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="43dp"
+                android:visibility="gone"
+                android:text="T"
+                android:gravity="center"
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:background="@drawable/teacherbg" />
             <ImageButton
                 android:layout_width="17dp"
                 android:layout_height="17dp"
