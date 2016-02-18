@@ -33,8 +33,7 @@
                 android:id="@+id/search_text"
                 android:layout_width="fill_parent"
                 android:layout_height="50dp"
-                android:text=" Search"
-                android:textColor="#808080"
+                android:hint=" Search"
                 android:background="@null"
                 android:drawableLeft="@drawable/ic_search"/>
         </LinearLayout>

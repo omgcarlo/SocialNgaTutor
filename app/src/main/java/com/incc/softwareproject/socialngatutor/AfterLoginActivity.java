@@ -120,7 +120,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     public void onViewCalendar(View view) {
          Intent i = new Intent(AfterLoginActivity.this, CalendarActivity.class);
          startActivity(i);
-         overridePendingTransition(R.animator.animate1,R.animator.animate2);
+         overridePendingTransition(R.animator.animate3,R.animator.animate2);
     }
 
 
@@ -174,7 +174,7 @@ public class AfterLoginActivity extends AppCompatActivity {
         i.putExtra("Queries", sq);
         i.putExtra("Action", action);
         startActivity(i);
-        overridePendingTransition(R.animator.animate4, R.animator.animate2);
+        overridePendingTransition(R.animator.animate1, R.animator.animate2);
     }
 
 
