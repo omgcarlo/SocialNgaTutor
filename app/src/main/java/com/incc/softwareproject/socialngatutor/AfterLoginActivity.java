@@ -23,6 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,8 +61,10 @@ public class AfterLoginActivity extends AppCompatActivity {
         broadcastReceiver = new MyBroadcastReceiver();
         //showNotification();
         Intent i = new Intent(this, NotificationService.class);
-        i.putExtra("UserId",schoolId);
+        i.putExtra("UserId", schoolId);
         startService(i);
+
+
     }
 
     @Override
@@ -114,6 +117,13 @@ public class AfterLoginActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public void onViewCalendar(View view) {
+         Intent i = new Intent(AfterLoginActivity.this, CalendarActivity.class);
+         startActivity(i);
+         overridePendingTransition(R.animator.animate1,R.animator.animate2);
+    }
+
+
 
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -140,7 +150,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     public void addPostBtn(View v) {
         Intent i = new Intent(this, PostActivity.class);
         startActivity(i);
-
+        overridePendingTransition(R.animator.animate3, R.animator.animate2);
     }
 
     public void searchBtns(View view) {
@@ -164,12 +174,10 @@ public class AfterLoginActivity extends AppCompatActivity {
         i.putExtra("Queries", sq);
         i.putExtra("Action", action);
         startActivity(i);
+        overridePendingTransition(R.animator.animate4, R.animator.animate2);
     }
 
-    public void onViewCalendar(View view) {
-        Intent i = new Intent(this, CalendarActivity.class);
-        startActivity(i);
-    }
+
 
 
     static class PagerAdapter extends FragmentPagerAdapter {

@@ -1,5 +1,6 @@
 package com.incc.softwareproject.socialngatutor.adapters.viewholder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -76,7 +77,6 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         options.setOnClickListener(this);
         parent.setOnClickListener(this);
         context =  parent.getContext();
-
         spreferences = context.getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "Wala");
 
@@ -130,12 +130,16 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
             context.startActivity(i);
         }
         else if(v.getId() == comment.getId()){
-            // OPEN COMMENT ACTIVITY
             Intent i = new Intent(context, CommentActivity.class);
             i.putExtra("PostId", postId);
-            i.putExtra("FullName",tv_fullname.getText().toString());
+            i.putExtra("FullName", tv_fullname.getText().toString());
             context.startActivity(i);
+
+            ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
+
         }
+
+
        /* else if(v.getId() == R.id.pt_shareBtn){
 
         }*/
