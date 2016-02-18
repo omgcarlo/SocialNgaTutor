@@ -5,25 +5,42 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.incc.softwareproject.socialngatutor.Server.User;
+import com.incc.softwareproject.socialngatutor.mentions.models.Person;
 import com.incc.softwareproject.socialngatutor.services.PostService;
+import com.linkedin.android.spyglass.suggestions.SuggestionsResult;
+import com.linkedin.android.spyglass.suggestions.impl.BasicSuggestionsListBuilder;
+import com.linkedin.android.spyglass.suggestions.interfaces.Suggestible;
+import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsListBuilder;
+import com.linkedin.android.spyglass.suggestions.interfaces.SuggestionsResultListener;
+import com.linkedin.android.spyglass.tokenization.QueryToken;
+import com.linkedin.android.spyglass.tokenization.interfaces.QueryTokenReceiver;
+import com.linkedin.android.spyglass.ui.RichEditorView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,12 +49,23 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity implements QueryTokenReceiver {
     private SharedPreferences spreferences;
     private BroadcastReceiver broadcastReceiver;
-    boolean vis = false;
+
+    boolean vis = false;    //  TAG INPUT VISIBILITY
     private List<String> username = new ArrayList<>();
     private String schoolId;
+
+    // MENTION
+    private Person.PersonLoader people;
+    private RichEditorView editor;
+    private SuggestionsResult lastPersonSuggestions;
+
+    private static final String PERSON_BUCKET = "people-database";
+    private static final String CITY_BUCKET = "city-network";
+    private static final int PERSON_DELAY = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +83,11 @@ public class PostActivity extends AppCompatActivity {
         new getUsers().execute(schoolId);
         broadcastReceiver = new MyBroadcastReceiver();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line,username);
-        MultiAutoCompleteTextView textView = (MultiAutoCompleteTextView) findViewById(R.id.pt_desc);
-        textView.setAdapter(adapter);
-        textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
-
+        editor = (RichEditorView) findViewById(R.id.pt_desc);
+        editor.setQueryTokenReceiver(this);
+        editor.setSuggestionsListBuilder(new CustomSuggestionsListBuilder());
+        //  GET DATA FROM CLOUD
+        new getUsers().execute(schoolId);
     }
 
     @Override
@@ -112,18 +139,31 @@ public class PostActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void initPeople(String s) {
-        try {
-            JSONObject reader = new JSONObject(s);
-            JSONArray data = reader.getJSONArray("User");
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject jsonobject = data.getJSONObject(i);
-                username.add("@" + jsonobject.getString("username"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+
+    @Override
+    public List<String> onQueryReceived(@NonNull final QueryToken queryToken) {
+        final boolean hasPeople = true; //  ALWAYS TRUE
+
+        final List<String> buckets = new ArrayList<>();
+        final SuggestionsResultListener listener = editor;
+        final Handler handler = new Handler(Looper.getMainLooper());
+
+        // Fetch people if necessary
+        if (hasPeople) {
+            buckets.add(PERSON_BUCKET);
+            new Runnable() {
+                @Override
+                public void run() {
+                    List<Person> suggestions = people.getSuggestions(queryToken);
+                    lastPersonSuggestions = new SuggestionsResult(queryToken, suggestions);
+                    listener.onReceiveSuggestionsResult(lastPersonSuggestions, PERSON_BUCKET);
+                }
+            };
         }
+        return buckets;
     }
+
     private class getUsers extends AsyncTask<String,Void,String>{
 
         @Override
@@ -134,7 +174,7 @@ public class PostActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-            initPeople(s);
+            people = new Person.PersonLoader(s);
         }
     }
     private class MyBroadcastReceiver extends BroadcastReceiver {
@@ -147,6 +187,31 @@ public class PostActivity extends AppCompatActivity {
                 startActivity(i);
                 finish();
             }
+        }
+    }
+    private class CustomSuggestionsListBuilder extends BasicSuggestionsListBuilder {
+
+        @NonNull
+        @Override
+        public View getView(@NonNull Suggestible suggestion,
+                            @Nullable View convertView,
+                            ViewGroup parent,
+                            @NonNull Context context,
+                            @NonNull LayoutInflater inflater,
+                            @NonNull Resources resources) {
+
+            View v =  super.getView(suggestion, convertView, parent, context, inflater, resources);
+            if (!(v instanceof TextView)) {
+                return v;
+            }
+
+            // Color text depending on the type of mention
+            TextView tv = (TextView) v;
+            if (suggestion instanceof Person) {
+                tv.setTextColor(getResources().getColor(R.color.color_primary_blue));
+            }
+
+            return tv;
         }
     }
 
