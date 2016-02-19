@@ -37,12 +37,18 @@ public class SearchActivity extends AppCompatActivity {
     List<String> postId = new ArrayList<>();
     List<String> pp_url = new ArrayList<>();
     List<Boolean> owned = new ArrayList<>();
+    private List<Boolean> isUpvoted;
+    private List<Boolean> isShared;
+    private List<String> upvotes;
+    private List<String> comments;
+    private List<String> shares;
 
     RecyclerView recyclerViewPeople;
     RecyclerView recyclerViewTopics;
     private BroadcastReceiver broadcastReceiver;
     private SharedPreferences spreferences;
     private String schoolId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,6 +140,11 @@ public class SearchActivity extends AppCompatActivity {
                 userId.add(jsonobject.getString("schoolId"));
                 isFollowed.add(jsonobject.getBoolean("isFollowed"));
                 pp_url.add(jsonobject.getString("pic_url"));
+                isUpvoted.add(jsonobject.getBoolean("isUpvoted"));
+                isShared.add(jsonobject.getBoolean("isShared"));
+                upvotes.add(jsonobject.getString("upvotes"));
+                shares.add(jsonobject.getString("shares"));
+                comments.add(jsonobject.getString("comments"));
             }
             setupRecyclerView_search(recyclerViewPeople);
         }catch (Exception e){
@@ -169,7 +180,8 @@ public class SearchActivity extends AppCompatActivity {
     }
     private void setupRecyclerView_topics(RecyclerView precycler) {
         precycler.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned);
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned,isUpvoted,
+                isShared,upvotes, comments,shares);
         precycler.setAdapter(recyclerAdapter);
     }
 

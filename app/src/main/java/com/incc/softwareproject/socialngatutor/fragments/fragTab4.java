@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,7 +28,7 @@ import java.util.List;
 /**
  * Created by carlo on 21/12/2015.
  */
-public class fragTab4 extends Fragment {
+public class fragTab4 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     List<String> activity = new ArrayList<>();
 
     List<String> from_userId = new ArrayList<>();
@@ -42,6 +43,7 @@ public class fragTab4 extends Fragment {
 
     private SharedPreferences sData;
     private String schoolId;
+    SwipeRefreshLayout srl;
     public static fragTab4 createInstance() {
         fragTab4 frag_tab4 = new fragTab4();
         Bundle bundle = new Bundle();
@@ -53,14 +55,18 @@ public class fragTab4 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        recyclerView = (RecyclerView) inflater.inflate(
-                R.layout.tab_1, container, false);
+        //recyclerView = (RecyclerView) inflater.inflate(R.layout.tab_1, container, false);
         // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.tab_4, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.t4_a_recyclerView);
+
         sData = this.getActivity().getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         schoolId= sData.getString("SchoolId", "wala");
         new initActivity()
                 .execute(schoolId);
-        return recyclerView;
+        srl = (SwipeRefreshLayout) view.findViewById(R.id.t4_swipe_refresh_layout);
+        srl.setOnRefreshListener(this);
+        return view;
     }
 
     public void clear() {
@@ -110,10 +116,18 @@ public class fragTab4 extends Fragment {
                 pic_url.add(jsonobject.getString("pic_url"));
 
             }
+            srl.setRefreshing(false);
             setupRecyclerView(recyclerView);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        new initActivity()
+                .execute(schoolId);
+
     }
 
     private class initActivity extends AsyncTask<String, Void, String> {

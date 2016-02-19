@@ -78,10 +78,11 @@
                             android:gravity="center_vertical"
                             android:padding="8dp"
                             style="@style/Base.TextAppearance.AppCompat.Body2"
-                            android:text="Meynard Inso"
+                            android:text="@string/loading_txt"
                             android:textSize="20sp"/>
 
                         <ImageButton
+                            android:id="@+id/post_view_options"
                             android:src="@drawable/ic_arrow_drop_down"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
@@ -105,7 +106,7 @@
                             android:layout_height="match_parent"
                             android:textColor="#9a9a9a"
                             android:textSize="13sp"
-                            android:text="\@meynardgwapo"/>
+                            android:text="@string/loading_txt"/>
                         <TextView
                             android:id="@+id/post_view_datetime"
                             android:layout_width="0dp"
@@ -124,7 +125,7 @@
                         android:layout_marginTop="90dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/commentsample"/>
+                        android:text="@string/loading_txt"/>
                 </RelativeLayout>
                 <LinearLayout
                     android:layout_height="wrap_content"

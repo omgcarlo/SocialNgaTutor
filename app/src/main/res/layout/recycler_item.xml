@@ -104,56 +104,40 @@
             android:layout_height="25dp"
             android:orientation="horizontal"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="18dp"
-            >
+            android:layout_marginTop="18dp">
 
-            <ImageButton
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_navigationsmall"
-                android:background="#F8F8F8"
-                android:tint="#1c84a7"/>
+
             <TextView
+                android:id="@+id/card_upvotes_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 23"
+                android:text="0"
                 android:layout_gravity="center"
+                android:drawableLeft="@drawable/ic_navigationsmall"
                 android:backgroundTint="@color/black"
                 android:textSize="10sp"
                 android:textColor="#1c84a7"/>
-            <ImageButton
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_marginLeft="15dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_commentsmall"
-                android:background="#F8F8F8"
-                android:tint="#1c84a7"/>
+
             <TextView
+                android:id="@+id/card_comments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="  14"
+                android:text="0"
+                android:layout_marginLeft="4dp"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/black"
                 android:textSize="10sp"
+                android:drawableLeft="@drawable/ic_commentsmall"
                 android:textColor="#1c84a7"/>
-            <ImageButton
-                android:layout_width="17dp"
-                android:layout_height="15dp"
-                android:layout_marginLeft="14dp"
-                android:layout_marginTop="-2dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_sharesmall"
-                android:background="#F8F8F8"
-                android:tint="#1c84a7"/>
             <TextView
+                android:id="@+id/card_shares"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 36"
+                android:text="0"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/black"
                 android:textSize="10sp"
+                android:drawableLeft="@drawable/ic_sharesmall"
                 android:textColor="#1c84a7"/>
             <TextView
                 android:layout_width="wrap_content"

@@ -76,12 +76,10 @@ public  abstract class MentionsLoader<T extends Mentionable> {
         protected JSONArray doInBackground(Void... params) {
             JSONArray arr = null;
             try {
-                JSONObject jo = new JSONObject(rawjson);
-                arr = jo.getJSONArray("User");
+
+                arr = new JSONArray(rawjson);
             } catch (Exception e) {
                 Log.e(TAG, "Unhandled exception while reading JSON", e);
-
-
             }
             return arr;
         }

@@ -1,5 +1,6 @@
 package com.incc.softwareproject.socialngatutor;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ public class PostViewActivity extends AppCompatActivity {
     private List<String> comment= new ArrayList<>();
 
     RecyclerView recyclerView;
+    String schoolId;
+    SharedPreferences spreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +61,11 @@ public class PostViewActivity extends AppCompatActivity {
 
         findViewById(R.id.post_view_loading).setVisibility(View.VISIBLE);
         postId = getIntent().getStringExtra("PostId");
+        spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
+        schoolId = spreferences.getString("SchoolId", "Wala");
 
-        new getPostDetails().execute(postId);
+        new getPostDetails()
+                .execute(postId,schoolId);
         new getComments()
                 .execute(postId);
     }
@@ -71,6 +77,7 @@ public class PostViewActivity extends AppCompatActivity {
             JSONObject data = reader.getJSONObject("Post");
             tv_fullname.setText(data.getString("full_name"));
             getSupportActionBar().setTitle(data.getString("full_name"));
+
             tv_username.setText(data.getString("username"));
             tv_description.setText(data.getString("description"));
             tv_datetiem.setText(data.getString("datetime"));
@@ -119,7 +126,7 @@ public class PostViewActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             Post sv = new Post();
-            String res = sv.getPost(params[0]);
+            String res = sv.getPost(params[0],params[1]);
             return res;
         }
 

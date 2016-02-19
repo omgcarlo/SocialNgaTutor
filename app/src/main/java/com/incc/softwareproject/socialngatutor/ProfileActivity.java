@@ -62,8 +62,8 @@ public class ProfileActivity extends AppCompatActivity {
         following_btn = (Button) findViewById(R.id.profile_btnFollowing);
 
         spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
-
         schoolId = spreferences.getString("SchoolId", "Wala");
+
         if(getIntent().getExtras() != null && getIntent().getExtras().getString("UserId") != null) {
             userId = getIntent().getExtras().getString("UserId");
         }

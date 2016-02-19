@@ -23,10 +23,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.incc.softwareproject.socialngatutor.alarm.AlarmManagerBroadcastReceiver;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab2;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab3;
@@ -42,8 +44,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     private String schoolId;
     private SharedPreferences spreferences;
     private BroadcastReceiver broadcastReceiver;
-
-
+    private AlarmManagerBroadcastReceiver alarm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +54,21 @@ public class AfterLoginActivity extends AppCompatActivity {
 
         initToolbar();
 
+        alarm = new AlarmManagerBroadcastReceiver();
+        Context context = this.getApplicationContext();
+        if (alarm != null) {
+            Log.e("ALA", "KAWEW");
+            alarm.SetAlarm(context);
+        } else {
+            Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
+        }
+
         spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "wala");
-        //Toast.makeText(AfterLoginActivity.this,spreferences.getString("SchoolId", "wala"), Toast.LENGTH_SHORT).show();
+
         initViewPagerAndTabs();
         broadcastReceiver = new MyBroadcastReceiver();
-        //showNotification();
-        Intent i = new Intent(this, NotificationService.class);
-        i.putExtra("UserId",schoolId);
-        startService(i);
+
     }
 
     @Override
@@ -75,7 +82,40 @@ public class AfterLoginActivity extends AppCompatActivity {
         super.onPause();
         unregisterReceiver(broadcastReceiver);
     }
+    //  ====== ALARM ==============================
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    public void startRepeatingTimer() {
+        Log.e("ALA", "KAWEW");
+        Context context = this.getApplicationContext();
+        if (alarm != null) {
+            alarm.SetAlarm(context);
+        } else {
+            Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    public void cancelRepeatingTimer() {
+        Context context = this.getApplicationContext();
+        if (alarm != null) {
+            alarm.CancelAlarm(context);
+        } else {
+            Toast.makeText(context, "Notification is Turned off", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void onetimeTimer() {
+        Context context = this.getApplicationContext();
+        if (alarm != null) {
+            alarm.setOnetimeTimer(context);
+        } else {
+            Toast.makeText(context, "Alarm is nul", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //=======================================
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -98,8 +138,8 @@ public class AfterLoginActivity extends AppCompatActivity {
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // log out
-                            Intent i = new Intent(AfterLoginActivity.this,MainActivity.class);
-                            i.putExtra("Logout",true);
+                            Intent i = new Intent(AfterLoginActivity.this, MainActivity.class);
+                            i.putExtra("Logout", true);
                             startActivity(i);
                             AfterLoginActivity.this.finish();
                         }
@@ -114,6 +154,13 @@ public class AfterLoginActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onViewCalendar(View view) {
+        Intent i = new Intent(AfterLoginActivity.this, CalendarActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.animator.animate1, R.animator.animate2);
+    }
+
 
     private void initToolbar() {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -140,7 +187,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     public void addPostBtn(View v) {
         Intent i = new Intent(this, PostActivity.class);
         startActivity(i);
-
+        overridePendingTransition(R.animator.animate3, R.animator.animate2);
     }
 
     public void searchBtns(View view) {
@@ -164,11 +211,7 @@ public class AfterLoginActivity extends AppCompatActivity {
         i.putExtra("Queries", sq);
         i.putExtra("Action", action);
         startActivity(i);
-    }
-
-    public void onViewCalendar(View view) {
-        Intent i = new Intent(this, CalendarActivity.class);
-        startActivity(i);
+        overridePendingTransition(R.animator.animate4, R.animator.animate2);
     }
 
 

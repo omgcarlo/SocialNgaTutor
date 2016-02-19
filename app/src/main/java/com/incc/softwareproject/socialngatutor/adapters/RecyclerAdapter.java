@@ -21,11 +21,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private List<String> datetime;
     private List<String> pp_url;
     private List<Boolean> owned;
+    private List<Boolean> isUpvoted;
+    private List<Boolean> isShared;
+    private List<String> upvotes;
+    private List<String> comments;
+    private List<String> shares;
+
     public RecyclerAdapter(List<String> itemList,List<String> itemList2,
                            List<String> itemList3,List<String> itemList4,
-                           List<String> itemList5,List<String> datetime,List<String> pp_url, List<Boolean> owned){
+                           List<String> itemList5,List<String> datetime,
+                           List<String> pp_url, List<Boolean> owned, List<Boolean> isUpvoted,
+                           List<Boolean> isShared, List<String> upvotes, List<String> comments,
+                           List<String> shares){
 
-        // Why the diffirent names? Kay maglibog oks nya
+        // Why the diffirent names? Para maglibog mo huehuehue
         fullname = itemList;
         username = itemList2;
         post = itemList3;
@@ -34,6 +43,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.datetime = datetime;
         this.pp_url = pp_url;
         this.owned = owned;
+        this.isUpvoted = isUpvoted;
+        this.isShared = isShared;
+        this.upvotes = upvotes;
+        this.comments = comments;
+        this.shares = shares;
     }
 
     @Override
@@ -55,15 +69,25 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String s_datetime = datetime.get(position);
         String s_pp_url = pp_url.get(position);
         boolean s_owned = owned.get(position);
+        boolean s_isUpvoted = isUpvoted.get(position);
+        boolean s_isShared = isShared.get(position) ;
+        String s_upvotes = upvotes.get(position);
+        String s_comments = comments.get(position);
+        String s_shares = shares.get(position);
 
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
-        holder.setPostDetails(s_post );
+        holder.setPostDetails(s_post);
         holder.setUserId(s_userId);
         holder.setPostId(s_postId);
         holder.setDateTime(s_datetime);
         holder.setProfilePicture(s_pp_url);
         holder.setOwned(s_owned);
+        holder.setIsUpvoted(s_isUpvoted);
+        holder.setIsShared(s_isShared);
+        holder.setUpvotes(s_upvotes);
+        holder.setComments(s_comments);
+        holder.setShares(s_shares);
     }
 
     @Override

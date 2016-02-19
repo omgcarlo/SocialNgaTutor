@@ -65,7 +65,6 @@ public class NotificationService extends Service {
                 .build();
 
         nM.notify(NOTIFICATION, notification);
-
     }
 
 

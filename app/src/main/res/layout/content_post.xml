@@ -14,7 +14,7 @@
         android:visibility="gone"
         />
 
-    <com.linkedin.android.spyglass.ui.RichEditorView
+    <MultiAutoCompleteTextView
         android:id="@+id/pt_desc"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
         android:hint="What's on your mind?"
         android:gravity="top"
         android:textSize="23sp">
-    </com.linkedin.android.spyglass.ui.RichEditorView>
+    </MultiAutoCompleteTextView>
     <EditText
         android:id="@+id/pt_tag"
         android:layout_width="fill_parent"

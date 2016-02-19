@@ -55,11 +55,13 @@ public class Post extends Server {
         return res_txt;
 
     }
-    public String getPost(String postId){
+    public String getPost(String postId,String userId){
         String uri = getBaseUrl() + getPostUrl() + "?action=getPost";
         try{
             String data = URLEncoder.encode("postId", "UTF-8")
                     + "=" + URLEncoder.encode(postId, "UTF-8");
+            data += "&" + URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(userId, "UTF-8");
             res_txt =  postFunction(uri, data);
         }catch (Exception e){
             e.printStackTrace();

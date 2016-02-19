@@ -1,5 +1,6 @@
 package com.incc.softwareproject.socialngatutor.adapters.viewholder;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -37,19 +38,30 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private String userId;
     private String postId;
     private ImageButton options;
-    private Boolean owned;
+
     private String schoolId;
     private SharedPreferences spreferences;
+
+    private Boolean owned;
+    private boolean isUpvoted;
+    private boolean isShared;
+
+    private final TextView upvotes_count;
+    private final TextView comments;
+    private final TextView shares;
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
-                                  ImageButton comment, ImageButton upvote,ImageButton upvote2, TextView tv_datetime,
-                                  SimpleDraweeView pp, ImageButton options) {
+                                  ImageButton comment, ImageButton upvote,ImageButton upvote2, ImageButton share,TextView tv_datetime,
+                                  SimpleDraweeView pp, ImageButton options,TextView upvotes,TextView comments,TextView shares) {
         super(parent);
         //  TV = TEXTVIEW
         this.tv_username = tv_username;
         this.tv_post = tv_post;
         this.tv_fullname = fullname;
         this.tv_datetime = tv_datetime;
+        this.upvotes_count = upvotes;
+        this.comments = comments;
+        this.shares = shares;
 
         // BUTTONS/IMAGEBUTTONS
         this.comment = comment;
@@ -76,9 +88,10 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         options.setOnClickListener(this);
         parent.setOnClickListener(this);
         context =  parent.getContext();
-
         spreferences = context.getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "Wala");
+
+
 
     }
 
@@ -88,15 +101,20 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         TextView post = (TextView) parent.findViewById(R.id.card_post_details);
         TextView datetime = (TextView) parent.findViewById(R.id.card_datetime);
 
+        TextView upvotes = (TextView) parent.findViewById(R.id.card_upvotes_count);
+        TextView comments = (TextView) parent.findViewById(R.id.card_comments);
+        TextView shares = (TextView) parent.findViewById(R.id.card_shares);
+
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
         ImageButton upvote2 = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn2);
-        //ImageButton share = (ImageButton) parent.findViewById(R.id.pt_shareBtn);
+        ImageButton share = (ImageButton) parent.findViewById(R.id.pt_shareBtn);
 
         ImageButton options = (ImageButton) parent.findViewById(R.id.card_options);
 
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
-        return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,datetime,profilePicture,options);
+        return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,share,
+                                            datetime,profilePicture,options,upvotes,comments,shares);
     }
 
     public void setFullname(CharSequence text) {
@@ -130,12 +148,16 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
             context.startActivity(i);
         }
         else if(v.getId() == comment.getId()){
-            // OPEN COMMENT ACTIVITY
             Intent i = new Intent(context, CommentActivity.class);
             i.putExtra("PostId", postId);
-            i.putExtra("FullName",tv_fullname.getText().toString());
+            i.putExtra("FullName", tv_fullname.getText().toString());
             context.startActivity(i);
+
+            ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
+
         }
+
+
        /* else if(v.getId() == R.id.pt_shareBtn){
 
         }*/
@@ -191,7 +213,31 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         }
     }
+    public void setIsUpvoted(boolean upvoted){
+         if(upvoted){
+             upvote2.setVisibility(View.VISIBLE);
+             upvote.setVisibility(View.GONE);
+         }
+        else{
+             upvote.setVisibility(View.VISIBLE);
+             upvote2.setVisibility(View.GONE);
+         }
 
+    }
+    public void setIsShared(boolean shared){
+        this.isShared = shared;
+    }
+    //  ==  COUNTS  ===
+    public void setUpvotes(String upvotes){
+        this.upvotes_count.setText(upvotes);
+    }
+    public void setShares(String shares){
+        this.shares.setText(shares);
+    }
+    public void setComments(String comments){
+        this.comments.setText(comments);
+    }
+    //===========================
 
     public void setOwned(boolean owned) {
         this.owned = owned;

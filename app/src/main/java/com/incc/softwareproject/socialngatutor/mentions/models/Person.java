@@ -66,7 +66,7 @@ public class Person implements Mentionable {
     public String getTextForDisplayMode(MentionDisplayMode mode) {
         switch (mode) {
             case FULL:
-                return getFullName();
+                return getUserName();
             case PARTIAL:
                 String[] words = getFullName().split(" ");
                 return (words.length > 1) ? words[0] : "";
@@ -158,13 +158,14 @@ public class Person implements Mentionable {
             List<Person> suggestions = new ArrayList<>();
             if (mData != null) {
                 for (Person suggestion : mData) {
-                    String firstName = suggestion.getUserName().toLowerCase();
-                    String lastName = suggestion.getFullName().toLowerCase();
-                    if (firstName.startsWith(prefix) || lastName.startsWith(prefix)) {
+                    String userName = suggestion.getUserName().toLowerCase();
+                    String fullName = suggestion.getFullName().toLowerCase();
+                    if (userName.startsWith(prefix) || fullName.startsWith(prefix)) {
                         suggestions.add(suggestion);
                     }
                 }
             }
+            Log.e("Person:", suggestions.get(0).toString());
             return suggestions;
         }
     }
