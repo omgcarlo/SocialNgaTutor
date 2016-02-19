@@ -20,6 +20,7 @@ import com.incc.softwareproject.socialngatutor.CommentActivity;
 import com.incc.softwareproject.socialngatutor.PostViewActivity;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
+import com.incc.softwareproject.socialngatutor.ShareActivity;
 import com.incc.softwareproject.socialngatutor.services.CommentService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 import com.incc.softwareproject.socialngatutor.services.UpvoteService;
@@ -31,6 +32,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private final TextView tv_post; //  or description
     private final TextView tv_datetime;
     private final ImageButton comment;
+    private final ImageButton share;
     private final ImageButton upvote;
     private final ImageButton upvote2;
     private SimpleDraweeView ppicture;
@@ -51,8 +53,13 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private final TextView shares;
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
+<<<<<<< HEAD
                                   ImageButton comment, ImageButton upvote,ImageButton upvote2, ImageButton share,TextView tv_datetime,
                                   SimpleDraweeView pp, ImageButton options,TextView upvotes,TextView comments,TextView shares) {
+=======
+                                  ImageButton comment,ImageButton share, ImageButton upvote,ImageButton upvote2, TextView tv_datetime,
+                                  SimpleDraweeView pp, ImageButton options) {
+>>>>>>> 3fffb527803003f069be0e6173f98c998973c524
         super(parent);
         //  TV = TEXTVIEW
         this.tv_username = tv_username;
@@ -64,6 +71,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         this.shares = shares;
 
         // BUTTONS/IMAGEBUTTONS
+        this.share = share;
         this.comment = comment;
         this.upvote = upvote;
         this.upvote2 = upvote2;
@@ -80,6 +88,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         //  SET LISTENER SA COMMENT UG UPVOTE
         this.comment.setOnClickListener(this);
+        this.share.setOnClickListener(this);
         this.upvote.setOnClickListener(this);
         this.upvote2.setOnClickListener(this);
         //  INIT AND SET LISTENER FOR OPTIONS
@@ -101,9 +110,12 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         TextView post = (TextView) parent.findViewById(R.id.card_post_details);
         TextView datetime = (TextView) parent.findViewById(R.id.card_datetime);
 
+<<<<<<< HEAD
         TextView upvotes = (TextView) parent.findViewById(R.id.card_upvotes_count);
         TextView comments = (TextView) parent.findViewById(R.id.card_comments);
         TextView shares = (TextView) parent.findViewById(R.id.card_shares);
+=======
+>>>>>>> 3fffb527803003f069be0e6173f98c998973c524
 
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
@@ -113,8 +125,12 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         ImageButton options = (ImageButton) parent.findViewById(R.id.card_options);
 
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
+<<<<<<< HEAD
         return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,share,
                                             datetime,profilePicture,options,upvotes,comments,shares);
+=======
+        return new RecyclerItemViewHolder(parent,username,post,fullname,share,comment,upvote,upvote2,datetime,profilePicture,options);
+>>>>>>> 3fffb527803003f069be0e6173f98c998973c524
     }
 
     public void setFullname(CharSequence text) {
@@ -147,24 +163,23 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
             i.putExtra("UserId", userId);
             context.startActivity(i);
         }
-        else if(v.getId() == comment.getId()){
+        else if(v.getId() == R.id.pt_commentBtn){
             Intent i = new Intent(context, CommentActivity.class);
             i.putExtra("PostId", postId);
             i.putExtra("FullName", tv_fullname.getText().toString());
             context.startActivity(i);
-
             ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
-
         }
 
-
-       /* else if(v.getId() == R.id.pt_shareBtn){
-
-        }*/
+        else if(v.getId() == R.id.pt_shareBtn){
+            Intent i = new Intent(context, ShareActivity.class);
+            i.putExtra("PostId",postId);
+            i.putExtra("OwnerId",schoolId);
+            context.startActivity(i);
+        }
         else if(v.getId() == upvote.getId()){
             upvote.setVisibility(View.INVISIBLE);
             upvote2.setVisibility(View.VISIBLE);
-
             Intent intent = new Intent(context,UpvoteService.class);
             intent.putExtra("userId",schoolId);
             intent.putExtra("postId", postId);
@@ -210,6 +225,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
             Intent i = new Intent(context, PostViewActivity.class);
             i.putExtra("PostId", postId);
             context.startActivity(i);
+
 
         }
     }
