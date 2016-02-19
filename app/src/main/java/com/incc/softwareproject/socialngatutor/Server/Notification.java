@@ -18,4 +18,18 @@ public class Notification extends Server {
         }
         return res_txt;
     }
+    public String updateNotif(String notificationId){
+       //   THIS UPDATE THE STATUS OF THE NOTIF
+        String uri = getBaseUrl() + getNotificationUrl() + "?action=update";
+        String res_txt = "";
+        try {
+            String data = URLEncoder.encode("notificationId", "UTF-8")
+                    + "=" + URLEncoder.encode(notificationId, "UTF-8");
+            res_txt = postFunction(uri,data);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
+
+    }
 }

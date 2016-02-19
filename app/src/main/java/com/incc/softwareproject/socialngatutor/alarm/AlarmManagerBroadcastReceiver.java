@@ -8,6 +8,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -20,6 +22,9 @@ import com.incc.softwareproject.socialngatutor.R;
 
 import org.json.JSONObject;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,10 +37,12 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     public static final String TAG = "AlarmManagerBroadcastReceiver";
     String title;
     String content;
+    String pic_url;
     private Context context;
     private com.incc.softwareproject.socialngatutor.Server.Notification notif;
     SharedPreferences sData;
     String SCHOOL_ID;
+    Bitmap myBitmap;
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.e("AMB","NI RECEIVE BAI");
@@ -70,40 +77,59 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
 
         @Override
         protected String doInBackground(String... params) {
+
             notif = new com.incc.softwareproject.socialngatutor.Server.Notification();
-            return notif.getNotif(SCHOOL_ID);
+            String s = notif.getNotif(SCHOOL_ID);
+            if(!s.equals("")){
+                try {
+                    JSONObject reader = new JSONObject(s);
+                    JSONObject data = reader.getJSONObject("Notification");
+                    title = data.getString("from_username");
+                    content = data.getString("description");
+                    URL url = new URL(data.getString("pic_url"));
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoInput(true);
+                    connection.connect();
+                    InputStream in = connection.getInputStream();
+                    myBitmap = BitmapFactory.decodeStream(in);
+                    notif.updateNotif(data.getString("notificationId"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return s;
         }
 
         @Override
         protected void onPostExecute(String s) {
+
             showNotification(s);
         }
     }
     public void showNotification(String result){
-        Log.e("AMBRESULT",result);
-        try {
-            JSONObject reader = new JSONObject(result);
-            JSONObject data = reader.getJSONObject("Notification");
-            title = data.getString("from_username");
-            content = data.getString("description");
-        } catch (Exception e) {
-            e.printStackTrace();
+        //Log.e("AMBRESULT",result);
+        if(!result.equals("")){
+
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            @SuppressWarnings("deprecation")
+
+            Notification notification;
+            Intent notificationIntent = new Intent(context,AfterLoginActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,notificationIntent, 0);
+
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+            notification = builder.setContentIntent(pendingIntent)
+                    .setSmallIcon(R.drawable.logov_small_icon)
+                    .setAutoCancel(true)
+                    .setContentTitle(title)
+                    .setLargeIcon(myBitmap)
+                    .setContentText(content)
+                    .build();
+            notificationManager.notify(9999, notification);
+
         }
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
-        @SuppressWarnings("deprecation")
-        Notification notification;
-        Intent notificationIntent = new Intent(context,AfterLoginActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,notificationIntent, 0);
-        //notification.setLatestEventInfo(AlarmManagerActivity.this, "na","wewewew", pendingIntent);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        notification = builder.setContentIntent(pendingIntent)
-                .setSmallIcon(R.drawable.logov1)
-                .setAutoCancel(true)
-                .setContentTitle(title)
-                .setContentText(content)
-                .build();
-        notificationManager.notify(9999, notification);
-        CancelAlarm(context);
+
     }
     public void SetAlarm(Context context)
     {

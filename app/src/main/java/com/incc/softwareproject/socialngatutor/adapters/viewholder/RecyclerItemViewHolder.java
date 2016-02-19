@@ -53,13 +53,11 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private final TextView shares;
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
-<<<<<<< HEAD
-                                  ImageButton comment, ImageButton upvote,ImageButton upvote2, ImageButton share,TextView tv_datetime,
-                                  SimpleDraweeView pp, ImageButton options,TextView upvotes,TextView comments,TextView shares) {
-=======
-                                  ImageButton comment,ImageButton share, ImageButton upvote,ImageButton upvote2, TextView tv_datetime,
-                                  SimpleDraweeView pp, ImageButton options) {
->>>>>>> 3fffb527803003f069be0e6173f98c998973c524
+                                  ImageButton comment, ImageButton upvote,ImageButton upvote2,
+                                  ImageButton share,TextView tv_datetime,
+                                  SimpleDraweeView pp, ImageButton options,TextView upvotes,
+                                  TextView comments,TextView shares) {
+
         super(parent);
         //  TV = TEXTVIEW
         this.tv_username = tv_username;
@@ -110,12 +108,11 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         TextView post = (TextView) parent.findViewById(R.id.card_post_details);
         TextView datetime = (TextView) parent.findViewById(R.id.card_datetime);
 
-<<<<<<< HEAD
+
         TextView upvotes = (TextView) parent.findViewById(R.id.card_upvotes_count);
         TextView comments = (TextView) parent.findViewById(R.id.card_comments);
         TextView shares = (TextView) parent.findViewById(R.id.card_shares);
-=======
->>>>>>> 3fffb527803003f069be0e6173f98c998973c524
+
 
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
@@ -125,12 +122,10 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         ImageButton options = (ImageButton) parent.findViewById(R.id.card_options);
 
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
-<<<<<<< HEAD
+
         return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,share,
                                             datetime,profilePicture,options,upvotes,comments,shares);
-=======
-        return new RecyclerItemViewHolder(parent,username,post,fullname,share,comment,upvote,upvote2,datetime,profilePicture,options);
->>>>>>> 3fffb527803003f069be0e6173f98c998973c524
+
     }
 
     public void setFullname(CharSequence text) {
@@ -232,11 +227,11 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     public void setIsUpvoted(boolean upvoted){
          if(upvoted){
              upvote2.setVisibility(View.VISIBLE);
-             upvote.setVisibility(View.GONE);
+             upvote.setVisibility(View.INVISIBLE);
          }
         else{
              upvote.setVisibility(View.VISIBLE);
-             upvote2.setVisibility(View.GONE);
+             upvote2.setVisibility(View.INVISIBLE);
          }
 
     }
