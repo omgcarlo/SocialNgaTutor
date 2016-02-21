@@ -26,13 +26,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private List<String> upvotes;
     private List<String> comments;
     private List<String> shares;
-
+    private List<String> file_url;
+    private List<String> fileName;
     public RecyclerAdapter(List<String> itemList,List<String> itemList2,
                            List<String> itemList3,List<String> itemList4,
                            List<String> itemList5,List<String> datetime,
                            List<String> pp_url, List<Boolean> owned, List<Boolean> isUpvoted,
                            List<Boolean> isShared, List<String> upvotes, List<String> comments,
-                           List<String> shares){
+                           List<String> shares,List<String> file_url,List<String> fileName){
 
         // Why the diffirent names? Para maglibog mo huehuehue
         fullname = itemList;
@@ -48,6 +49,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.upvotes = upvotes;
         this.comments = comments;
         this.shares = shares;
+        this.file_url = file_url;
+        this.fileName = fileName;
     }
 
     @Override
@@ -74,6 +77,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String s_upvotes = upvotes.get(position);
         String s_comments = comments.get(position);
         String s_shares = shares.get(position);
+        String s_file_url = file_url.get(position);
+        String s_file_name = fileName.get(position);
 
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
@@ -88,6 +93,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.setUpvotes(s_upvotes);
         holder.setComments(s_comments);
         holder.setShares(s_shares);
+        holder.setFileUrl(s_file_url);
+        holder.setFileName(s_file_name);
     }
 
     @Override

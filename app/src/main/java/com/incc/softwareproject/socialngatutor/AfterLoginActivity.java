@@ -38,6 +38,7 @@ import com.incc.softwareproject.socialngatutor.services.PostService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class AfterLoginActivity extends AppCompatActivity {
 
@@ -152,8 +153,16 @@ public class AfterLoginActivity extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
         }
+        else if(id == R.id.action_settings)
+        {
+            Intent i = new Intent(AfterLoginActivity.this, SettingsActivity.class);
+            startActivity(i);
+            overridePendingTransition(R.animator.animate1, R.animator.animate2);
+        }
         return super.onOptionsItemSelected(item);
+
     }
+
 
     public void onViewCalendar(View view) {
 

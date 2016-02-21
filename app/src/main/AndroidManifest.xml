@@ -88,13 +88,33 @@
                 android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
         </activity>
         <activity
-            android:name=".ShareActivity"
+                android:name=".ShareActivity"
+                android:theme="@style/AppTheme">
+                <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
             android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
         </activity>
-
+        <activity
+            android:name=".AboutActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
+        </activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
+        </activity>
         <service android:name=".services.PostService" />
         <service android:name=".services.FollowService" />
         <service android:name=".services.CommentService" />

@@ -5,15 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/p_progressBar"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        />
-
     <MultiAutoCompleteTextView
         android:id="@+id/pt_desc"
         android:layout_marginTop="10dp"
@@ -24,47 +15,44 @@
         android:gravity="top"
         android:textSize="23sp">
     </MultiAutoCompleteTextView>
-    <EditText
-        android:id="@+id/pt_tag"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tag"
-        android:gravity="top"
-        android:visibility="gone"
-        android:textSize="23sp">
-    </EditText>
+
     <LinearLayout
+        android:id="@+id/upload_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:gravity="bottom"
-        android:layout_marginTop="425dp"
+        android:layout_below="@+id/pt_desc"
         android:orientation="horizontal"
         android:background="@drawable/commentbg">
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:src="@drawable/ic_description"
-        android:background="@color/white"/>
+            android:background="@color/white"/>
         <TextView
+            android:id="@+id/post_choose_file"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="invisible"
-            android:text=" Waiver for Grad Party.docx"
+            android:hint="@string/chosefile_txt"
             android:textColor="@color/lightgrey"
-            android:textSize="12sp"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:src="@drawable/ic_file_upload"
-        android:background="@drawable/postcharbg"
-        android:layout_marginLeft="110dp"/>
-
+            android:textSize="18sp"
+            android:layout_marginLeft="25dp"
+            android:onClick="openFileChooser"/>
     </LinearLayout>
-
+    <EditText
+        android:id="@+id/pt_tag"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tag"
+        android:gravity="bottom"
+        android:layout_below="@+id/upload_layout"
+        android:visibility="gone"
+        android:textSize="23sp">
+    </EditText>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -86,10 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@drawable/postcharbg"
-            android:src="@drawable/ic_attach_file"/>
+            android:src="@drawable/ic_attach_file"
+            android:onClick="openFileChooser"/>
 
     </LinearLayout>
-
-
 
 </RelativeLayout>

@@ -36,7 +36,7 @@
             <!-- SHADOW -->
             <item>
                 <shape>
-                    <solid android:color="#99f2f2"/>
+                    <solid android:color="#1c84a7"/>
                     <corners android:radius="1dp"/>
                 </shape>
             </item>
@@ -45,8 +45,8 @@
                 <shape>
                     <padding android:bottom="5dp"/>
                     <gradient
-                        android:startColor="#99f2f2"
-                        android:endColor="#99f2f2"
+                        android:startColor="#1c84a7"
+                        android:endColor="#1c84a7"
                         android:angle="270" />
                     <corners
                         android:radius="1dp"/>

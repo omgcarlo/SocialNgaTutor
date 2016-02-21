@@ -6,6 +6,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -25,7 +28,11 @@ import com.incc.softwareproject.socialngatutor.services.CommentService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 import com.incc.softwareproject.socialngatutor.services.UpvoteService;
 
-public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+import org.w3c.dom.Text;
+
+import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
+
+public class RecyclerItemViewHolder extends AnimateViewHolder implements View.OnClickListener {
 
     private final TextView tv_fullname;
     private final TextView tv_username;
@@ -51,12 +58,16 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     private final TextView upvotes_count;
     private final TextView comments;
     private final TextView shares;
+
+    private CardView fileCV;
+    private String fileUrl;
+    private TextView file;
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
-                                  ImageButton comment, ImageButton upvote,ImageButton upvote2,
-                                  ImageButton share,TextView tv_datetime,
-                                  SimpleDraweeView pp, ImageButton options,TextView upvotes,
-                                  TextView comments,TextView shares) {
+                                  ImageButton comment, ImageButton upvote, ImageButton upvote2,
+                                  ImageButton share, TextView tv_datetime,
+                                  SimpleDraweeView pp, ImageButton options, TextView upvotes,
+                                  TextView comments, TextView shares, TextView file, CardView fileCV) {
 
         super(parent);
         //  TV = TEXTVIEW
@@ -67,6 +78,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         this.upvotes_count = upvotes;
         this.comments = comments;
         this.shares = shares;
+        this.file = file;
 
         // BUTTONS/IMAGEBUTTONS
         this.share = share;
@@ -76,7 +88,8 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
         // PROFILE PICTURE
         this.ppicture = pp;
-
+        //  CARDVIEW
+        this.fileCV = fileCV;
         //  WHEN THE USER TOUCHES THE USERNAME OR FULLNAME
         this.tv_fullname.setOnClickListener(this);
         this.tv_username.setOnClickListener(this);
@@ -84,11 +97,12 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         //  WHEN THE USER TOUCHES THE POST
         this.tv_post.setOnClickListener(this);
 
-        //  SET LISTENER SA COMMENT UG UPVOTE
+        //  SET LISTENER SA COMMENT UG UPVOTE UG FILE
         this.comment.setOnClickListener(this);
         this.share.setOnClickListener(this);
         this.upvote.setOnClickListener(this);
         this.upvote2.setOnClickListener(this);
+        this.fileCV.setOnClickListener(this);
         //  INIT AND SET LISTENER FOR OPTIONS
         this.options = options;
         
@@ -112,7 +126,8 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         TextView upvotes = (TextView) parent.findViewById(R.id.card_upvotes_count);
         TextView comments = (TextView) parent.findViewById(R.id.card_comments);
         TextView shares = (TextView) parent.findViewById(R.id.card_shares);
-
+        TextView file = (TextView) parent.findViewById(R.id.card_file_name);
+        CardView fileCV = (CardView) parent.findViewById(R.id.card_post_file);
 
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
@@ -124,7 +139,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
 
         return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,share,
-                                            datetime,profilePicture,options,upvotes,comments,shares);
+                                            datetime,profilePicture,options,upvotes,comments,shares,file,fileCV);
 
     }
 
@@ -171,6 +186,7 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
             i.putExtra("PostId",postId);
             i.putExtra("OwnerId",schoolId);
             context.startActivity(i);
+            ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
         }
         else if(v.getId() == upvote.getId()){
             upvote.setVisibility(View.INVISIBLE);
@@ -215,6 +231,10 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
 
             popup.show(); //showing popup menu
         }
+        else if(v.getId() == fileCV.getId()){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fileUrl));
+            context.startActivity(browserIntent);
+        }
         else {
             //GOTO VIEW POST
             Intent i = new Intent(context, PostViewActivity.class);
@@ -238,6 +258,9 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     public void setIsShared(boolean shared){
         this.isShared = shared;
     }
+    public void setOwned(boolean owned) {
+        this.owned = owned;
+    }
     //  ==  COUNTS  ===
     public void setUpvotes(String upvotes){
         this.upvotes_count.setText(upvotes);
@@ -250,7 +273,29 @@ public class RecyclerItemViewHolder extends RecyclerView.ViewHolder implements V
     }
     //===========================
 
-    public void setOwned(boolean owned) {
-        this.owned = owned;
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+    public void setFileName(String fileName){
+        if(!fileName.equals("")) {
+            this.fileCV.setVisibility(View.VISIBLE);
+            //this.fileCV.setBackgroundColor(Color.DKGRAY);
+            this.file.setText(fileName);
+        }
+    }
+
+    @Override
+    public void animateAddImpl(ViewPropertyAnimatorListener listener) {
+        ViewCompat.animate(itemView)
+                .translationY(0)
+                .alpha(1)
+                .setDuration(300)
+                .setListener(listener)
+                .start();
+    }
+
+    @Override
+    public void animateRemoveImpl(ViewPropertyAnimatorListener listener) {
+
     }
 }

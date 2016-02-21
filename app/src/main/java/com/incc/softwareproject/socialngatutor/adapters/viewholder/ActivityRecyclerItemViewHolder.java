@@ -3,6 +3,8 @@ package com.incc.softwareproject.socialngatutor.adapters.viewholder;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -13,7 +15,9 @@ import com.incc.softwareproject.socialngatutor.PostViewActivity;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 
-public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
+
+public class ActivityRecyclerItemViewHolder extends AnimateViewHolder implements View.OnClickListener {
 
     private final TextView tv_fullname;
     private final TextView tv_description;
@@ -102,5 +106,20 @@ public class ActivityRecyclerItemViewHolder extends RecyclerView.ViewHolder impl
 
     public void setActivityId(String activityId) {
         this.activityId = activityId;
+    }
+
+    @Override
+    public void animateAddImpl(ViewPropertyAnimatorListener listener) {
+        ViewCompat.animate(itemView)
+                .translationY(0)
+                .alpha(1)
+                .setDuration(500)
+                .setListener(listener)
+                .start();
+    }
+
+    @Override
+    public void animateRemoveImpl(ViewPropertyAnimatorListener listener) {
+
     }
 }

@@ -45,41 +45,31 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     Bitmap myBitmap;
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.e("AMB","NI RECEIVE BAI");
+
         PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "YOUR TAG");
         //Acquire the lock
         wl.acquire();
-        /*
-        //You can do the processing here.
-        Bundle extras = intent.getExtras();
-        StringBuilder msgStr = new StringBuilder();
 
-        if(extras != null && extras.getBoolean(ONE_TIME, Boolean.FALSE)){
-            //Make sure this intent has been sent by the one-time timer button.
-            msgStr.append("One time Timer : ");
-        }
-        Format formatter = new SimpleDateFormat("hh:mm:ss a");
-        msgStr.append(formatter.format(new Date()));
-        */
         this.context = context;
         //Toast.makeText(context, msgStr, Toast.LENGTH_LONG).show();
         sData = context.getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         SCHOOL_ID = sData.getString("SchoolId", "wala");
-
-        Log.e(TAG, SCHOOL_ID);
+        if(SCHOOL_ID.equals("wala")){
+            CancelAlarm(context);
+        }
+        Log.e("Listener","Listening");
         new getData().execute(SCHOOL_ID);
 
         //Release the lock
         wl.release();
     }
     private class getData extends AsyncTask<String,Void,String>{
-
         @Override
         protected String doInBackground(String... params) {
-
             notif = new com.incc.softwareproject.socialngatutor.Server.Notification();
-            String s = notif.getNotif(SCHOOL_ID);
+            String s = notif.getNotif(params[0]);
+            //Log.e(TAG,s + "12321");
             if(!s.equals("")){
                 try {
                     JSONObject reader = new JSONObject(s);
@@ -97,18 +87,16 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
                     e.printStackTrace();
                 }
             }
-
             return s;
         }
 
         @Override
         protected void onPostExecute(String s) {
-
             showNotification(s);
         }
     }
     public void showNotification(String result){
-        //Log.e("AMBRESULT",result);
+        Log.e("AMBRESULT",result);
         if(!result.equals("")){
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -125,6 +113,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
                     .setContentTitle(title)
                     .setLargeIcon(myBitmap)
                     .setContentText(content)
+                    .setVibrate(new long[] { 500, 500 })
                     .build();
             notificationManager.notify(9999, notification);
 

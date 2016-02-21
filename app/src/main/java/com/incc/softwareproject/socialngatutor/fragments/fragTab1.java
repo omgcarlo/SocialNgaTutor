@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
 
 /**
@@ -46,6 +47,8 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
     List<String> upvotes = new ArrayList<>();
     List<String> comments = new ArrayList<>();
     List<String> shares = new ArrayList<>();
+    List<String> fileUrl = new ArrayList<>();
+    List<String> fileName = new ArrayList<>();
 
     SharedPreferences sData;
     RecyclerView recyclerView;
@@ -89,13 +92,15 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         upvotes.clear();
         comments.clear();
         shares.clear();
+        fileName.clear();
+        fileUrl.clear();
     }
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,
                                                             userId,datetime,pp_url,owned,isUpvoted,
-                                                            isShared,upvotes, comments,shares);
-        recyclerView.setAdapter(recyclerAdapter);
+                                                            isShared,upvotes, comments,shares,fileUrl,fileName);
+        recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerAdapter));
     }
 
     protected void convertJSON(String result){
@@ -119,6 +124,14 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
                 upvotes.add(jsonobject.getString("upvotes"));
                 shares.add(jsonobject.getString("shares"));
                 comments.add(jsonobject.getString("comments"));
+                if("nofile".equals(jsonobject.getString("file_url"))){
+                    fileUrl.add("");
+                    fileName.add("");
+                }
+                else{
+                    fileUrl.add(jsonobject.getString("file_url"));
+                    fileName.add(jsonobject.getString("file_description"));
+                }
             }
             srl.setRefreshing(false);
             setupRecyclerView(recyclerView);

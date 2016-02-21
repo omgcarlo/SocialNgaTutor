@@ -37,11 +37,13 @@ public class SearchActivity extends AppCompatActivity {
     List<String> postId = new ArrayList<>();
     List<String> pp_url = new ArrayList<>();
     List<Boolean> owned = new ArrayList<>();
-    private List<Boolean> isUpvoted;
-    private List<Boolean> isShared;
-    private List<String> upvotes;
-    private List<String> comments;
-    private List<String> shares;
+    private List<Boolean> isUpvoted  = new ArrayList<>();
+    private List<Boolean> isShared = new ArrayList<>();
+    private List<String> upvotes = new ArrayList<>();
+    private List<String> comments = new ArrayList<>();
+    private List<String> shares = new ArrayList<>();
+    private List<String> fileUrl = new ArrayList<>();
+    private List<String> fileName = new ArrayList<>();
 
     RecyclerView recyclerViewPeople;
     RecyclerView recyclerViewTopics;
@@ -140,11 +142,7 @@ public class SearchActivity extends AppCompatActivity {
                 userId.add(jsonobject.getString("schoolId"));
                 isFollowed.add(jsonobject.getBoolean("isFollowed"));
                 pp_url.add(jsonobject.getString("pic_url"));
-                isUpvoted.add(jsonobject.getBoolean("isUpvoted"));
-                isShared.add(jsonobject.getBoolean("isShared"));
-                upvotes.add(jsonobject.getString("upvotes"));
-                shares.add(jsonobject.getString("shares"));
-                comments.add(jsonobject.getString("comments"));
+
             }
             setupRecyclerView_search(recyclerViewPeople);
         }catch (Exception e){
@@ -167,6 +165,19 @@ public class SearchActivity extends AppCompatActivity {
                 datetime.add(jsonobject.getString("datetime"));
                 pp_url.add(jsonobject.getString("pic_url"));
                 owned.add(jsonobject.getBoolean("isOwned"));
+                isUpvoted.add(jsonobject.getBoolean("isUpvoted"));
+                isShared.add(jsonobject.getBoolean("isShared"));
+                upvotes.add(jsonobject.getString("upvotes"));
+                shares.add(jsonobject.getString("shares"));
+                comments.add(jsonobject.getString("comments"));
+                if("nofile".equals(jsonobject.getString("file_url"))){
+                    fileUrl.add("");
+                    fileName.add("");
+                }
+                else{
+                    fileUrl.add(jsonobject.getString("file_url"));
+                    fileName.add(jsonobject.getString("file_description"));
+                }
             }
             setupRecyclerView_topics(recyclerViewTopics);
         }catch (Exception e){
@@ -181,7 +192,7 @@ public class SearchActivity extends AppCompatActivity {
     private void setupRecyclerView_topics(RecyclerView precycler) {
         precycler.setLayoutManager(new LinearLayoutManager(this));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned,isUpvoted,
-                isShared,upvotes, comments,shares);
+                isShared,upvotes, comments,shares,fileUrl,fileName);
         precycler.setAdapter(recyclerAdapter);
     }
 

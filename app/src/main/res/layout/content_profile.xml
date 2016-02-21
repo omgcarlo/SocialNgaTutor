@@ -13,30 +13,39 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/commentbg">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center">
         <TextView
             android:id="@+id/profile_fullname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="2dp"
             android:text="@string/loading_txt"
             android:textColor="@color/black"
             android:textSize="23sp" />
         <TextView
             android:id="@+id/profile_indicator"
-            android:layout_width="82dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/teacherbg"
             android:layout_gravity="center"
+            android:text="T"
+            android:layout_marginLeft="1dp"
             android:gravity="center"
-            android:visibility="gone"
-            android:drawableLeft="@drawable/ic_contacts"
-            android:text="TEACHER"
-            android:textSize="10sp"
+            android:visibility="invisible"
+            android:background="@drawable/teacherbg"
+            android:textSize="8sp"
             android:textColor="@color/white"
             />
-
+        </LinearLayout>
 
         <TextView
             android:id="@+id/profile_username"
@@ -130,7 +139,8 @@
             android:orientation="horizontal"
             android:layout_marginLeft="35dp"
             android:layout_marginRight="35dp"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp">
 
             <TextView
 
@@ -162,7 +172,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
 
-
+</LinearLayout>
         <Button
             android:layout_width="80dp"
             android:layout_height="80dp"

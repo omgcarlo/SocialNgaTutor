@@ -135,7 +135,7 @@ public class CommentActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             if(!result.equals("")){
-                Log.d("ress", result);
+                //Log.d("ress", result);
                 convertJSON(result);
             }
             else{

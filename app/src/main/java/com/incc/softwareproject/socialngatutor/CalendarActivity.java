@@ -171,7 +171,9 @@ public class CalendarActivity extends AppCompatActivity implements DatePickerDia
     }
 
     public void onCloseCalendar(View view) {
+
         finish();
+
     }
 
     private void setupRecyclerView(RecyclerView erecycler) {
