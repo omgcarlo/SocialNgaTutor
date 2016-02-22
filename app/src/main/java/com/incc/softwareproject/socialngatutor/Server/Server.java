@@ -1,27 +1,19 @@
 package com.incc.softwareproject.socialngatutor.Server;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 
 /**
  * Created by carlo on 1/8/16.
  */
 public class Server {
-    private final static String BASE_URL = "http://192.168.1.9/STFinal/STServer/";
+    private final static String BASE_URL = "http://192.168.1.7/STFinal/STServer/";
     private final static String USER_URL = "user.php";
     private final static String PROGRAM_URL = "program.php";
     private final static String POST_URL = "post.php";
@@ -31,6 +23,12 @@ public class Server {
     private final static String ACTIVITY_URL = "activity.php";
     private final static String NOTIFICATION_URL = "notification.php";
     private final static String UPLOADPIC_URL = "uploadpicture.php";
+    private final static String COLLEGE_URL = "college.php";
+    public static String getCollegeUrl() {
+        return COLLEGE_URL;
+    }
+
+
 
     public static String getUploadpicUrl() {
         return UPLOADPIC_URL;
@@ -121,7 +119,7 @@ public class Server {
             con.setRequestMethod("GET");
 
             //add request header
-            con.setRequestProperty("queries", data);
+            con.setRequestProperty("action", data);
 
             int responseCode = con.getResponseCode();
             Log.d("Sending", uri);

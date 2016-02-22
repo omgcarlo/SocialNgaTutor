@@ -40,8 +40,9 @@ public class ActivityRecyclerItemViewHolder extends AnimateViewHolder implements
         this.tv_description = description;
         this.tv_datetime = datetime;
         this.userPP = userPP;
-        context =  parent.getContext();
         tv_description.setOnClickListener(this);
+        context =  parent.getContext();
+
     }
 
     public static ActivityRecyclerItemViewHolder newInstance(View parent) {

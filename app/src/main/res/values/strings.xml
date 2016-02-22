@@ -31,5 +31,11 @@
     <string name="options_approve">Approve</string>
 
     <string name="loading_txt">Loading…</string>
-    <string name = "chosefile_txt">Tap me to choose file</string>
+    <string name="chosefile_txt">Tap me to choose file</string>
+    <string name="title_activity_discover">DiscoverActivity</string>
+    <string name="next_btn">next button</string>
+    <string name="title_activity_course">CourseActivity</string>
+
+    <string name="discover_topics">Topics</string>
+    <string name="discover_notes">Notes</string>
 </resources>

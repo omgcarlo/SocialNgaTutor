@@ -12,21 +12,21 @@
 
         <ImageView
             android:layout_width="fill_parent"
-            android:layout_height="160dp"
-            android:elevation="4dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/banner2" />
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/banner2"
+            android:contentDescription="banner" />
 
         <TextView
             android:id="@+id/t3_monthday"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="-120dp"
-            android:text="February 11"
+            android:gravity="center"
+            android:layout_marginTop="-78dp"
+            android:text="adasdasdasd"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="32dp" />
+            android:textSize="32sp" />
 
         <TextView
             android:id="@+id/t3_dateyear"
@@ -41,21 +41,20 @@
 
         <Button
             android:id="@+id/v_calendar"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
             android:background="@drawable/calendarbgbtn"
-            android:textSize="10sp"
+            android:textSize="12sp"
+            android:elevation="4dp"
             android:textColor="@color/white"
             android:onClick="onViewCalendar"
             android:text="View Calendar" />
-
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="-25dp"
         android:layout_gravity="center"
         android:text="Now and Upcoming Events"/>
     <android.support.v7.widget.RecyclerView

@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.incc.softwareproject.socialngatutor.R;
 import com.incc.softwareproject.socialngatutor.Server.Post;
-import com.incc.softwareproject.socialngatutor.Server.Server;
+import com.incc.softwareproject.socialngatutor.Server.Search;
 import com.incc.softwareproject.socialngatutor.adapters.RecyclerAdapter;
 
 import org.json.JSONArray;
@@ -31,7 +31,7 @@ import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 /**
  * Created by carlo on 21/12/2015.
  */
-public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     String SCHOOL_ID;
     //  TO PASS IN RECYCLER ADAPTER
     List<String> userId = new ArrayList<>();
@@ -53,28 +53,27 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
     SharedPreferences sData;
     RecyclerView recyclerView;
     SwipeRefreshLayout srl;
-    public static fragTab1 newInstance() {
-        fragTab1 frag_tab1 = new fragTab1();
+    public static fragDiscoverTopics newInstance() {
+        fragDiscoverTopics frag = new fragDiscoverTopics();
         Bundle bundle = new Bundle();
-        frag_tab1.setArguments(bundle);
-        return frag_tab1;
+        frag.setArguments(bundle);
+        return frag;
     }
-
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //recyclerView = (RecyclerView) inflater.inflate(R.layout.tab_1, container, false);
-        View view = inflater.inflate(R.layout.tab_1, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.t1_recyclerView);
+        View view = inflater.inflate(R.layout.tab_discover_topics, container, false);
+        recyclerView = (RecyclerView) view.findViewById(R.id.tab_discover_topics_recyclerView);
         clear();
-        new initPost().execute();
+        new initPost().execute(getActivity().getIntent().getStringExtra("Code"));
         sData = this.getActivity().getSharedPreferences("ShareData", Context.MODE_PRIVATE);
         SCHOOL_ID = sData.getString("SchoolId", "wala");
-        srl = (SwipeRefreshLayout) view.findViewById(R.id.t1_swipe_refresh_layout);
+        srl = (SwipeRefreshLayout) view.findViewById(R.id.tab_discover_topics_swipe_refresh_layout);
         srl.setOnRefreshListener(this);
         srl.setColorSchemeColors(R.color.color_accent_pink,R.color.color_primary_blue,R.color.color_primary_red);
         //Toast.makeText(getActivity(),SCHOOL_ID, Toast.LENGTH_SHORT).show();
-
         return view;
     }
 
@@ -108,7 +107,7 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         try {
             clear();
             JSONObject reader = new JSONObject(result);
-            JSONArray data = reader.getJSONArray("Post");
+            JSONArray data = reader.getJSONArray("Discover");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject jsonobject = data.getJSONObject(i);
                //Log.d("des",jsonobject.getString("description"));  //TESTING PURPOSE ONLY
@@ -144,17 +143,14 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
 
     @Override
     public void onRefresh() {
-        clear();
-        new initPost().execute();
-
+        new initPost().execute(getActivity().getIntent().getStringExtra("Code"));
     }
 
     private class initPost extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... params) {
-            //Log.d("id",SCHOOL_ID);
-            Post svConn = new Post();
-            return svConn.getFeeds(SCHOOL_ID);
+            Search svConn = new Search();
+            return svConn.dicoverTopics("discoverTopics","",SCHOOL_ID,params[0]);
         }
 
         @Override

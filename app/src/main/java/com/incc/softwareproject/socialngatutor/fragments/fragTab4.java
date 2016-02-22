@@ -93,7 +93,7 @@ public class fragTab4 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
 
         try {
             clear();
-            Log.e("tab4",result);
+            //Log.e("tab4",result);
             JSONObject reader = new JSONObject(result);
             JSONArray data = reader.getJSONArray("Activity");
             for (int i = 0; i < data.length(); i++) {

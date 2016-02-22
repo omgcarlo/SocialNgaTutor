@@ -1,8 +1,5 @@
 package com.incc.softwareproject.socialngatutor;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,7 +20,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +29,10 @@ import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab2;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab3;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab4;
-import com.incc.softwareproject.socialngatutor.services.NotificationService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class AfterLoginActivity extends AppCompatActivity {
 
@@ -209,16 +203,18 @@ public class AfterLoginActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.t2_people:
                 action = "people";
+                i = new Intent(this, SearchActivity.class);
                 break;
             case R.id.t2_topics:
                 action = "topics";
+                i = new Intent(this, SearchActivity.class);
                 break;
             default:
                 action = "discover";
+                i = new Intent(this, CollegeActivity.class);
                 break;
         }
 
-        i = new Intent(this, SearchActivity.class);
         i.putExtra("Queries", sq);
         i.putExtra("Action", action);
         startActivity(i);

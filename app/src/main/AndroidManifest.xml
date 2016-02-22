@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
@@ -88,11 +87,11 @@
                 android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
         </activity>
         <activity
-                android:name=".ShareActivity"
-                android:theme="@style/AppTheme">
-                <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
+            android:name=".ShareActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
@@ -115,19 +114,39 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.incc.softwareproject.socialngatutor.AfterLoginActivity" />
         </activity>
+
         <service android:name=".services.PostService" />
         <service android:name=".services.FollowService" />
         <service android:name=".services.CommentService" />
         <service android:name=".services.NotificationService" />
         <service android:name=".services.UpvoteService" />
 
-        <receiver android:name=".alarm.AlarmManagerBroadcastReceiver"></receiver>
+        <receiver android:name=".alarm.AlarmManagerBroadcastReceiver" />
+
         <activity android:name=".CommentActivity" />
         <activity android:name=".CalendarActivity" />
 
         <service
             android:name=".services.MentionService"
-            android:exported="false"></service>
+            android:exported="false" />
+
+        <activity
+            android:name=".CollegeActivity"
+            android:label="@string/title_activity_discover"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CourseActivity"
+            android:label="@string/title_activity_course"
+            android:parentActivityName=".CollegeActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CollegeActivity" />
+        </activity>
+        <activity
+            android:name=".DiscoverActivity"
+            android:label="@string/title_activity_discover"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

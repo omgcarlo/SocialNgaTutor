@@ -24,13 +24,10 @@
             app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_gravity="top"
-                android:layout_marginTop="0dp"
                 android:contentDescription="banner"
                 android:background="@drawable/banner1"
                 android:fitsSystemWindows="true"

@@ -8,7 +8,6 @@
                     <solid android:color="#006666"/>
                     <corners android:radius="50dp"/>
 
-
                 </shape>
             </item>
             <!-- BUTTON -->
@@ -16,7 +15,7 @@
                 <shape>
                     <padding android:bottom="10dp"/>
                     <gradient
-                        android:startColor="#006666"
+                        android:startColor="#009688"
                         android:endColor="#006666"
                         android:angle="270" />
                     <corners
@@ -45,8 +44,8 @@
                 <shape>
                     <padding android:bottom="5dp"/>
                     <gradient
-                        android:startColor="#F8F8F8"
-                        android:endColor="#F8F8F8"
+                        android:startColor="#B2DFDB"
+                        android:endColor="#B2DFDB"
                         android:angle="270" />
                     <corners
                         android:radius="50dp"/>

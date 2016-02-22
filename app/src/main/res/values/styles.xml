@@ -28,6 +28,7 @@
         <item name="colorPrimaryDark">@color/color_primary_blue_dark</item>
         <item name="colorAccent">@color/color_accent_pink</item>
     </style>
+
     <style name="expandedappbar" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">60sp</item>
         <item name="android:textColor">@android:color/transparent</item>
@@ -38,6 +39,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="expandedappbar2" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">60sp</item>
         <item name="android:textColor">@android:color/transparent</item>
@@ -48,6 +50,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="FullscreenTheme" parent="AppTheme">
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
@@ -59,8 +62,6 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
-
-
 
 
 </resources>

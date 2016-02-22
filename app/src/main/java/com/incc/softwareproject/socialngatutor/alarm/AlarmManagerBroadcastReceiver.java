@@ -37,7 +37,6 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     public static final String TAG = "AlarmManagerBroadcastReceiver";
     String title;
     String content;
-    String pic_url;
     private Context context;
     private com.incc.softwareproject.socialngatutor.Server.Notification notif;
     SharedPreferences sData;
@@ -58,7 +57,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         if(SCHOOL_ID.equals("wala")){
             CancelAlarm(context);
         }
-        Log.e("Listener","Listening");
+        Log.e("Activity Listener is","Listening");
         new getData().execute(SCHOOL_ID);
 
         //Release the lock
@@ -69,13 +68,19 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         protected String doInBackground(String... params) {
             notif = new com.incc.softwareproject.socialngatutor.Server.Notification();
             String s = notif.getNotif(params[0]);
-            //Log.e(TAG,s + "12321");
+            String desc;
+            //Log.e(TAG,s);
             if(!s.equals("")){
                 try {
                     JSONObject reader = new JSONObject(s);
                     JSONObject data = reader.getJSONObject("Notification");
-                    title = data.getString("from_username");
-                    content = data.getString("description");
+                    title = data.getString("from_full_name");
+                    if(data.getString("description").equals("tagged"))
+                        desc = "mentioned you on a ";
+                    else
+                        desc = "commented on your";
+                    //content = "@" + data.getString("from_username") + " "+ desc + " " + data.getString("Notification") ;
+                    content =  desc + " " + data.getString("Notification") ;
                     URL url = new URL(data.getString("pic_url"));
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setDoInput(true);
@@ -96,7 +101,7 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
         }
     }
     public void showNotification(String result){
-        Log.e("AMBRESULT",result);
+        //Log.e("AMBRESULT",result);
         if(!result.equals("")){
 
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

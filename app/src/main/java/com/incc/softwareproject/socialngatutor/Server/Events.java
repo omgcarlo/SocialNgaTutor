@@ -11,7 +11,8 @@ public class Events extends Server {
         String res_txt = "";
         try {
             String data = URLEncoder.encode("edate", "UTF-8")
-                    + "=" + URLEncoder.encode(date, "UTF-8");   //action
+                    + "=" + URLEncoder.encode(date, "UTF-8");
+
             res_txt =  postFunction(uri, data);
         } catch (Exception e) {
             e.printStackTrace();
