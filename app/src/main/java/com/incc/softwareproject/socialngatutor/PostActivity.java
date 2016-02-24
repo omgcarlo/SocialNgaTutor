@@ -38,6 +38,7 @@ import com.incc.softwareproject.socialngatutor.Server.Server;
 import com.incc.softwareproject.socialngatutor.Server.User;
 import com.incc.softwareproject.socialngatutor.mentions.models.Person;
 import com.incc.softwareproject.socialngatutor.services.PostService;
+import com.incc.softwareproject.socialngatutor.tokenizer.SpaceTokenizer;
 import com.linkedin.android.spyglass.suggestions.SuggestionsResult;
 import com.linkedin.android.spyglass.suggestions.impl.BasicSuggestionsListBuilder;
 import com.linkedin.android.spyglass.suggestions.interfaces.OnSuggestionsVisibilityChangeListener;
@@ -110,7 +111,7 @@ public class PostActivity extends AppCompatActivity implements QueryTokenReceive
                 android.R.layout.simple_dropdown_item_1line, username);
         MultiAutoCompleteTextView textView = (MultiAutoCompleteTextView) findViewById(R.id.pt_desc);
         textView.setAdapter(adapter);
-        textView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+        textView.setTokenizer(new SpaceTokenizer());
 
     }
 

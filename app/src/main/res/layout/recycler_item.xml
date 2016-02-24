@@ -118,6 +118,9 @@
                         android:layout_gravity="center"
                         android:text="File here"/>
                 </android.support.v7.widget.CardView>
+                <include
+                    android:id="@+id/card_post_share_content"
+                    layout="@layout/share_item"/>
             </LinearLayout>
 
         </RelativeLayout>

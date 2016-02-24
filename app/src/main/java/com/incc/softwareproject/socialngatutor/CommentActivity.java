@@ -12,16 +12,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.Toast;
 
 import com.incc.softwareproject.socialngatutor.Server.Comment;
 import com.incc.softwareproject.socialngatutor.Server.Server;
+import com.incc.softwareproject.socialngatutor.Server.User;
 import com.incc.softwareproject.socialngatutor.adapters.CommentRecyclerAdapter;
 import com.incc.softwareproject.socialngatutor.services.CommentService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
+import com.incc.softwareproject.socialngatutor.tokenizer.SpaceTokenizer;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -33,17 +38,18 @@ public class CommentActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
 
     private List<String> fullname = new ArrayList<>();
-    private List<String> username= new ArrayList<>();
-    private List<String> userType= new ArrayList<>();
-    private List<String> userId= new ArrayList<>();
+    private List<String> username = new ArrayList<>();
+    private List<String> userType = new ArrayList<>();
+    private List<String> userId = new ArrayList<>();
     private List<Boolean> isApproved = new ArrayList<>();
 
     private List<String> comment= new ArrayList<>();
     private List<String> pic_url = new ArrayList<>();
 
     RecyclerView recyclerView;
-    private String s_fullname;
     SharedPreferences spreferences;
+
+    private List<String> usernames = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +59,22 @@ public class CommentActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.c_recyclerView);
         //  GET USERNAME
         spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
-        s_fullname = spreferences.getString("FullName", "Wala");
+        String schoolId = spreferences.getString("SchoolId", "Wala");
         new InitComment().execute(postId);
+        new getUsers().execute(schoolId);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, usernames);
+        MultiAutoCompleteTextView textView = (MultiAutoCompleteTextView) findViewById(R.id.c_icomment);
+        textView.setAdapter(adapter);
+        textView.setTokenizer(new SpaceTokenizer());
     }
     public void commentClose(View v){
         finish();
+        overridePendingTransition(R.animator.animate2, R.animator.animate3);
     }
     public void postComment(View v){
         //Toast.makeText(CommentActivity.this, "wewewewewew", Toast.LENGTH_SHORT).show();
-        icomment = ((EditText) findViewById(R.id.c_icomment)).getText().toString();
+        icomment = ((MultiAutoCompleteTextView) findViewById(R.id.c_icomment)).getText().toString();
 
          findViewById(R.id.c_icomment).setEnabled(false);
         //PostService / PROCESS
@@ -80,6 +93,32 @@ public class CommentActivity extends AppCompatActivity {
         userType.clear();
         pic_url.clear();
     }
+    private void initPeople(String s) {
+        try {
+            JSONObject reader = new JSONObject(s);
+            JSONArray data = reader.getJSONArray("User");
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject jsonobject = data.getJSONObject(i);
+                usernames.add("@" + jsonobject.getString("username"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    private class getUsers extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            User sv = new User();
+            return sv.getFollowingPeople(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            initPeople(s);
+        }
+    }
+
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType,pic_url);
@@ -88,9 +127,8 @@ public class CommentActivity extends AppCompatActivity {
     protected void animateComment(){
         findViewById(R.id.c_icomment).setEnabled(true);
         ((EditText) findViewById(R.id.c_icomment)).setText("");
-        this.fullname.add(s_fullname);
-        // COMMENT
-        this.comment.add(icomment);
+        //clrData();
+        new InitComment().execute(postId);
         setupRecyclerView(recyclerView);
     }
     protected void convertJSON(String result){
@@ -118,7 +156,7 @@ public class CommentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter(PostService.ACTION));
+        registerReceiver(broadcastReceiver, new IntentFilter(CommentService.ACTION));
     }
 
     @Override
@@ -149,7 +187,7 @@ public class CommentActivity extends AppCompatActivity {
             if(intent.getBooleanExtra("Success",false)){
                 Toast.makeText(context, "Successfully Commented Something", Toast.LENGTH_SHORT).show();
                 animateComment();
-                finish();
+                //finish();
             }
         }
     }

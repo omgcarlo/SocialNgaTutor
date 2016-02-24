@@ -83,7 +83,35 @@ public class Post extends Server {
         }
         return res_txt;
     }
+    public String sharePost(String postId,String description, String type,String ownerId,String tags){
+        String uri = getBaseUrl() + getPostUrl() + "?share=" + postId;
+        try {
+            String data = URLEncoder.encode("action", "UTF-8")
+                    + "=" + URLEncoder.encode("new", "UTF-8");
 
+            data += "&" + URLEncoder.encode("description", "UTF-8")
+                    + "=" + URLEncoder.encode(description, "UTF-8");
+
+            data += "&" + URLEncoder.encode("type", "UTF-8")
+                    + "=" + URLEncoder.encode(type, "UTF-8");
+
+            data += "&" + URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
+
+            data += "&" + URLEncoder.encode("tags", "UTF-8")
+                    + "=" + URLEncoder.encode(tags, "UTF-8");
+
+            //post function here
+            res_txt =  postFunction(uri,data);
+
+            // res_txt = data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // return response on activity
+        return res_txt;
+
+    }
 
 
 }

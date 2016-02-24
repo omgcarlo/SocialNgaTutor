@@ -24,7 +24,7 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal">
-                <EditText
+                <MultiAutoCompleteTextView
                     android:id="@+id/c_icomment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

@@ -7,7 +7,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -51,12 +54,12 @@ public class AfterLoginActivity extends AppCompatActivity {
 
         alarm = new AlarmManagerBroadcastReceiver();
         Context context = this.getApplicationContext();
-        if (alarm != null) {
-            Log.e("ALA", "KAWEW");
-            alarm.SetAlarm(context);
-        } else {
-            Toast.makeText(context, "Alarm is null", Toast.LENGTH_SHORT).show();
-        }
+        //Log.e("ALA", "KAWEW");
+        ConnectivityManager conMgr = (ConnectivityManager) this.getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo i = conMgr.getActiveNetworkInfo();
+        if (i == null)
+            Toast.makeText(AfterLoginActivity.this, "No Connection", Toast.LENGTH_SHORT).show();
+        alarm.SetAlarm(context);
 
         spreferences = getSharedPreferences("ShareData", MODE_PRIVATE);
         schoolId = spreferences.getString("SchoolId", "wala");

@@ -72,7 +72,8 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         SCHOOL_ID = sData.getString("SchoolId", "wala");
         srl = (SwipeRefreshLayout) view.findViewById(R.id.t1_swipe_refresh_layout);
         srl.setOnRefreshListener(this);
-        srl.setColorSchemeColors(R.color.color_accent_pink,R.color.color_primary_blue,R.color.color_primary_red);
+        //srl.setColorSchemeColors(R.color.color_accent_pink,R.color.color_primary_blue,R.color.color_primary_red);
+        srl.setRefreshing(true);
         //Toast.makeText(getActivity(),SCHOOL_ID, Toast.LENGTH_SHORT).show();
 
         return view;

@@ -22,8 +22,9 @@
     <string name="postsample">Ive been awake for a while now. You make me feel like a child now. Cause every time I see your bubbly face. You made me tingles on a silly place</string>
     <string name="commentsample">That awkward moment when you are reading this comment to find an awkward moment but there is not any and still you are reading this comment and you are starting to realize it says nothing important and you just wasted a couple of seconds of your life but you are still reading and you do not even know why.</string>
     <string name="about">The name of the software system is “Social Tutor (Social nga Tutor)”. The system serves as a social media for all the students in the school, at the same time a tutoring site for the Cebu Institute of Technology – University. The system promotes interactions between student and teacher, or student and student. In this way, we can improve peer tutoring in a whole new level. Also, in this way students can give back to other students, and teachers who are willing to teach outside the school supervision can also help students. </string>
-    <string name="title_activity_search">SearchActivity</string>
-    <string name="title_activity_post_view">PostViewActivity</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_post_view">View Post</string>
+    <string name="title_share_activity">Share</string>
 
     <string name="options_report">Report</string>
     <string name="options_edit">Edit</string>
@@ -38,4 +39,8 @@
 
     <string name="discover_topics">Topics</string>
     <string name="discover_notes">Notes</string>
+
+    <string name="post_hint">Say something about this...</string>
+    <string name="tags">put similar words here para dali makit-an</string>
+    <string name="addTag">Add Tags</string>
 </resources>
