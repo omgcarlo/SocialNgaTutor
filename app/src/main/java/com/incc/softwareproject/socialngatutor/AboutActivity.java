@@ -33,7 +33,7 @@ public class AboutActivity extends AppCompatActivity{
 
         getSupportActionBar().setTitle(getIntent().getStringExtra("EventTitle"));
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar3);
-        collapsingToolbarLayout.setTitle("");
+        collapsingToolbarLayout.setTitle("About");
 
         dynamicToolbarColors();
         toolbarTextApperances();

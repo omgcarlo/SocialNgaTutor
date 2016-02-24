@@ -52,8 +52,8 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra("full_name"));
 
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R  .id.collapsing_toolbar);
-        collapsingToolbarLayout.setTitle("");
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbarLayout.setTitle("Profile");
 
         dynamicToolbarColor();
         toolbarTextApperance();
