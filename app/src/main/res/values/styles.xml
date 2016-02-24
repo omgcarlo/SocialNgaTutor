@@ -36,7 +36,7 @@
     </style>
 
     <style name="collapsedappbar" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
@@ -47,7 +47,7 @@
     </style>
 
     <style name="collapsedappbar2" parent="@android:style/TextAppearance.Medium">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
 
