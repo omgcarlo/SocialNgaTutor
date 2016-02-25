@@ -391,8 +391,7 @@ public class PostActivity extends AppCompatActivity implements QueryTokenReceive
             Toast.makeText(this, "Exception : " + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("Exception", e.getMessage());
         }
-        return serverResponseCode;
-    }
+        return serverResponseCode;    }
 
 
 }
