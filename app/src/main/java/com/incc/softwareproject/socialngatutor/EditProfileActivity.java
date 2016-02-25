@@ -18,10 +18,8 @@ public class EditProfileActivity  extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.editprofile_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setShowHideAnimationEnabled(true);
-
+        actionBar.setTitle("EditProfile");
     }
 
 }

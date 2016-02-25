@@ -40,8 +40,8 @@ public class AboutActivity extends AppCompatActivity{
     }
     private void dynamicToolbarColors() {
 
-        collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.color_primary_red));
-        collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.color_primary_red_dark));
+        collapsingToolbarLayout.setContentScrimColor(getResources().getColor(R.color.color_primary_blue));
+        collapsingToolbarLayout.setStatusBarScrimColor(getResources().getColor(R.color.color_primary_blue_dark));
 
     }
 
