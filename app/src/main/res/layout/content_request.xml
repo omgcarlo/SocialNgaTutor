@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="75dp">
+        android:layout_marginTop="68dp">
 
 
         <LinearLayout
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="/@meynardgwapo"
+                android:text="meynardgwapo.com"
                 android:textSize="11sp"
                 android:textColor="#A0A0A0"/>
         </LinearLayout>
@@ -82,6 +82,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Why do you want to become a tutor?"
                 android:textColorHint="#909090"
+                android:textSize="16sp"
+                android:gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"

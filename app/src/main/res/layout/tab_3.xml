@@ -37,7 +37,7 @@
             android:text="thursday • 2016"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="18dp" />
+            android:textSize="17sp" />
 
         <Button
             android:id="@+id/v_calendar"
