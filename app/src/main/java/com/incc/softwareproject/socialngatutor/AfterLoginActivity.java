@@ -174,6 +174,7 @@ public class AfterLoginActivity extends AppCompatActivity {
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         TextView toolbarTitle = (TextView) mToolbar.findViewById(R.id.toolbar_title);
         Typeface myTypeface = Typeface.createFromAsset(getAssets(), "IntriqueScript_PersonalUse.ttf");
         toolbarTitle.setTypeface(myTypeface);

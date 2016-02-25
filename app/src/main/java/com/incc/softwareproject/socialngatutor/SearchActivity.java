@@ -60,11 +60,12 @@ public class SearchActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar();
 
+
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(getIntent().getStringExtra("Queries"));
-        //
+        actionBar.setTitle("Search");
+
         recyclerViewPeople = (RecyclerView) findViewById(R.id.search_p_recyclerView);
         recyclerViewTopics = (RecyclerView) findViewById(R.id.search_p_recyclerView);
         //Clean dem

@@ -45,5 +45,5 @@
 
     <string name="post_hint">Say something about this...</string>
     <string name="tags">put similar words here para dali makit-an</string>
-    <string name="addTag">Add Tags</string>
+    <string name="addTag">Tag someone</string>
 </resources>

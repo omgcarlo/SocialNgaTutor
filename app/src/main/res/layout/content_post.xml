@@ -47,7 +47,7 @@
         android:id="@+id/pt_tag"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Tag"
+        android:hint=" Tag someone"
         android:gravity="bottom"
         android:layout_below="@+id/upload_layout"
         android:visibility="gone"
