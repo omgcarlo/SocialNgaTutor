@@ -33,8 +33,6 @@ public class PostService extends IntentService {
         if(i.getStringExtra("filePath") != null){
             String filePath  = i.getStringExtra("filePath");
         }
-
-
         try {
             res_txt = sv.postFeed(description,type,ownerId,tags);
             //  CONVERT JSON RESPONSE TO STRINGS

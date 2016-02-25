@@ -138,6 +138,15 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
 
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
 
+        //  Share container
+        CardView share_container = (CardView) parent.findViewById(R.id.share_card_container);
+        SimpleDraweeView share_profilePicture = (SimpleDraweeView) parent.findViewById(R.id.share_card_ppicture);
+        TextView share_fullname = (TextView) parent.findViewById(R.id.share_card_fullname);
+        TextView share_username = (TextView) parent.findViewById(R.id.share_card_username);
+        TextView share_post_description = (TextView) parent.findViewById(R.id.share_card_post_details);
+        CardView share_file_container = (CardView) parent.findViewById(R.id.share_card_post_file);
+        TextView share_file_name = (TextView) parent.findViewById(R.id.share_card_file_name);
+
         return new RecyclerItemViewHolder(parent,username,post,fullname,comment,upvote,upvote2,share,
                                             datetime,profilePicture,options,upvotes,comments,shares,file,fileCV);
 
@@ -289,7 +298,7 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
         ViewCompat.animate(itemView)
                 .translationY(0)
                 .alpha(1)
-                .setDuration(300)
+                .setDuration(500)
                 .setListener(listener)
                 .start();
     }

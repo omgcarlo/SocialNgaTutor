@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/n_ppuser"
+        android:id="@+id/share_ppuser"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:gravity="left"
@@ -21,21 +21,35 @@
         android:orientation="vertical">
 
 
-        <EditText
+        <MultiAutoCompleteTextView
+            android:id="@+id/share_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Write something... "
+            android:hint="@string/post_hint"
             android:background="@null"
             android:textSize="16sp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="12sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
+            android:textColorHint="@color/color_primary_blue_dark"
+            android:textColorHighlight="@color/color_primary_blue"
             android:layout_gravity="top"/>
-
+        <MultiAutoCompleteTextView
+            android:id="@+id/share_tags"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="12sp"
+            android:hint = "@string/tags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
         <include layout="@layout/share_item"/>
-
-
+        <Button
+            android:id="@+id/share_shareBtn"
+            android:text="@string/addTag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 

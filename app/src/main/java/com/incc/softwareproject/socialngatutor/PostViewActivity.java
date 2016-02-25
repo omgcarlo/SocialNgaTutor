@@ -91,6 +91,7 @@ public class PostViewActivity extends AppCompatActivity {
             Uri uri = Uri.parse(data.getString("pic_url"));
             userpp.setImageURI(uri);
         } catch (Exception e) {
+            e.printStackTrace();
         }
         // FINISH THE LOADING
         findViewById(R.id.post_view_loading).setVisibility(View.GONE);
