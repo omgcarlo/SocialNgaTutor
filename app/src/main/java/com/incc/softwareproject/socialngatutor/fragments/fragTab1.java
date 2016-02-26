@@ -49,6 +49,15 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
     List<String> shares = new ArrayList<>();
     List<String> fileUrl = new ArrayList<>();
     List<String> fileName = new ArrayList<>();
+    //share
+    private List<String> share_postId = new ArrayList<>();
+    private List<String> share_pic_url = new ArrayList<>();
+    private List<String> share_fullname = new ArrayList<>();
+    private List<String> share_username = new ArrayList<>();
+    private List<String> share_post_description = new ArrayList<>();
+    private List<String> share_file_url = new ArrayList<>();
+    private List<String> share_file_name = new ArrayList<>();
+    private List<String> share_userType = new ArrayList<>();
 
     SharedPreferences sData;
     RecyclerView recyclerView;
@@ -95,12 +104,21 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
         shares.clear();
         fileName.clear();
         fileUrl.clear();
+        share_pic_url.clear();
+        share_fullname.clear();
+        share_username.clear();
+        share_post_description.clear();
+        share_file_url.clear();
+        share_file_name.clear();
     }
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,
                                                             userId,datetime,pp_url,owned,isUpvoted,
-                                                            isShared,upvotes, comments,shares,fileUrl,fileName);
+                                                            isShared,upvotes, comments,shares,fileUrl,fileName,
+                                                            share_postId, share_userType , share_pic_url,
+                                                            share_fullname,  share_username, share_post_description,
+                                                            share_file_url, share_file_name);
         recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerAdapter));
     }
 
@@ -133,6 +151,31 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
                 else{
                     fileUrl.add(jsonobject.getString("file_url"));
                     fileName.add(jsonobject.getString("file_description"));
+                }
+                // share
+                if(jsonobject.isNull("share_postId")){
+                    share_postId.add("");
+                    share_pic_url.add("");
+                    share_fullname.add("");
+                    share_username.add("");
+                    share_post_description.add("");
+                    share_file_url.add("");
+                    share_file_name .add("");
+                }
+                else{
+                    share_postId.add(jsonobject.getString("share_postId"));
+                    share_pic_url.add(jsonobject.getString("share_pic_url"));
+                    share_fullname.add(jsonobject.getString("share_full_name"));
+                    share_username.add(jsonobject.getString("share_username"));
+                    share_post_description.add(jsonobject.getString("share_description"));
+                    if(jsonobject.isNull("share_file_url")){
+                        share_file_url.add("");
+                        share_file_name .add("");
+                    }
+                    else {
+                        share_file_url.add(jsonobject.getString("share_file_url"));
+                        share_file_name.add(jsonobject.getString("share_file_description"));
+                    }
                 }
             }
             srl.setRefreshing(false);

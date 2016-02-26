@@ -44,81 +44,90 @@ public class SearchActivity extends AppCompatActivity {
     private List<String> shares = new ArrayList<>();
     private List<String> fileUrl = new ArrayList<>();
     private List<String> fileName = new ArrayList<>();
+    //share
+    private List<String> share_postId = new ArrayList<>();
+    private List<String> share_pic_url = new ArrayList<>();
+    private List<String> share_fullname = new ArrayList<>();
+    private List<String> share_username = new ArrayList<>();
+    private List<String> share_post_description = new ArrayList<>();
+    private List<String> share_file_url = new ArrayList<>();
+    private List<String> share_file_name = new ArrayList<>();
+    private List<String> share_userType = new ArrayList<>();
 
-    RecyclerView recyclerViewPeople;
-    RecyclerView recyclerViewTopics;
-    private BroadcastReceiver broadcastReceiver;
-    private SharedPreferences spreferences;
-    private String schoolId;
+        RecyclerView recyclerViewPeople;
+        RecyclerView recyclerViewTopics;
+        private BroadcastReceiver broadcastReceiver;
+        private SharedPreferences spreferences;
+        private String schoolId;
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar();
-
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(getIntent().getStringExtra("Queries"));
-        //
-        recyclerViewPeople = (RecyclerView) findViewById(R.id.search_p_recyclerView);
-        recyclerViewTopics = (RecyclerView) findViewById(R.id.search_p_recyclerView);
-        //Clean dem
-        username.clear();
-        fullname.clear();
-        userId.clear();
-        //INIT YOUR id
-        spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
-        schoolId = spreferences.getString("SchoolId", "wala");
-
-        new initResults().execute(getIntent().getStringExtra("Queries"),schoolId,getIntent().getStringExtra("Action"));
-
-        broadcastReceiver = new MyBroadcastReceiver();
-
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(broadcastReceiver, new IntentFilter(FollowService.ACTION));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        unregisterReceiver(broadcastReceiver);
-    }
-
-    private class initResults extends AsyncTask<String,Void,String>{
 
         @Override
-        protected String doInBackground(String... params) {
-            Search sv = new Search();
-            return sv.searchPeople(params[0],params[1],params[2]);  //QUERIES FROM THE OTHER SIDE
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_search);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar();
+
+            android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+            assert actionBar != null;
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(getIntent().getStringExtra("Queries"));
+            //
+            recyclerViewPeople = (RecyclerView) findViewById(R.id.search_p_recyclerView);
+            recyclerViewTopics = (RecyclerView) findViewById(R.id.search_p_recyclerView);
+            //Clean dem
+            username.clear();
+            fullname.clear();
+            userId.clear();
+            //INIT YOUR id
+            spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
+            schoolId = spreferences.getString("SchoolId", "wala");
+
+            new initResults().execute(getIntent().getStringExtra("Queries"),schoolId,getIntent().getStringExtra("Action"));
+
+            broadcastReceiver = new MyBroadcastReceiver();
+
+        }
+        @Override
+        protected void onResume() {
+            super.onResume();
+            registerReceiver(broadcastReceiver, new IntentFilter(FollowService.ACTION));
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            //Log.i(TAG,result);
-            if(getIntent().getStringExtra("Action").equals("people")){
-                //PEOPLE
-                initViewPeople(result);
-            }
-            else if(getIntent().getStringExtra("Action").equals("topics")){
-                //POST
-                initViewPost(result);
-            }
-            else{
-                // DISCOVER
-            }
-
+        protected void onPause() {
+            super.onPause();
+            unregisterReceiver(broadcastReceiver);
         }
 
+        private class initResults extends AsyncTask<String,Void,String>{
 
-    }
+            @Override
+            protected String doInBackground(String... params) {
+                Search sv = new Search();
+                return sv.searchPeople(params[0],params[1],params[2]);  //QUERIES FROM THE OTHER SIDE
+            }
+
+            @Override
+            protected void onPostExecute(String result) {
+                //Log.i(TAG,result);
+                if(getIntent().getStringExtra("Action").equals("people")){
+                    //PEOPLE
+                    initViewPeople(result);
+                }
+                else if(getIntent().getStringExtra("Action").equals("topics")){
+                    //POST
+                    initViewPost(result);
+                }
+                else{
+                    // DISCOVER
+                }
+
+            }
+
+
+        }
     public void clear(){
         username.clear();
         fullname.clear();
@@ -128,6 +137,12 @@ public class SearchActivity extends AppCompatActivity {
         datetime.clear();
         pp_url.clear();
         owned.clear();
+        share_pic_url.clear();
+        share_fullname.clear();
+        share_username.clear();
+        share_post_description.clear();
+        share_file_url.clear();
+        share_file_name.clear();
     }
     private void initViewPeople(String result) {
         clear();
@@ -178,6 +193,32 @@ public class SearchActivity extends AppCompatActivity {
                     fileUrl.add(jsonobject.getString("file_url"));
                     fileName.add(jsonobject.getString("file_description"));
                 }
+                // share
+                if(jsonobject.isNull("share_postId")){
+                    Log.e("SearchActivitiy:" , "null bai");
+                    share_postId.add("");
+                    share_pic_url.add("");
+                    share_fullname.add("");
+                    share_username.add("");
+                    share_post_description.add("");
+                    share_file_url.add("");
+                    share_file_name .add("");
+                }
+                else{
+                    share_postId.add(jsonobject.getString("share_postId"));
+                    share_pic_url.add(jsonobject.getString("share_pic_url"));
+                    share_fullname.add(jsonobject.getString("share_full_name"));
+                    share_username.add(jsonobject.getString("share_username"));
+                    share_post_description.add(jsonobject.getString("share_description"));
+                    if(jsonobject.isNull("share_file_url")){
+                        share_file_url.add("");
+                        share_file_name .add("");
+                    }
+                    else {
+                        share_file_url.add(jsonobject.getString("share_file_url"));
+                        share_file_name.add(jsonobject.getString("share_file_description"));
+                    }
+                }
             }
             setupRecyclerView_topics(recyclerViewTopics);
         }catch (Exception e){
@@ -192,7 +233,10 @@ public class SearchActivity extends AppCompatActivity {
     private void setupRecyclerView_topics(RecyclerView precycler) {
         precycler.setLayoutManager(new LinearLayoutManager(this));
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,userId,datetime,pp_url,owned,isUpvoted,
-                isShared,upvotes, comments,shares,fileUrl,fileName);
+                isShared,upvotes, comments,shares,fileUrl,fileName,share_postId,
+                share_userType , share_pic_url,
+                 share_fullname,  share_username, share_post_description,
+                 share_file_url, share_file_name);
         precycler.setAdapter(recyclerAdapter);
     }
 

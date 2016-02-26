@@ -120,15 +120,15 @@
         <service android:name=".services.CommentService" />
         <service android:name=".services.NotificationService" />
         <service android:name=".services.UpvoteService" />
+        <service android:name=".services.MentionService" />
+        <service android:name=".services.ReportService"/>
 
         <receiver android:name=".alarm.AlarmManagerBroadcastReceiver" />
 
         <activity android:name=".CommentActivity" />
         <activity android:name=".CalendarActivity" />
 
-        <service
-            android:name=".services.MentionService"
-            android:exported="false" />
+
 
         <activity
             android:name=".CollegeActivity"
@@ -146,6 +146,10 @@
         <activity
             android:name=".DiscoverActivity"
             android:label="@string/title_activity_discover"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ReportActivity"
+            android:label="@string/title_activity_report"
             android:theme="@style/AppTheme"></activity>
     </application>
 

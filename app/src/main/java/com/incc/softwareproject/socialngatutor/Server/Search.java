@@ -40,7 +40,7 @@ public class Search extends Server {
                     + "=" + URLEncoder.encode(action, "UTF-8");
             data += "&" + URLEncoder.encode("queries", "UTF-8")
                     + "=" + URLEncoder.encode(queries, "UTF-8");
-            data += "&" + URLEncoder.encode("imo", "UTF-8")
+            data += "&" + URLEncoder.encode("imongId", "UTF-8")
                     + "=" + URLEncoder.encode(imongId, "UTF-8");
             data += "&" + URLEncoder.encode("courseNo", "UTF-8")
                     + "=" + URLEncoder.encode(courseNo, "UTF-8");

@@ -24,6 +24,11 @@ public class Server {
     private final static String NOTIFICATION_URL = "notification.php";
     private final static String UPLOADPIC_URL = "uploadpicture.php";
     private final static String COLLEGE_URL = "college.php";
+    private final static String REPORT_URL = "report.php";
+
+    public static String getReportUrl() {
+        return REPORT_URL;
+    }
     public static String getCollegeUrl() {
         return COLLEGE_URL;
     }

@@ -26,7 +26,7 @@
     <string name="title_activity_search">Search</string>
     <string name="title_activity_post_view">View Post</string>
     <string name="title_share_activity">Share</string>
-
+    <string name="title_report_activity">Report</string>
 
     <string name="options_report">Report</string>
     <string name="options_edit">Edit</string>
@@ -46,4 +46,6 @@
     <string name="post_hint">Say something about this...</string>
     <string name="tags">put similar words here para dali makit-an</string>
     <string name="addTag">Add Tags</string>
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="remarks_lbl">Reason(s) why you want to report this?</string>
 </resources>
