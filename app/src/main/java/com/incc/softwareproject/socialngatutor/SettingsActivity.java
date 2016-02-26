@@ -57,6 +57,11 @@ public class SettingsActivity extends AppCompatActivity {
         startActivity(i);
         overridePendingTransition(R.animator.animate3, R.animator.animate2);
     }
+    public void onViewRequest(View view) {
+        Intent i = new Intent(this, RequestActivity.class);
+        startActivity(i);
+        overridePendingTransition(R.animator.animate3, R.animator.animate2);
+    }
 
 
 

@@ -32,8 +32,8 @@
             android:layout_marginRight="12sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="20dp"
-            android:textColorHint="@color/color_primary_blue_dark"
-            android:textColorHighlight="@color/color_primary_blue"
+            android:textColorHint="#1c84a7"
+            android:textColorHighlight="#1c84a7"
             android:layout_gravity="top"/>
         <MultiAutoCompleteTextView
             android:id="@+id/share_tags"
@@ -48,8 +48,13 @@
         <Button
             android:id="@+id/share_shareBtn"
             android:text="@string/addTag"
+            android:background="@drawable/following"
+            android:layout_marginLeft="105dp"
+            android:layout_marginRight="105dp"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:drawableLeft="@drawable/ic_person"
+            android:layout_height="40dp" />
     </LinearLayout>
 
 

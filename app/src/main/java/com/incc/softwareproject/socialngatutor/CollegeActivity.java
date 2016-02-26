@@ -30,9 +30,17 @@ public class CollegeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_college);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Choose College");
+        getSupportActionBar();
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Choose College");
+
         recyclerView = (RecyclerView) findViewById(R.id.discover_colleges);
         new initColleges().execute();
+
+
         
     }
     private void setupRecyclerView(RecyclerView recyclerView) {

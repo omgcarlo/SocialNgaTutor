@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/editprofile_toolbar"
+            android:id="@+id/request_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/color_primary_blue_dark"
@@ -22,7 +22,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_editprofile" />
+    <include layout="@layout/content_request" />
 
 
 </android.support.design.widget.CoordinatorLayout>

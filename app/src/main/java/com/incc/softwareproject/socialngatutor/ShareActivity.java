@@ -67,6 +67,7 @@ public class ShareActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Share");//ambotwio123
 
         postId = getIntent().getStringExtra("PostId");
         ownerId = getIntent().getStringExtra("OwnerId");  // school Id

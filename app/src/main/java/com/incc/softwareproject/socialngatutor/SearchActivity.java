@@ -60,6 +60,50 @@ public class SearchActivity extends AppCompatActivity {
         private SharedPreferences spreferences;
         private String schoolId;
 
+<<<<<<< HEAD
+=======
+    RecyclerView recyclerViewPeople;
+    RecyclerView recyclerViewTopics;
+    private BroadcastReceiver broadcastReceiver;
+    private SharedPreferences spreferences;
+    private String schoolId;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar();
+
+
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle("Search");
+
+        recyclerViewPeople = (RecyclerView) findViewById(R.id.search_p_recyclerView);
+        recyclerViewTopics = (RecyclerView) findViewById(R.id.search_p_recyclerView);
+        //Clean dem
+        username.clear();
+        fullname.clear();
+        userId.clear();
+        //INIT YOUR id
+        spreferences = getSharedPreferences("ShareData",MODE_PRIVATE);
+        schoolId = spreferences.getString("SchoolId", "wala");
+
+        new initResults().execute(getIntent().getStringExtra("Queries"),schoolId,getIntent().getStringExtra("Action"));
+
+        broadcastReceiver = new MyBroadcastReceiver();
+
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(broadcastReceiver, new IntentFilter(FollowService.ACTION));
+    }
+>>>>>>> c7d55d3bb09bad52251b4f3f95b99c573a9c2ac3
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
