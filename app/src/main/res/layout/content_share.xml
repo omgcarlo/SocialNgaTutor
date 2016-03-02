@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="60dp"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/share_ppuser"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:gravity="left"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        fresco:placeholderImage="@drawable/icon_user_default"
-        fresco:roundAsCircle="true"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -46,15 +36,16 @@
             />
         <include layout="@layout/share_item"/>
         <Button
-            android:id="@+id/share_shareBtn"
+            android:id="@+id/share_TagBtn"
             android:text="@string/addTag"
-            android:background="@drawable/following"
-            android:layout_marginLeft="105dp"
-            android:layout_marginRight="105dp"
+            android:layout_marginLeft="75dp"
+            android:layout_marginRight="75dp"
             android:textColor="@color/white"
             android:layout_width="match_parent"
-            android:drawableLeft="@drawable/ic_person"
-            android:layout_height="40dp" />
+            android:drawableLeft="@drawable/ic_tag"
+            android:layout_height="50dp"
+            android:background="#00CCCC"
+            android:onClick="share_showTagInput"/>
     </LinearLayout>
 
 

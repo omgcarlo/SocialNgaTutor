@@ -32,6 +32,7 @@
     <string name="options_edit">Edit</string>
     <string name="options_delete">Delete</string>
     <string name="options_approve">Approve</string>
+    <string name="options_disapprove">Disapprove</string>
 
     <string name="loading_txt">Loading…</string>
     <string name="chosefile_txt">Tap me to choose file</string>
@@ -44,12 +45,17 @@
     <string name="discover_notes">Notes</string>
 
     <string name="post_hint">Say something about this...</string>
-    <string name="tags">put similar words here para dali makit-an</string>
-<<<<<<< HEAD
-    <string name="addTag">Add Tags</string>
+    <string name="tags">Put similar topics</string>
+
+    <string name="addTag">Add Tags or Similar Topics to describe your post</string>
     <string name="title_activity_report">ReportActivity</string>
     <string name="remarks_lbl">Reason(s) why you want to report this?</string>
-=======
-    <string name="addTag">Tag someone</string>
->>>>>>> c7d55d3bb09bad52251b4f3f95b99c573a9c2ac3
+
+    <string name="request_question">Why do you want to become a tutor?</string>
+    <string name="request_btn">REQUEST</string>
+    <string name="title_activity_edit_post">Edit Post</string>
+    <string name="title_activity_edit_comment">Edit Comment</string>
+    <string name="save_txt">Save</string>
+    <string name="title_activity_view_all_post">View Post</string>
+    <string name="error_msg">Something went wrong</string>
 </resources>

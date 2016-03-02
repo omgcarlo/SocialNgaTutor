@@ -37,7 +37,7 @@ public class User extends Server {
     public String signup(String... params) {
         String fields[] = {"schoolId", "username", "password", "birthdate", "email", "programId", "full_name"};
         BufferedReader reader = null;
-        String uri = getBaseUrl() + getUserUrl();
+        String uri = getBaseUrl() + getUserUrl()+ "?action=signup";
         res_txt = "";
         try {
             String data = URLEncoder.encode("action", "UTF-8")
@@ -46,8 +46,9 @@ public class User extends Server {
             for (int i = 0; i < fields.length; i++) {
                 data += "&" + URLEncoder.encode(fields[i], "UTF-8")
                         + "=" + URLEncoder.encode(params[i], "UTF-8");
-                Log.d("data:", params.length + "");
+
             }
+            Log.e("data:", data+ "");
             res_txt =  postFunction(uri,data);
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,18 +72,7 @@ public class User extends Server {
         }
         return res_txt;
     }
-    public String getFollowing(String userId){
-        String uri = getBaseUrl() + getUserUrl()  + "?action=getfollowing";
-        res_txt = "";
-        try{
-            String data = URLEncoder.encode("userId","UTF-8")
-                    + "=" + URLEncoder.encode(userId,"UTF-8");
-            res_txt = postFunction(uri,data);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return res_txt;
-    }
+
     public String unfollow(String imongId,String iyangId){
         String uri = getBaseUrl() + getUserUrl()  + "?action=unfollow";
         res_txt = "";
@@ -103,7 +93,7 @@ public class User extends Server {
         try {
             String data = URLEncoder.encode("imo", "UTF-8")
                     + "=" + URLEncoder.encode(imongId, "UTF-8");
-            if(!iyangId.equals("") && iyangId != null) {
+            if(!iyangId.equals("")) {
                 data += "&" + URLEncoder.encode("iya", "UTF-8")
                         + "=" + URLEncoder.encode(iyangId, "UTF-8");
             }

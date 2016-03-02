@@ -7,25 +7,21 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.incc.softwareproject.socialngatutor.Server.Comment;
 import com.incc.softwareproject.socialngatutor.Server.Post;
-import com.incc.softwareproject.socialngatutor.services.CommentService;
 import com.incc.softwareproject.socialngatutor.services.ReportService;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 public class ReportActivity extends AppCompatActivity {
     private TextView report_tv_fullname;
@@ -36,6 +32,7 @@ public class ReportActivity extends AppCompatActivity {
     private TextView report_tv_file_description;
     private String referenceTable;
     private String postId;
+    private String commentId;
     private String reporterId;
     private BroadcastReceiver broadcastReceiver;
     @Override
@@ -45,10 +42,6 @@ public class ReportActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         broadcastReceiver = new MyBroadcastReceiver();
-        postId = getIntent().getStringExtra("PostId");
-        reporterId = getIntent().getStringExtra("ReporterId");
-        referenceTable = getIntent().getStringExtra("ReferenceTable");
-
         report_userpp = (SimpleDraweeView) findViewById(R.id.report_card_ppicture);
         report_tv_description = (TextView) findViewById(R.id.report_card_post_details);
         report_tv_datetime = (TextView) findViewById(R.id.report_card_datetime);
@@ -56,7 +49,19 @@ public class ReportActivity extends AppCompatActivity {
         report_tv_username = (TextView) findViewById(R.id.report_card_username);
         report_tv_file_description = (TextView) findViewById(R.id.report_card_file_name);
 
-        new getPostDetails().execute(postId,reporterId);
+        reporterId = getIntent().getStringExtra("ReporterId");
+        referenceTable = getIntent().getStringExtra("ReferenceTable");
+
+        if(getIntent().getStringExtra("PostId") != null){
+            postId = getIntent().getStringExtra("PostId");
+            new getPostDetails().execute(postId,reporterId);
+        }
+        else{
+            //comment
+            commentId = getIntent().getStringExtra("CommentId");
+            Log.e("CommentId",commentId);
+            new getCommentDetails().execute(commentId);
+        }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_report, menu);
@@ -71,7 +76,12 @@ public class ReportActivity extends AppCompatActivity {
         if (id == R.id.action_report) {
             //PostService / PROCESS
             Intent intent = new Intent(this, ReportService.class);
-            intent.putExtra("PostId", postId);
+            if(postId != null){
+                intent.putExtra("PostId", postId);
+            }
+            else{
+                intent.putExtra("PostId", commentId);
+            }
             intent.putExtra("table", referenceTable);
             //Log.e("Report",referenceTable);
             startService(intent);
@@ -132,6 +142,35 @@ public class ReportActivity extends AppCompatActivity {
                 Toast.makeText(context, "Thank You for reporting", Toast.LENGTH_SHORT).show();
                 finish();
             }
+        }
+    }
+    private void initComment(String result){
+        try {
+            JSONObject reader = new JSONObject(result);
+            JSONObject data = reader.getJSONObject("Comment");
+            report_tv_fullname.setText(data.getString("Name"));
+            report_tv_username.setText(data.getString("Username"));
+            report_tv_description.setText(data.getString("comment"));
+            report_tv_datetime.setText(data.getString("datetime"));
+            Uri uri = Uri.parse(data.getString("pic_url"));
+            report_userpp.setImageURI(uri);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private class getCommentDetails extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+            Comment sv = new Comment();
+            return sv.getCommentDetails(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            //Log.e("Comment",s);
+            initComment(s);
         }
     }
 }

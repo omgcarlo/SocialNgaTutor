@@ -8,8 +8,12 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +22,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.incc.softwareproject.socialngatutor.Server.Post;
 import com.incc.softwareproject.socialngatutor.Server.User;
+import com.incc.softwareproject.socialngatutor.adapters.RecyclerAdapter;
 import com.incc.softwareproject.socialngatutor.services.FollowService;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
 public class ProfileActivity extends AppCompatActivity {
     private CollapsingToolbarLayout collapsingToolbarLayout = null;
@@ -34,7 +46,8 @@ public class ProfileActivity extends AppCompatActivity {
     private BroadcastReceiver broadcastReceiver;
 
     SharedPreferences spreferences;
-
+    List<String> username = new ArrayList<>();
+    RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +65,8 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(getIntent().getStringExtra("full_name"));
 
+        recyclerView = (RecyclerView) findViewById(R.id.profile_post_recyclerView);
+
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle("Profile");
 
@@ -66,10 +81,13 @@ public class ProfileActivity extends AppCompatActivity {
 
         if(getIntent().getExtras() != null && getIntent().getExtras().getString("UserId") != null) {
             userId = getIntent().getExtras().getString("UserId");
+
         }
         else{
-            userId = "";
+            userId = schoolId;
+
         }
+
         broadcastReceiver = new MyBroadcastReceiver();
         new InitProfileInfo().execute(schoolId,userId);
     }
@@ -84,6 +102,11 @@ public class ProfileActivity extends AppCompatActivity {
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.expandedappbar);
     }
 
+    public void getPost(View v){
+        Intent i = new Intent(this,ViewAllPostActivity.class);
+        i.putExtra("PostId",userId);
+        startActivity(i);
+    }
 
     private void initData(String result){
 
@@ -169,11 +192,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
     private class InitProfileInfo extends AsyncTask<String, Void, String>{
-
         @Override
         protected String doInBackground(String... params) {
             User sv = new User();
-            return sv.getProfileInfo(params[0],params[1]);
+            return sv.getProfileInfo(params[0], params[1]);
         }
 
         @Override
@@ -181,4 +203,5 @@ public class ProfileActivity extends AppCompatActivity {
             initData(s);
         }
     }
+
 }

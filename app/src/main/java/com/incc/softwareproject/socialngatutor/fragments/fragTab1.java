@@ -161,12 +161,14 @@ public class fragTab1 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
                     share_post_description.add("");
                     share_file_url.add("");
                     share_file_name .add("");
+                    share_userType.add("");
                 }
                 else{
                     share_postId.add(jsonobject.getString("share_postId"));
                     share_pic_url.add(jsonobject.getString("share_pic_url"));
                     share_fullname.add(jsonobject.getString("share_full_name"));
                     share_username.add(jsonobject.getString("share_username"));
+                    share_userType.add(jsonobject.getString("share_userType"));
                     share_post_description.add(jsonobject.getString("share_description"));
                     if(jsonobject.isNull("share_file_url")){
                         share_file_url.add("");

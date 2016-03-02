@@ -1,22 +1,18 @@
-package com.incc.softwareproject.socialngatutor.fragments;
+package com.incc.softwareproject.socialngatutor;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import com.incc.softwareproject.socialngatutor.R;
 import com.incc.softwareproject.socialngatutor.Server.Post;
-import com.incc.softwareproject.socialngatutor.Server.Search;
 import com.incc.softwareproject.socialngatutor.adapters.RecyclerAdapter;
 
 import org.json.JSONArray;
@@ -27,14 +23,9 @@ import java.util.List;
 
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 
-
-/**
- * Created by carlo on 21/12/2015.
- */
-public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
-    String SCHOOL_ID;
-    //  TO PASS IN RECYCLER ADAPTER
-    List<String> userId = new ArrayList<>();
+public class ViewAllPostActivity extends AppCompatActivity {
+    SharedPreferences spreferences;
+    List<String> userId1 = new ArrayList<>();
     List<String> username = new ArrayList<>();
     List<String> fullname = new ArrayList<>();
     List<String> post = new ArrayList<>();
@@ -58,39 +49,33 @@ public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.O
     private List<String> share_file_url = new ArrayList<>();
     private List<String> share_file_name = new ArrayList<>();
     private List<String> share_userType = new ArrayList<>();
-
-    SharedPreferences sData;
+    private String userId;
     RecyclerView recyclerView;
-    SwipeRefreshLayout srl;
-    public static fragDiscoverTopics newInstance() {
-        fragDiscoverTopics frag = new fragDiscoverTopics();
-        Bundle bundle = new Bundle();
-        frag.setArguments(bundle);
-        return frag;
-    }
-    
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        //recyclerView = (RecyclerView) inflater.inflate(R.layout.tab_1, container, false);
-        View view = inflater.inflate(R.layout.tab_discover_topics, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.tab_discover_topics_recyclerView);
-        clear();
-        new initPost().execute(getActivity().getIntent().getStringExtra("Code"));
-        sData = this.getActivity().getSharedPreferences("ShareData", Context.MODE_PRIVATE);
-        SCHOOL_ID = sData.getString("SchoolId", "wala");
-        srl = (SwipeRefreshLayout) view.findViewById(R.id.tab_discover_topics_swipe_refresh_layout);
-        srl.setOnRefreshListener(this);
-        srl.setColorSchemeColors(R.color.color_accent_pink,R.color.color_primary_blue,R.color.color_primary_red);
-        //Toast.makeText(getActivity(),SCHOOL_ID, Toast.LENGTH_SHORT).show();
-        return view;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_all_post);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        recyclerView = (RecyclerView) findViewById(R.id.profile_post_recyclerView);
+        new initPost().execute(getIntent().getStringExtra("PostId"));
 
+    }
+    private void setupRecyclerView(RecyclerView recyclerView) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,
+                userId1,datetime,pp_url,owned,isUpvoted,
+                isShared,upvotes, comments,shares,fileUrl,fileName,
+                share_postId, share_userType , share_pic_url,
+                share_fullname,  share_username, share_post_description,
+                share_file_url, share_file_name);
+        recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerAdapter));
+    }
     public void clear(){
         username.clear();
         fullname.clear();
         postId.clear();
-        userId.clear();
+        userId1.clear();
         post.clear();
         datetime.clear();
         pp_url.clear();
@@ -109,31 +94,39 @@ public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.O
         share_file_url.clear();
         share_file_name.clear();
     }
-    private void setupRecyclerView(RecyclerView recyclerView) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        RecyclerAdapter recyclerAdapter = new RecyclerAdapter(fullname,username,post,postId,
-                                                            userId,datetime,pp_url,owned,isUpvoted,
-                                                            isShared,upvotes, comments,shares,fileUrl,fileName,
-                                                            share_postId, share_userType , share_pic_url,
-                                                            share_fullname,  share_username, share_post_description,
-                                                            share_file_url, share_file_name);
-        recyclerView.setAdapter(new AlphaInAnimationAdapter(recyclerAdapter));
-    }
+    private class initPost extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            //Log.d("id",SCHOOL_ID);
+            Post svConn = new Post();
+            return svConn.getOwnPost(params[0]);
+        }
 
+        @Override
+        protected void onPostExecute(String result) {
+            if(!result.equals("")){
+                // Log.d("ress",result);
+                convertJSON(result);
+            }
+            else{
+                Log.d("TAB1", "error");
+            }
+        }
+    }
     protected void convertJSON(String result){
-        //Log.e("tab1 res:",result);
+        //Log.e("profile res:",result);
         try {
             clear();
             JSONObject reader = new JSONObject(result);
-            JSONArray data = reader.getJSONArray("Discover");
+            JSONArray data = reader.getJSONArray("Post");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject jsonobject = data.getJSONObject(i);
-               //Log.d("des",jsonobject.getString("description"));  //TESTING PURPOSE ONLY
+                //Log.d("des",jsonobject.getString("description"));  //TESTING PURPOSE ONLY
                 username.add(jsonobject.getString("username"));
                 post.add(jsonobject.getString("description"));
                 fullname.add(jsonobject.getString("full_name"));
                 postId.add(jsonobject.getString("postId"));
-                userId.add(jsonobject.getString("schoolId"));
+                userId1.add(jsonobject.getString("schoolId"));
                 datetime.add(jsonobject.getString("datetime"));
                 pp_url.add(jsonobject.getString("pic_url"));
                 owned.add(jsonobject.getBoolean("isOwned"));
@@ -152,7 +145,6 @@ public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.O
                 }
                 // share
                 if(jsonobject.isNull("share_postId")){
-                    Log.e("DiscoverActivitiy:", "null bai");
                     share_postId.add("");
                     share_pic_url.add("");
                     share_fullname.add("");
@@ -167,8 +159,8 @@ public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.O
                     share_pic_url.add(jsonobject.getString("share_pic_url"));
                     share_fullname.add(jsonobject.getString("share_full_name"));
                     share_username.add(jsonobject.getString("share_username"));
-                    share_post_description.add(jsonobject.getString("share_description"));
                     share_userType.add(jsonobject.getString("share_userType"));
+                    share_post_description.add(jsonobject.getString("share_description"));
                     if(jsonobject.isNull("share_file_url")){
                         share_file_url.add("");
                         share_file_name .add("");
@@ -178,37 +170,10 @@ public class fragDiscoverTopics extends Fragment implements SwipeRefreshLayout.O
                         share_file_name.add(jsonobject.getString("share_file_description"));
                     }
                 }
-
             }
-            srl.setRefreshing(false);
             setupRecyclerView(recyclerView);
-
         }catch (Exception e){
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onRefresh() {
-        new initPost().execute(getActivity().getIntent().getStringExtra("Code"));
-    }
-
-    private class initPost extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... params) {
-            Search svConn = new Search();
-            return svConn.dicoverTopics("discoverTopics","",SCHOOL_ID,params[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if(!result.equals("")){
-               // Log.d("ress",result);
-                convertJSON(result);
-            }
-            else{
-                Log.d("TAB1","error");
-            }
         }
     }
 }

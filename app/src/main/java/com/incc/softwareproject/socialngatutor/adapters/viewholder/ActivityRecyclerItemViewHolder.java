@@ -62,7 +62,10 @@ public class ActivityRecyclerItemViewHolder extends AnimateViewHolder implements
             context.startActivity(i);
         }
         else if((tv_description.getText().toString()).equals("mentioned you")){
-            Toast.makeText(context, "Redirecting...", Toast.LENGTH_SHORT).show();
+            //GOTO VIEW POST
+            Intent i = new Intent(context, PostViewActivity.class);
+            i.putExtra("PostId", postId);
+            context.startActivity(i);
         }
         else{
             Intent i = new Intent(context,ProfileActivity.class);

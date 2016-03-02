@@ -13,7 +13,7 @@ import java.net.URLConnection;
  * Created by carlo on 1/8/16.
  */
 public class Server {
-    private final static String BASE_URL = "http://192.168.1.7/STFinal/STServer/";
+    private final static String BASE_URL = "http://172.31.11.32/STFinal/STServer/"; //my name is burayan desu
     private final static String USER_URL = "user.php";
     private final static String PROGRAM_URL = "program.php";
     private final static String POST_URL = "post.php";
@@ -26,6 +26,11 @@ public class Server {
     private final static String COLLEGE_URL = "college.php";
     private final static String REPORT_URL = "report.php";
 
+    public static String getRequestUrl() {
+        return REQUEST_URL;
+    }
+
+    private final static String REQUEST_URL = "request.php";
     public static String getReportUrl() {
         return REPORT_URL;
     }

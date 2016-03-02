@@ -62,6 +62,18 @@ public class Post extends Server {
                     + "=" + URLEncoder.encode(postId, "UTF-8");
             data += "&" + URLEncoder.encode("ownerId", "UTF-8")
                     + "=" + URLEncoder.encode(userId, "UTF-8");
+
+            res_txt =  postFunction(uri, data);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
+    }
+    public String getOwnPost(String ownerId){
+        String uri = getBaseUrl() + getPostUrl() + "?action=getOwnPost";
+        try{
+            String data = URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
             res_txt =  postFunction(uri, data);
         }catch (Exception e){
             e.printStackTrace();
@@ -110,8 +122,51 @@ public class Post extends Server {
         }
         // return response on activity
         return res_txt;
-
     }
+    public String deletePost(String postId){
+        String uri = getBaseUrl() + getPostUrl() +"?action=deletePost";
+        res_txt = "";
+        try {
+            String data = URLEncoder.encode("postId", "UTF-8")
+                    + "=" + URLEncoder.encode(postId, "UTF-8");
+            res_txt = postFunction(uri,data);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return res_txt;
+    }
+    public String updatePost(String postId,String description, String type,String ownerId,String tags,boolean filestatus){
+        String uri = getBaseUrl() + getPostUrl() + "?action=editPost";
 
+        try {
+            String data =URLEncoder.encode("description", "UTF-8")
+                    + "=" + URLEncoder.encode(description, "UTF-8");
+
+            data += "&" + URLEncoder.encode("postId", "UTF-8")
+                    + "=" + URLEncoder.encode(postId, "UTF-8");
+
+            data += "&" + URLEncoder.encode("type", "UTF-8")
+                    + "=" + URLEncoder.encode(type, "UTF-8");
+
+            data += "&" + URLEncoder.encode("ownerId", "UTF-8")
+                    + "=" + URLEncoder.encode(ownerId, "UTF-8");
+
+            data += "&" + URLEncoder.encode("tags", "UTF-8")
+                    + "=" + URLEncoder.encode(tags, "UTF-8");
+            if(filestatus){
+                data += "&" + URLEncoder.encode("filestatus", "UTF-8")
+                        + "=" + URLEncoder.encode("delete", "UTF-8");
+            }
+
+            //post function here
+            res_txt =  postFunction(uri,data);
+
+            // res_txt = data;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // return response on activity
+        return res_txt;
+    }
 
 }

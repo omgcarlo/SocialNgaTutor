@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="68dp">
+        android:layout_marginTop="68dp"
+        android:orientation="vertical">
 
 
         <LinearLayout
@@ -19,95 +21,101 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:text=" Request"
-                android:textSize="19sp"
                 android:textColor="@color/black"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="19sp" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="20dp"
-                android:background="@color/lightgrey"
-                android:layout_marginTop="13dp"/>
+                android:layout_marginTop="13dp"
+                android:background="@color/lightgrey" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp">
-
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
 
             <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/request_userpp"
                 android:layout_width="70dp"
                 android:layout_height="65dp"
                 android:layout_gravity="left"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
                 android:elevation="4dp"
-                fresco:placeholderImage="@drawable/carlo"
-                fresco:roundAsCircle="true"/>
-
+                fresco:roundAsCircle="true" />
 
             <TextView
+                android:id="@+id/request_fullname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="-50dp"
                 android:text="Meynard Inso"
                 android:textColor="#909090"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
             <TextView
+                android:id="@+id/request_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="meynardgwapo.com"
-                android:textSize="11sp"
-                android:textColor="#A0A0A0"/>
+                android:textColor="#A0A0A0"
+                android:textSize="11sp" />
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#C0C0C0"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:background="#C0C0C0" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="30dp">
+            android:layout_marginBottom="30dp"
+            android:orientation="vertical">
 
             <EditText
+                android:id="@+id/request_remarks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Why do you want to become a tutor?"
-                android:textColorHint="#909090"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:layout_marginTop="30dp"
                 android:layout_marginLeft="35dp"
                 android:layout_marginRight="35dp"
-                />
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:hint="@string/request_question"
+                android:textColorHint="#909090"
+                android:textSize="16sp" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="   REQUEST"
-                android:background="@drawable/following"
                 android:layout_marginLeft="110dp"
                 android:layout_marginRight="110dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/following"
+                android:drawableRight="@drawable/ic_register"
+                android:text="@string/request_btn"
                 android:textColor="@color/white"
-                android:drawableRight="@drawable/ic_register"/>
-
-
-
+                android:onClick="requestBtn"/>
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="#C0C0C0"
-            android:layout_marginTop="8dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="8dp"
+            android:background="#C0C0C0" />
 
     </LinearLayout>
 </LinearLayout>

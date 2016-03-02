@@ -15,22 +15,27 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.incc.softwareproject.socialngatutor.CommentActivity;
+import com.incc.softwareproject.socialngatutor.EditPostActivity;
 import com.incc.softwareproject.socialngatutor.PostViewActivity;
 import com.incc.softwareproject.socialngatutor.ProfileActivity;
 import com.incc.softwareproject.socialngatutor.R;
 import com.incc.softwareproject.socialngatutor.ReportActivity;
 import com.incc.softwareproject.socialngatutor.ShareActivity;
 import com.incc.softwareproject.socialngatutor.services.CommentService;
+import com.incc.softwareproject.socialngatutor.services.DeleteService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 import com.incc.softwareproject.socialngatutor.services.UpvoteService;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
 
 import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
 
@@ -61,11 +66,12 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
     private final TextView comments;
     private final TextView shares;
 
-    private CardView fileCV;
+    private LinearLayout fileCV;
     private String fileUrl;
     private TextView file;
     //  SHARE
-    private CardView share_container;
+    private String share_postId;
+    private LinearLayout share_container;
     private SimpleDraweeView share_profilePicture;
     private TextView share_fullname;
     private TextView share_username;
@@ -74,14 +80,16 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
     private TextView share_file_name;
     private String shareFileUrl;
     private ProgressBar share_progressbar;
+    //private String sharePostId;
+    private String shareUserType;
 
     public RecyclerItemViewHolder(final View parent, TextView tv_username,
                                   TextView tv_post, TextView fullname,
                                   ImageButton comment, ImageButton upvote, ImageButton upvote2,
                                   ImageButton share, TextView tv_datetime,
                                   SimpleDraweeView pp, ImageButton options, TextView upvotes,
-                                  TextView comments, TextView shares, TextView file, CardView fileCV,
-                                  CardView share_container, SimpleDraweeView share_profilePicture,
+                                  TextView comments, TextView shares, TextView file, LinearLayout fileCV,
+                                  LinearLayout share_container, SimpleDraweeView share_profilePicture,
                                   TextView share_fullname, TextView share_username, TextView share_post_description,
                                   CardView share_file_container, TextView share_file_name,ProgressBar share_progressbar) {
 
@@ -124,12 +132,13 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
         //  WHEN THE USER TOUCHES THE POST
         this.tv_post.setOnClickListener(this);
 
-        //  SET LISTENER SA COMMENT UG UPVOTE UG FILE
+        //  SET LISTENER ON CLICKABLES
         this.comment.setOnClickListener(this);
         this.share.setOnClickListener(this);
         this.upvote.setOnClickListener(this);
         this.upvote2.setOnClickListener(this);
         this.fileCV.setOnClickListener(this);
+        this.share_file_name.setOnClickListener(this);
         //  INIT AND SET LISTENER FOR OPTIONS
         this.options = options;
 
@@ -153,7 +162,7 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
         TextView comments = (TextView) parent.findViewById(R.id.card_comments);
         TextView shares = (TextView) parent.findViewById(R.id.card_shares);
         TextView file = (TextView) parent.findViewById(R.id.card_file_name);
-        CardView fileCV = (CardView) parent.findViewById(R.id.card_post_file);
+        LinearLayout fileCV = (LinearLayout) parent.findViewById(R.id.card_post_file);
 
         ImageButton comment = (ImageButton) parent.findViewById(R.id.pt_commentBtn);    //PT = PosT
         ImageButton upvote = (ImageButton) parent.findViewById(R.id.pt_upvoteBtn);
@@ -165,7 +174,7 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
         SimpleDraweeView profilePicture = (SimpleDraweeView) parent.findViewById(R.id.card_ppicture);
 
         //  Share container
-        CardView share_container = (CardView) parent.findViewById(R.id.share_card_container);
+        LinearLayout share_container = (LinearLayout) parent.findViewById(R.id.share_card_container);
         SimpleDraweeView share_profilePicture = (SimpleDraweeView) parent.findViewById(R.id.share_card_ppicture);
         TextView share_fullname = (TextView) parent.findViewById(R.id.share_card_fullname);
         TextView share_username = (TextView) parent.findViewById(R.id.share_card_username);
@@ -220,11 +229,15 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
             Intent i = new Intent(context, CommentActivity.class);
             i.putExtra("PostId", postId);
             i.putExtra("FullName", tv_fullname.getText().toString());
+            i.putExtra("isOwned",owned);
             context.startActivity(i);
             ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
         } else if (v.getId() == R.id.pt_shareBtn) {
             Intent i = new Intent(context, ShareActivity.class);
-            i.putExtra("PostId", postId);
+            if(share_postId.equals(""))
+                i.putExtra("PostId", postId);
+            else
+                i.putExtra("PostId", share_postId);
             i.putExtra("OwnerId", schoolId);
             context.startActivity(i);
             ((Activity) context).overridePendingTransition(R.animator.animate3, R.animator.animate2);
@@ -265,6 +278,17 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
                         i.putExtra("ReferenceTable","post");
                         context.startActivity(i);
                     }
+                    else if(item.getTitle().equals("Edit")){
+                        Intent i = new Intent(context, EditPostActivity.class);
+                        i.putExtra("PostId",postId);
+                        context.startActivity(i);
+                    }
+                    else{
+                        Intent i = new Intent(context, DeleteService.class);
+                        i.putExtra("PostId",postId);
+                        i.putExtra("Action","post");
+                        context.startService(i);
+                    }
                     return true;
                 }
             });
@@ -273,13 +297,17 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
         } else if (v.getId() == fileCV.getId()) {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(fileUrl));
             context.startActivity(browserIntent);
-        } else {
+
+        }
+        else if(v.getId() == share_file_name.getId()){
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(shareFileUrl));
+            context.startActivity(browserIntent);
+        }
+        else {
             //GOTO VIEW POST
             Intent i = new Intent(context, PostViewActivity.class);
             i.putExtra("PostId", postId);
             context.startActivity(i);
-
-
         }
     }
 
@@ -385,5 +413,14 @@ public class RecyclerItemViewHolder extends AnimateViewHolder implements View.On
     }
     public void setShareFileName(String shareFileName) {
         share_file_name.setText(shareFileName);
+    }
+
+    public void setSharePostId(String sharePostId) {
+        this.share_postId= sharePostId;
+    }
+
+
+    public void setShareUserType(String shareUserType) {
+        this.shareUserType = shareUserType;
     }
 }

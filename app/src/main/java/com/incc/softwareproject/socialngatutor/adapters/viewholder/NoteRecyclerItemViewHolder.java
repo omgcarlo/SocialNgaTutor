@@ -34,7 +34,7 @@ public class NoteRecyclerItemViewHolder extends AnimateViewHolder implements Vie
         this.tv_file_description = file_description;
         this.tv_note_description = note_description;
         this.tv_datetime = datetime;
-
+        this.tv_file_description.setOnClickListener(this);
         context =  parent.getContext();
     }
 
@@ -49,7 +49,8 @@ public class NoteRecyclerItemViewHolder extends AnimateViewHolder implements Vie
 
     @Override
     public void onClick(View v) {
-
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(file_url));
+        context.startActivity(browserIntent);
     }
 
 

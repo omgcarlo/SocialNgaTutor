@@ -108,7 +108,11 @@ public class fragTab4 extends Fragment implements SwipeRefreshLayout.OnRefreshLi
                 //  IF THE ACTIVITY IS COMMENT THEN POST ID SHOULD BE ADDED
                 if (jsonobject.getString("Activity").equals("comment")) {
                     postId.add(jsonobject.getString("postId"));
-                } else {
+                }
+                else if (jsonobject.getString("Activity").equals("mention")) {
+                    postId.add(jsonobject.getString("postId"));
+                }
+                else {
                     postId.add("");
                 }
 

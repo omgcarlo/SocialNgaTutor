@@ -67,7 +67,7 @@ public class ShareActivity extends AppCompatActivity {
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Share");//ambotwio123
+        actionBar.setTitle("Share");
 
         postId = getIntent().getStringExtra("PostId");
         ownerId = getIntent().getStringExtra("OwnerId");  // school Id
@@ -129,6 +129,10 @@ public class ShareActivity extends AppCompatActivity {
                     .execute(postId,description.getText().toString(),"Post",ownerId,tags);
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void share_showTagInput(View v){
+        findViewById(R.id.share_TagBtn).setVisibility(View.GONE);
+        findViewById(R.id.share_tags).setVisibility(View.VISIBLE);
     }
     private void initPeople(String s) {
         try {

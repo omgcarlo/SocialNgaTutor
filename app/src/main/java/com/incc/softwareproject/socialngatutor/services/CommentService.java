@@ -3,10 +3,8 @@ package com.incc.softwareproject.socialngatutor.services;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.incc.softwareproject.socialngatutor.Server.Comment;
-import com.incc.softwareproject.socialngatutor.Server.Server;
 
 import org.json.JSONObject;
 

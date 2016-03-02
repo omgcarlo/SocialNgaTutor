@@ -69,9 +69,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.file_url = file_url;
         this.fileName = fileName;
         //share
+        this.share_postId = share_postId;
         this.share_pic_url = share_pic_url;
         this.share_fullname = share_fullname;
         this.share_username = share_username;
+        this.share_userType = share_userType;
         this.share_post_description = share_post_description;
         this.share_file_url = share_file_url;
         this.share_file_name = share_file_name;
@@ -103,13 +105,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         String s_shares = shares.get(position);
         String s_file_url = file_url.get(position);
         String s_file_name = fileName.get(position);
+
         //share
+        String s_share_postId = share_postId.get(position);
         String s_share_pic_url = share_pic_url.get(position);
         String s_share_fullname = share_fullname.get(position);
         String s_share_username = share_username.get(position);
         String s_share_post_description = share_post_description.get(position);
         String s_share_file_url = share_file_url.get(position);
         String s_share_file_name = share_file_name.get(position);
+        String s_share_userType = share_userType.get(position);
 
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
@@ -127,12 +132,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         holder.setFileUrl(s_file_url);
         holder.setFileName(s_file_name);
         //share
+        holder.setSharePostId(s_share_postId);
         holder.setSharePic(s_share_pic_url);
         holder.setShareUsername(s_share_username);
         holder.setShareFullName(s_share_fullname);
         holder.setShareDescription(s_share_post_description);
         holder.setShareFileUrl(s_share_file_url);
         holder.setShareFileName(s_share_file_name);
+        holder.setShareUserType(s_share_userType);
     }
 
     @Override

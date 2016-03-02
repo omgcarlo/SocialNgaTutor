@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -84,7 +85,7 @@ public class LoginProcessActivity extends AppCompatActivity {
 
     private void animateRetry() {
         loading1.setVisibility(View.INVISIBLE);
-        (findViewById(R.id.retrybtn)).setVisibility(View.VISIBLE);
+        findViewById(R.id.retrybtn).setVisibility(View.VISIBLE);
     }
 
     public void retryBtn(View v) {
@@ -118,17 +119,27 @@ public class LoginProcessActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-
-            if (!result.equals("") || result != null) {
-                loading1.setVisibility(View.INVISIBLE);
-                //Log.d("Resulta", result);
-                balhin(result);
-                finish();
-            } else {
+            Log.e("Resulta", result);
+            try{
+                JSONObject reader = new JSONObject(result);
+                JSONObject data = reader.getJSONObject("User");
+                if(data.getBoolean("Success")){
+                    loading1.setVisibility(View.INVISIBLE);
+                    balhin(result);
+                    finish();
+                }
+                else{
+                    //animate
+                    animateRetry();
+                    tv.setText("No User found or you've been blocked");
+                }
+            }
+            catch (Exception e){
                 //animate
                 animateRetry();
                 tv.setText("Cannot Connect to Server or Database");
             }
+
         }
     }
 }

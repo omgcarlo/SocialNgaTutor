@@ -10,53 +10,46 @@
     android:background="@drawable/commentbg"
     card_view:cardCornerRadius="4dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
+
             android:layout_marginTop="3dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="1dp"
-                android:orientation="horizontal">
-
+                android:orientation="vertical">
                 <TextView
                     android:id="@+id/note_description"
                     style="@style/Base.TextAppearance.AppCompat.Body2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:padding="8dp"
                     android:text="@string/loading_txt"
                     android:textColor="#0066CC"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
 
                 <TextView
+                    android:id="@+id/note_file_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/loading_txt" />
+                <TextView
                     android:id="@+id/note_full_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
-                    android:layout_weight="11"
+                    android:layout_marginLeft="8dp"
                     android:text="@string/loading_txt"
                     android:textColor="@color/black"
                     android:textSize="13sp"
                     />
             </LinearLayout>
-            <TextView
-                android:id="@+id/note_file_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="35dp"
-                android:text="@string/loading_txt" />
         </RelativeLayout>
         <TextView
             android:id="@+id/note_time"
@@ -65,8 +58,8 @@
             android:src="@drawable/ic_share"
             android:text="@string/loading_txt"
             android:layout_marginBottom="5dp"
+            android:layout_marginRight="10dp"
             android:textColor="@color/lightgrey"
             android:gravity="right"
             android:textSize="8sp" />
-    </LinearLayout>
 </RelativeLayout>

@@ -128,15 +128,15 @@
         <service android:name=".services.NotificationService" />
         <service android:name=".services.UpvoteService" />
         <service android:name=".services.MentionService" />
-        <service android:name=".services.ReportService"/>
+        <service android:name=".services.ReportService" />
+        <service android:name=".services.RequestService" />
+        <service android:name=".services.ApproveService" />
+        <service android:name=".services.DeleteService" />
 
         <receiver android:name=".alarm.AlarmManagerBroadcastReceiver" />
 
         <activity android:name=".CommentActivity" />
         <activity android:name=".CalendarActivity" />
-
-
-
         <activity
             android:name=".CollegeActivity"
             android:label="@string/title_activity_discover"
@@ -157,6 +157,14 @@
         <activity
             android:name=".ReportActivity"
             android:label="@string/title_activity_report"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EditPostActivity"
+            android:label="@string/title_activity_edit_post"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ViewAllPostActivity"
+            android:label="@string/title_activity_view_all_post"
             android:theme="@style/AppTheme"></activity>
     </application>
 

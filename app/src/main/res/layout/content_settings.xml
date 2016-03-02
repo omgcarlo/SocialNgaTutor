@@ -34,6 +34,7 @@
             android:layout_height="83dp"
             android:layout_marginLeft="20dp"
             android:onClick="onViewEditProfile"
+            android:visibility="gone"
             android:background="@drawable/settingsbg"
             android:layout_marginRight="20dp"
             android:orientation="vertical">
@@ -63,6 +64,7 @@
             android:layout_marginRight="20dp"/>
 
         <LinearLayout
+            android:id="@+id/setting_request_container"
             android:layout_width="match_parent"
             android:layout_height="83dp"
             android:layout_marginLeft="20dp"
@@ -72,6 +74,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/setting_request"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Request "
@@ -81,6 +84,7 @@
                 android:textColor="@color/black"
                 />
             <TextView
+                android:id="@+id/setting_request_sub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Allows you to request to become a tutor"

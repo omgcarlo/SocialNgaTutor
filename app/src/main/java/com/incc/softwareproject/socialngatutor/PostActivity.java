@@ -200,13 +200,6 @@ public class PostActivity extends AppCompatActivity implements QueryTokenReceive
         return super.onOptionsItemSelected(item);
     }
 
-    public void onUpdateSuggestions() {
-        // Handle person mentions
-        if (lastPersonSuggestions != null) {
-            editor.onReceiveSuggestionsResult(lastPersonSuggestions, PERSON_BUCKET);
-        }
-    }
-
     @Override
     public List<String> onQueryReceived(@NonNull final QueryToken queryToken) {
         final List<String> buckets = new ArrayList<>();
@@ -248,6 +241,9 @@ public class PostActivity extends AppCompatActivity implements QueryTokenReceive
                 Toast.makeText(context, "Successfully Posted Something", Toast.LENGTH_SHORT).show();
                 if(filePath != null && !filePath.equals("")){
                     new UploadFile().execute();
+                }
+                else{
+                    finish();
                 }
 
             }
@@ -374,7 +370,7 @@ public class PostActivity extends AppCompatActivity implements QueryTokenReceive
                 // Append server response in string
                 sb.append(line + "\n");
             }
-            Log.e("PostAct:res", upLoadServerUri + sb.toString());
+            //Log.e("PostAct:res", upLoadServerUri + sb.toString());
 
             //close the streams //
             fileInputStream.close();

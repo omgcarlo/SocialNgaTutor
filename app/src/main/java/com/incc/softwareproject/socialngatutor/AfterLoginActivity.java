@@ -32,6 +32,7 @@ import com.incc.softwareproject.socialngatutor.fragments.fragTab1;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab2;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab3;
 import com.incc.softwareproject.socialngatutor.fragments.fragTab4;
+import com.incc.softwareproject.socialngatutor.services.DeleteService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 
 import java.util.ArrayList;
@@ -73,6 +74,7 @@ public class AfterLoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         registerReceiver(broadcastReceiver, new IntentFilter(PostService.ACTION));
+        //registerReceiver(broadcastReceiver, new IntentFilter(DeleteService.ACTION));
     }
 
     @Override

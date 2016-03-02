@@ -13,6 +13,7 @@ import java.util.List;
 
 public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private List<String> commentId;
     private List<String> fullname;
     private List<String> username;
     private List<String> userId;
@@ -20,10 +21,12 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     private List<String> comment;
     private List<String> userType;
     private List<String> pic_url;
-    public CommentRecyclerAdapter(List<String> itemList, List<String> itemList2,
+    private List<String> datetime;
+    private List<Boolean> owned;
+    public CommentRecyclerAdapter(List<String> commentId,List<String> itemList, List<String> itemList2,
                                   List<String> itemList3, List<Boolean> item4,
-                                  List<String> item5, List<String> item6,List<String> pic_url){
-
+                                  List<String> item5, List<String> item6,List<String> pic_url,List<String> datetime,List<Boolean> owned){
+        this.commentId = commentId;
         fullname = itemList;
         username = itemList2;
         userId = itemList3;
@@ -31,6 +34,8 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         comment = item5;
         userType = item6;
         this.pic_url = pic_url;
+        this.datetime = datetime;
+        this.owned = owned;
     }
 
     @Override
@@ -43,7 +48,7 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         CommentRecyclerItemViewHolder holder = (CommentRecyclerItemViewHolder) viewHolder;
-
+        String s_commentId = commentId.get(position);
         String s_fullname = fullname.get(position);
         String s_username = username.get(position);
         String s_userId = userId.get(position);
@@ -51,7 +56,10 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         String s_comment = comment.get(position);
         String s_usertype = userType.get(position);
         String s_pic_url = pic_url.get(position);
+        String s_datetime = datetime.get(position);
+        boolean s_owned = owned.get(position);
 
+        holder.setCommentId(s_commentId);
         holder.setFullname(s_fullname);
         holder.setUserName(s_username);
         holder.setUserId(s_userId);
@@ -59,6 +67,8 @@ public class CommentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vi
         holder.setComment(s_comment);
         holder.setUserType(s_usertype);
         holder.setPicUrl(s_pic_url);
+        holder.setDateTime(s_datetime);
+        holder.setOwned(s_owned);
     }
 
     @Override

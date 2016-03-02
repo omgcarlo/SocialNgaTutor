@@ -22,6 +22,7 @@ import com.incc.softwareproject.socialngatutor.Server.Server;
 import com.incc.softwareproject.socialngatutor.Server.User;
 import com.incc.softwareproject.socialngatutor.adapters.CommentRecyclerAdapter;
 import com.incc.softwareproject.socialngatutor.services.CommentService;
+import com.incc.softwareproject.socialngatutor.services.DeleteService;
 import com.incc.softwareproject.socialngatutor.services.PostService;
 import com.incc.softwareproject.socialngatutor.tokenizer.SpaceTokenizer;
 
@@ -31,30 +32,35 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 public class CommentActivity extends AppCompatActivity {
     private String icomment;    // inputted comment to be inserted in the database
     private String postId;
+    //private String pp_url;
     private BroadcastReceiver broadcastReceiver;
 
+    private List<String> commentId = new ArrayList<>();
     private List<String> fullname = new ArrayList<>();
     private List<String> username = new ArrayList<>();
     private List<String> userType = new ArrayList<>();
     private List<String> userId = new ArrayList<>();
     private List<Boolean> isApproved = new ArrayList<>();
-
+    private List<String> datetime = new ArrayList<>();
     private List<String> comment= new ArrayList<>();
     private List<String> pic_url = new ArrayList<>();
+    private List<Boolean> owned = new ArrayList<>();
 
     RecyclerView recyclerView;
     SharedPreferences spreferences;
-
+    private boolean own;
     private List<String> usernames = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
         postId = getIntent().getStringExtra("PostId");
+        own  = getIntent().getBooleanExtra("isOwned",false);
         broadcastReceiver = new MyBroadcastReceiver();
         recyclerView = (RecyclerView) findViewById(R.id.c_recyclerView);
         //  GET USERNAME
@@ -70,7 +76,6 @@ public class CommentActivity extends AppCompatActivity {
     }
     public void commentClose(View v){
         finish();
-        overridePendingTransition(R.animator.animate2, R.animator.animate3);
     }
     public void postComment(View v){
         //Toast.makeText(CommentActivity.this, "wewewewewew", Toast.LENGTH_SHORT).show();
@@ -85,6 +90,7 @@ public class CommentActivity extends AppCompatActivity {
 
     }
     private void clrData(){
+        commentId.clear();
         fullname.clear();
         username.clear();
         userId.clear();
@@ -121,7 +127,8 @@ public class CommentActivity extends AppCompatActivity {
 
     private void setupRecyclerView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(fullname,username,userId,isApproved,comment,userType,pic_url);
+        CommentRecyclerAdapter crecyclerAdapter = new CommentRecyclerAdapter(commentId,fullname,username,
+                userId,isApproved,comment,userType,pic_url,datetime,owned);
         recyclerView.setAdapter(crecyclerAdapter);
     }
     protected void animateComment(){
@@ -144,9 +151,12 @@ public class CommentActivity extends AppCompatActivity {
                 userId.add(jsonobject.getString("schoolId"));
                 userType.add(jsonobject.getString("UserType"));
                 // COMMENT
+                commentId.add(jsonobject.getString("commentId"));
                 comment.add(jsonobject.getString("comment"));
                 isApproved.add(jsonobject.getBoolean("isApproved"));
                 pic_url.add(jsonobject.getString("pic_url"));
+                datetime.add(jsonobject.getString("datetime"));
+                owned.add(own);
             }
             setupRecyclerView(recyclerView);
         }catch (Exception e){
@@ -157,6 +167,7 @@ public class CommentActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         registerReceiver(broadcastReceiver, new IntentFilter(CommentService.ACTION));
+        registerReceiver(broadcastReceiver, new IntentFilter(DeleteService.ACTION));
     }
 
     @Override
@@ -185,9 +196,12 @@ public class CommentActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if(intent.getBooleanExtra("Success",false)){
-                Toast.makeText(context, "Successfully Commented Something", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Successfully Commented Something", Toast.LENGTH_SHORT).show();
                 animateComment();
                 //finish();
+            }
+            else{
+                Toast.makeText(context, "Opss...something is not right", Toast.LENGTH_SHORT).show();
             }
         }
     }

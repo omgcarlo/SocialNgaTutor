@@ -12,7 +12,7 @@
         android:id="@+id/res"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kani sa kay di mi ka afford sa choy nga loading"
+        android:text="@string/loading_txt"
         android:gravity="center"
         android:layout_below="@+id/loading_login"
         android:layout_centerHorizontal="true" />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:text="retry"
         android:drawableTop="@drawable/ic_retry"
-        android:background="@color/white"
+        android:background="@null"
         android:layout_marginTop="50dp"
         android:layout_below="@+id/res"
         android:layout_centerHorizontal="true"

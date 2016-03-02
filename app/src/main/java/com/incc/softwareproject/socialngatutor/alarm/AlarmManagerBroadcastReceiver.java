@@ -18,6 +18,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.incc.softwareproject.socialngatutor.AfterLoginActivity;
+import com.incc.softwareproject.socialngatutor.PostViewActivity;
 import com.incc.softwareproject.socialngatutor.R;
 
 import org.json.JSONObject;
@@ -42,6 +43,8 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
     SharedPreferences sData;
     String SCHOOL_ID;
     Bitmap myBitmap;
+    String reference;
+    String refId;
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -69,11 +72,13 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
             notif = new com.incc.softwareproject.socialngatutor.Server.Notification();
             String s = notif.getNotif(params[0]);
             String desc;
-            //Log.e(TAG,s);
+            Log.e(TAG,s);
             if(!s.equals("")){
                 try {
                     JSONObject reader = new JSONObject(s);
                     JSONObject data = reader.getJSONObject("Notification");
+                    reference = data.getString("Notification");
+                    refId = data.getString("referenceId");
                     title = data.getString("from_full_name");
                     if(data.getString("description").equals("tagged"))
                         desc = "mentioned you on a ";
@@ -108,7 +113,10 @@ public class AlarmManagerBroadcastReceiver extends BroadcastReceiver {
             @SuppressWarnings("deprecation")
 
             Notification notification;
-            Intent notificationIntent = new Intent(context,AfterLoginActivity.class);
+            Intent notificationIntent = null;
+
+            notificationIntent = new Intent(context, PostViewActivity.class);
+            notificationIntent.putExtra("PostId", refId);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,notificationIntent, 0);
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
