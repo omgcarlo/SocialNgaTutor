@@ -1,6 +1,6 @@
 # SocialNgaTutor
 A Social Media tutoring site
 
-# This is still in the making
+# Version 1 is completed!
 Any comments, suggestions, reaction 
 will be accepted whole-heartedly
